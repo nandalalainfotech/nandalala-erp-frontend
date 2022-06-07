@@ -1,0 +1,107 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Make Product TimeSheet</legend>
+    <div class="formData">
+        <form [formGroup]="prodTimestForm" (ngSubmit)="onOrderClick($event, prodTimestForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="prtId" />
+                        <label path="empName" for="series" cssClass="required">Employee</label>
+                        <input class="form-control" type="hidden" path="empName" />
+                        <select class="form-control" name="empName" formControlName="empName" [ngClass]="{ 'is-invalid': submitted && f.empName.errors }">
+                            <option value="" hidden> - Select Employee - </option>
+                            <option value="null"> - Select Employee - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.empName.errors" class="invalid-feedback">
+                            <div *ngIf="f.empName.errors.required">Employee is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="status" for="series" cssClass="required">Order Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="status" id="ProdOrderStatus" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select Order Status - </option>
+                            <option value="null"> - Select Order Status - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Order Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="tsName" for="tsName" cssClass="required">TimeSheet</label>
+                        <input class="form-control" path="tsName" name="tsName" formControlName="tsName" [ngClass]="{ 'is-invalid': submitted && f.tsName.errors }" />
+                        <div *ngIf="submitted && f.tsName.errors" class="invalid-feedback">
+                            <div *ngIf="f.tsName.errors.required">TimeSheet is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empCompany" for="empCompany" cssClass="required">Company</label>
+                        <input class="form-control" type="hidden" path="empCompany" name="empCompany" />
+                        <select class="form-control" id="empCompanylist" name="empCompany" formControlName="empCompany" [ngClass]="{ 'is-invalid': submitted && f.empCompany.errors }">
+                            <option value="" hidden> - Select Company - </option>
+                            <option value="null"> - Select Company - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.empCompany.errors" class="invalid-feedback">
+                            <div *ngIf="f.empCompany.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="twhrs" for="twhrs" cssClass="required">Total Working Hours</label>
+                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" [ngClass]="{ 'is-invalid': submitted && f.twhrs.errors }" />
+                        <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
+                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Product Time Sheet</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

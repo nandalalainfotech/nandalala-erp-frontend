@@ -1,0 +1,105 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Period Closing Voucher</legend>
+    <div class="formData">
+        <form [formGroup]="periodCloseForm" (ngSubmit)="onOrderClick($event, periodCloseForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="transactiondate" for="transactiondate" cssClass="required">Transaction
+                                    Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="transactiondate" name="transactiondate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.transactiondate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.transactiondate.errors.required">Transaction date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="closingaccounthead" for="closingaccounthead" cssClass="required">Closing Account
+                            Head</label>
+                        <input class="form-control" path="closingaccounthead" id="closingaccounthead" name="closingaccounthead" formControlName="closingaccounthead" [ngClass]="{ 'is-invalid': submitted && f.closingaccounthead.errors }">
+                        <div *ngIf="submitted && f.closingaccounthead.errors" class="invalid-feedback">
+                            <div *ngIf="f.closingaccounthead.errors.required">Closing Account Head is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="postingdate" for="postingdate" cssClass="required">Posting Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="postingdate" name="postingdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.postingdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.postingdate.errors.required">Posting Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="closingfiscalyear" for="closingfiscalyear" cssClass="required">Closing Fiscal Year
+                        </label>
+                        <input class="form-control" path="closingfiscalyear" id="closingfiscalyear" name="closingfiscalyear" formControlName="closingfiscalyear" [ngClass]="{ 'is-invalid': submitted && f.closingfiscalyear.errors }">
+                        <div *ngIf="submitted && f.closingfiscalyear.errors" class="invalid-feedback">
+                            <div *ngIf="f.closingfiscalyear.errors.required">Closing Fiscal Year is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" id="company" name="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="remarks" for="remarks" cssClass="required">Remarks</label>
+                        <input class="form-control" path="remarks" id="remarks" [(ngModel)]="remarks" name="remarks" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
+                        <div *ngIf="submitted && f.remarks.errors" class="invalid-feedback">
+                            <div *ngIf="f.remarks.errors.required">Remarks is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Period Closing Voucher</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

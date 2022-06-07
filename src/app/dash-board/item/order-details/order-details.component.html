@@ -1,0 +1,49 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Order</legend>
+    <div class="formData">
+        <form [formGroup]="ordDetailsForm" (ngSubmit)="onOrderClick($event,ordDetailsForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="orderId" />
+                        <label path="orderName" for="orderName" cssClass="required">Order Name</label>
+                        <input formControlName="ordername" class="form-control" path="orderName" [ngClass]="{ 'is-invalid': submitted && f.ordername.errors }" name="ordername" />
+                        <div *ngIf="submitted && f.ordername.errors" class="invalid-feedback">
+                            <div *ngIf="f.ordername.errors.required">Order Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <legend class="scheduler-border">Order Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

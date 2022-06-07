@@ -1,0 +1,10 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-quot-trends" routerLinkActive #quotTrendsTab="routerLinkActive" [active]="quotTrendsTab.isActive">Quatation Trends</a>
+    <a mat-tab-link routerLink="./app-salse-order" routerLinkActive #salesOrderTab="routerLinkActive" [active]="salesOrderTab.isActive">Sales Order</a>
+</nav>
+
+<router-outlet></router-outlet>

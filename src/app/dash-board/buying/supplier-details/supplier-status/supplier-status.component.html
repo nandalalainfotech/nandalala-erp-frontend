@@ -1,0 +1,81 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Status</legend>
+    <div class="formData">
+        <form [formGroup]="suppStatusForm" (ngSubmit)="onOrderClick($event, suppStatusForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="sustatusId" />
+                        <label path="supName" for="supName" cssClass="required">Name</label>
+                        <input class="form-control" type="hidden" path="supName" />
+                        <select formControlName="supName" class="form-control" name="supplierlist" id="supplierlist" [ngClass]="{ 'is-invalid': submitted && f.supName.errors }" name="supName">
+                            <option value="" hidden> - Select Supplier - </option>
+                            <option value="null" > - Select Supplier - </option>
+                            <option *ngFor="let system of supsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.supName.errors" class="invalid-feedback">
+                            <div *ngIf="f.supName.errors.required">Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="sustatus" for="sustatus" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="sustatus" />
+                        <select formControlName="sustatus" class="form-control" name="supplierstatus" id="supplierstatus" [ngClass]="{ 'is-invalid': submitted && f.sustatus.errors }" name="sustatus">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null" > - Select Status - </option>
+                            <option *ngFor="let system of supstsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.sustatus.errors" class="invalid-feedback">
+                            <div *ngIf="f.sustatus.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="phone" for="phone" cssClass="required">Phone</label>
+                        <input formControlName="phone" class="form-control" path="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" name="phone" prefix="+91 " mask="(000) 000 0000" />
+                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                            <div *ngIf="f.phone.errors.required">Phone is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Supplier Status List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

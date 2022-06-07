@@ -1,0 +1,152 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Quotation Request</legend>
+    <div class="formData">
+        <form [formGroup]="prReqqForm" (ngSubmit)="onOrderClick($event,prReqqForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="prqId" />
+                        <label path="rqSeries" for="rqSeries" cssClass="required">Series</label>
+                        <input class="form-control" path="rqSeries" name="rqSeries" formControlName="rqSeries" [ngClass]="{ 'is-invalid': submitted && f.rqSeries.errors }">
+                        <div *ngIf="submitted && f.rqSeries.errors" class="invalid-feedback">
+                            <div *ngIf="f.rqSeries.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="date" for="date" cssClass="required">Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="date" name="date" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.date.errors.required">Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="supplier" for="supplier" cssClass="required">Supplier</label>
+                        <input class="form-control" type="hidden" path="supplier" />
+                        <select class="form-control" name="supplierlist" id="supplierlist" name="supplier" formControlName="supplier" [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }">
+                            <option value="" hidden> - Select Supplier - </option>
+                            <option value="null"> - Select Supplier - </option>
+                            <option *ngFor="let system of supsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+                            <div *ngIf="f.supplier.errors.required">Supplier is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="emailId" for="emailId" cssClass="required">Email ID </label>
+                        <input class="form-control" path="emailId" name="emailId" formControlName="emailId" [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }">
+                        <div *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+                            <div *ngIf="f.emailId.errors.required">Email ID is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="contact" for="contact" cssClass="required">Contact</label>
+                        <input class="form-control" path="contact" name="contact" formControlName="contact" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }">
+                        <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                            <div *ngIf="f.contact.errors.required">Contact is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="itemCode" for="itemCode" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select class="form-control" id="itemlist" name="itemCode" formControlName="itemCode" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }">
+                            <option value="" hidden> - Select the Item - </option>
+                            <option value="null"> - Select the Item - </option>
+                            <option *ngFor="let items of itemlist" [value]="items.itemcode">
+                                {{items.itemcode}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="requiredDate" for="requiredDate" cssClass="required">Required Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="requiredDate" name="requiredDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.requiredDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.requiredDate.errors.required">Required Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="quantity" for="quantity" cssClass="required">Quantity</label>
+                        <input class="form-control" path="quantity" name="quantity" formControlName="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.quantity.errors.required">Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="warehouse" for="warehouse" cssClass="required">WareHouse</label>
+                        <input class="form-control" path="warehouse" name="warehouse" formControlName="warehouse" [ngClass]="{ 'is-invalid': submitted && f.warehouse.errors }">
+                        <div *ngIf="submitted && f.warehouse.errors" class="invalid-feedback">
+                            <div *ngIf="f.warehouse.errors.required">WareHouse is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <div class="sample">
+        <fieldset class="scheduler-border">
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                        </button>
+                        <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <legend class="scheduler-border">Quotation Request Details</legend>
+            <div class="boxData">
+                <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+                </ag-grid-angular>
+            </div>
+        </fieldset>
+    </div>
+</div>

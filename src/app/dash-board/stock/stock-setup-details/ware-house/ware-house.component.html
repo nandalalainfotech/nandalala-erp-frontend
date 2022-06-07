@@ -1,0 +1,94 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Warehouse</legend>
+    <div class="formData">
+        <form [formGroup]="houseForm" (ngSubmit)="onOrderClick($event,houseForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="whId" />
+                        <label path="warehouseName" for="warehouseName" cssClass="required">Name</label>
+                        <input class="form-control" path="warehouseName" name="warehouseName"
+                            formControlName="warehouseName"
+                            [ngClass]="{ 'is-invalid': submitted && f.warehouseName.errors }">
+                        <div *ngIf="submitted && f.warehouseName.errors" class="invalid-feedback">
+                            <div *ngIf="f.warehouseName.errors.required">Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="status" id="status" name="status" formControlName="status"
+                            [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null"> - Select Status - </option>
+                            <option *ngFor="let system of statussystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="isActive" for="series" cssClass="required">WareHouse Mode</label>
+                        <input class="form-control" type="hidden" path="isActive" />
+                        <select class="form-control" name="warehousesmode" id="warehousesmode" name="isActive"
+                            formControlName="isActive" [ngClass]="{ 'is-invalid': submitted && f.isActive.errors }">
+                            <option value="" hidden> - Select Active Mode - </option>
+                            <option value="null"> - Select Active Mode - </option>
+                            <option *ngFor="let system of housesystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.isActive.errors" class="invalid-feedback">
+                            <div *ngIf="f.isActive.errors.required">WareHouse Mode is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="series" path="warehouseCode" cssClass="required">WareHouse Code</label>
+                        <input class="form-control" path="warehouseCode" name="warehouseCode"
+                            formControlName="warehouseCode"
+                            [ngClass]="{ 'is-invalid': submitted && f.warehouseCode.errors }">
+                        <div *ngIf="submitted && f.warehouseCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.warehouseCode.errors.required">WareHouse Code is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Warehouse</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+        [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+        [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

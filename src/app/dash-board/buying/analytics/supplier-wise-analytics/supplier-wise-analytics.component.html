@@ -1,0 +1,129 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Make New Supplier Wise List</legend>
+    <div class="formData">
+        <form [formGroup]="supplierAnalyticForm" (ngSubmit)="onOrderClick($event,supplierAnalyticForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="swsId" />
+                        <label path="itemCode" for="series" cssClass="required">Tree Type</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select formControlName="itemCode" class="form-control" id="itemCodelist" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }" name="itemCode">
+                            <option value="" hidden> - Select the Item - </option>
+                            <option value="null" > - Select the Item - </option>
+                            <option *ngFor="let items of itemlist" [value]="items.itemcode">
+                                {{items.itemcode}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Tree Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="swsUOM" for="toProduce" cssClass="required">UOM</label>
+                        <input formControlName="swsUom" class="form-control" path="swsUOM" [ngClass]="{ 'is-invalid': submitted && f.swsUom.errors }" name="swsUom" />
+                        <div *ngIf="submitted && f.swsUom.errors" class="invalid-feedback">
+                            <div *ngIf="f.swsUom.errors.required">UOM is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="consQty" for="toProduce" cssClass="required">Consumed Quantity</label>
+                        <input formControlName="consQty" class="form-control" path="consQty" [ngClass]="{ 'is-invalid': submitted && f.consQty.errors }" name="consQty" mask="0*.00" />
+                        <div *ngIf="submitted && f.consQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.consQty.errors.required">Consumed Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="consAmt" for="toProduce" cssClass="required">Consumed Amount</label>
+                        <input formControlName="consAmt" class="form-control" path="consAmt" [ngClass]="{ 'is-invalid': submitted && f.consAmt.errors }" name="consQty" mask="0*.00" />
+                        <div *ngIf="submitted && f.consAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.consAmt.errors.required">Consumed Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="delQty" for="toProduce" cssClass="required">Delivered Quantity</label>
+                        <input formControlName="delQty" class="form-control" path="delQty" [ngClass]="{ 'is-invalid': submitted && f.delQty.errors }" name="delQty" mask="0*.00" />
+                        <div *ngIf="submitted && f.delQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.delQty.errors.required">Delivered Quantityy is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="delAmt" for="toProduce" cssClass="required">Delivered Amount</label>
+                        <input formControlName="delAmt" class="form-control" path="delAmt" [ngClass]="{ 'is-invalid': submitted && f.delAmt.errors }" name="delAmt" mask="0*.00" />
+                        <div *ngIf="submitted && f.delAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.delAmt.errors.required">Delivered Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalQty" for="toProduce" cssClass="required">Total Quantity</label>
+                        <input formControlName="totalQty" class="form-control" path="totalQty" [ngClass]="{ 'is-invalid': submitted && f.totalQty.errors }" name="totalQty" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalQty.errors.required">Total Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalAmt" for="toProduce" cssClass="required">Total Amount</label>
+                        <input formControlName="totalAmt" class="form-control" path="totalAmt" [ngClass]="{ 'is-invalid': submitted && f.totalAmt.errors }" name="totalAmt" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalAmt.errors.required">Total Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="description" for="reason" cssClass="required">Description</label>
+                        <textarea formControlName="description" placeholder="" class="form-control" path="description" name="description" rows="5" cols="30" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" name="description"></textarea>
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Supplier Wise List</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

@@ -1,0 +1,14 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-gross-profit" routerLinkActive #grossProfitTab="routerLinkActive"
+        [active]="grossProfitTab.isActive">Gross Profit</a>
+    <a mat-tab-link routerLink="./app-purchase-invoice" routerLinkActive #purchaseInvoiceTab="routerLinkActive"
+        [active]="purchaseInvoiceTab.isActive">Purchase Invoice</a>
+    <a mat-tab-link routerLink="./app-sales-invoice" routerLinkActive #salesInvoiceTab="routerLinkActive"
+        [active]="salesInvoiceTab.isActive">Sales Invoice</a>
+</nav>
+
+<router-outlet></router-outlet>

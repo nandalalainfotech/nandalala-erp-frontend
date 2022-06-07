@@ -1,0 +1,94 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Project</legend>
+    <div class="formData">
+        <form [formGroup]="projectForm" (ngSubmit)="onOrderClick($event,projectForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input class="form-control" type="hidden" path="id" />
+                        <label path="projectname" for="projectname" cssClass="required">Project Name</label>
+                        <input formControlName="projectname" class="form-control" path="projectname" [ngClass]="{ 'is-invalid': submitted && f.projectname.errors }" name="projectname" />
+                        <div *ngIf="submitted && f.projectname.errors" class="invalid-feedback">
+                            <div *ngIf="f.projectname.errors.required">Project Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="estimatedcost" for="estimatedcost" cssClass="required">Estimated Cost</label>
+                        <input formControlName="estimatedcost" class="form-control" path="estimatedcost" [ngClass]="{ 'is-invalid': submitted && f.estimatedcost.errors }" name="estimatedcost" />
+                        <div *ngIf="submitted && f.estimatedcost.errors" class="invalid-feedback">
+                            <div *ngIf="f.estimatedcost.errors.required">Estimated Cost is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="startdate" for="startdate" cssClass="required">Start Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="startdate" name="startdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.startdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.startdate.errors.required">Start Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="enddate" for="enddate" cssClass="required">End Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="enddate" name="enddate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.enddate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.enddate.errors.required">End Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input formControlName="status" class="form-control" path="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" name="status" />
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    <legend class="scheduler-border">Project Details</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

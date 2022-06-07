@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-item-request" routerLinkActive #itemRequestTab="routerLinkActive" [active]="itemRequestTab.isActive">Item Request</a>
+    <a mat-tab-link routerLink="./app-item-ordered" routerLinkActive #itemOrderTab="routerLinkActive" [active]="itemOrderTab.isActive">Item Ordered</a>
+    <a mat-tab-link routerLink="./app-matreq-supwise" routerLinkActive #matreqTab="routerLinkActive" [active]="matreqTab.isActive">Material Request Supply Wise</a>
+    <a mat-tab-link routerLink="./app-item-puhistory" routerLinkActive #puhistoryTab="routerLinkActive" [active]="puhistoryTab.isActive">Item-PUHistory</a>
+</nav>
+
+<router-outlet></router-outlet>

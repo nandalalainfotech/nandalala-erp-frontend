@@ -1,0 +1,176 @@
+<h3 style="color: red;">UNDER CONSTRUCTION</h3>
+<!-- <fieldset class="scheduler-border">
+    <legend class="scheduler-border">Item Wise Purchase Register</legend>
+    <div class="formData">
+        <form>
+            <div class="row">
+                <input class="form-control" path="iwprId" type="hidden" />
+                <div class="col-xs-3 form-group">
+                    <label path="itemCode" for="itemCode" cssClass="required">Item</label>
+                    <input class="form-control" path="itemCode" id="itemCode" type="hidden" />
+                    <select class="form-control" id="itemList">
+                        <option value="" selected="Selected"> - Select Item - </option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="itemGroup" for="series" cssClass="required">Item Group</label>
+                        <input class="form-control" type="hidden" path="itemGroup" />
+                        <select class="form-control" id="itemgroupList">
+                            <option value="" selected="Selected"> - Select ItemGroup- </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="inVoice" for="inVoice" cssClass="required">InVoice</label>
+                    <input class="form-control" path="inVoice" id="inVoice" />
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="postingDate" for="postingDate" cssClass="required">Posting Date</label>
+                        <div class="input-group input-append date" id="datePicker">
+                            <input class="form-control" path="postingDate" />
+                            <span class="input-group-addon add-on"><span
+                                    class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="supName" for="supName" cssClass="required">Supplier Name</label>
+                        <input class="form-control" type="hidden" path="supName" />
+                        <select class="form-control" id="supplierList">
+                            <option value="" selected="Selected"> - Select the Supplier - </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="payAccount" for="payAccount" cssClass="required">Payable Account</label>
+                    <input class="form-control" path="payAccount" id="payAccount" />
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="paymentMode" for="paymentMode" cssClass="required">Payment Mode</label>
+                        <input class="form-control" type="hidden" path="paymentMode" />
+                        <select class="form-control" name="PaymentModeList" id="PaymentModeList">
+                            <option value="" selected="Selected"> - Select Payment Mode - </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="projectname" for="projectname" cssClass="required">Project Name</label>
+                        <input class="form-control" type="hidden" path="projectname" />
+                        <select class="form-control" id="projectList">
+                            <option value="" selected="Selected"> - Select the Project - </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 form-group">
+                    <label path="company" for="company" cssClass="required">Company</label>
+                    <input class="form-control" path="company" id="company" />
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="poSeries" for="poSeries" cssClass="required">Purchase Order</label>
+                        <input class="form-control" type="hidden" path="poSeries" />
+                        <select class="form-control" id="purchaserorderList">
+                            <option value="Select" selected="Selected"> - Select the Purchase Order - </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="purtName" for="purtName" cssClass="required">Purchase Receipt</label>
+                        <input class="form-control" type="hidden" path="purtName" />
+                        <select class="form-control" id="purchasereceiptList">
+                            <option value="" selected="Selected"> - Select the Purchase Receipt - </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="expenseAccount" for="61-90" cssClass="required">Expense Account</label>
+                    <input class="form-control" path="expenseAccount" id="expenseAccount" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 form-group">
+                    <label path="quantity" for="quantity" cssClass="required">Quantity</label>
+                    <input class="form-control" path="quantity" id="quantity" />
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="rate" for="rate" cssClass="required">Rate</label>
+                    <input class="form-control" path="rate" id="rate" />
+                    <select class="form-control hidden" id="itemRateList">
+                        <option value="Select" selected="Selected"> - Select Rate - </option>
+                    </select>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="amount" for="amount" cssClass="required">Amount</label>
+                    <input class="form-control" path="amount" id="amount" />
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="totalTax" for="totalTax" cssClass="required">Total Tax</label>
+                    <input class="form-control" path="totalTax" id="totalTax" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 form-group">
+                    <label path="total" for="total" cssClass="required">Total</label>
+                    <input class="form-control" path="total" id="total" />
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="currency" for="currency" cssClass="required">Currency</label>
+                    <input class="form-control" path="currency" type="hidden" id="currency" />
+                    <select class="form-control" name="CurrencyList" id="CurrencyList">
+                        <option value="Select" selected="Selected"> - Select Currency - </option>
+                    </select>
+                </div>
+                <div class="col-xs-3 form-group"></div>
+                <div class="col-xs-3 form-group" style="margin-top: 21px; float:right;">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Item Wise Purchase Register</legend>
+    <div class="boxData">
+        <table id="accountsreceivable" class="display download" cellspacing="0" width=100%>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item</th>
+                    <th>ItemGroup</th>
+                    <th>IN-Voice</th>
+                    <th>Posting Date</th>
+                    <th>Supplier</th>
+                    <th>Payable Account</th>
+                    <th>Mode of Payment</th>
+                    <th>Project Name</th>
+                    <th>Company</th>
+                    <th>Purchase Order</th>
+                    <th>Purchase Receipt</th>
+                    <th>Expense Account</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                    <th>Total Tax</th>
+                    <th>Total</th>
+                    <th>Currency</th>
+                    <th>Actions on Row</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</fieldset> -->

@@ -1,0 +1,119 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Voucher</legend>
+    <div class="formData">
+        <form [formGroup]="costsForm" (ngSubmit)="onOrderClick($event,costsForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="vouchId" />
+                        <label path="series" for="series" cssClass="required">Series</label>
+                        <input class="form-control" path="series" name="series" formControlName="series"
+                            [ngClass]="{ 'is-invalid': submitted && f.series.errors }" />
+                        <div *ngIf="submitted && f.series.errors" class="invalid-feedback">
+                            <div *ngIf="f.series.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="company" for="series" cssClass="required">Company</label>
+                        <input class="form-control" path="company" name="company" formControlName="company"
+                            [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="recptdocType" for="recptdocType" cssClass="required">Receipt Document Type</label>
+                        <input class="form-control" type="hidden" path="recptdocType" />
+                        <select class="form-control" name="doctypelist" id="doctypelist" name="recptdocType"
+                            formControlName="recptdocType"
+                            [ngClass]="{ 'is-invalid': submitted && f.recptdocType.errors }">
+                            <option value="" hidden> - Select document Type - </option>
+                            <option value="null"> - Select document Type - </option>
+                            <option *ngFor="let system of systemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.recptdocType.errors" class="invalid-feedback">
+                            <div *ngIf="f.recptdocType.errors.required">Receipt Document Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="recptdoc" for="series" cssClass="required">Receipt Document</label>
+                        <input class="form-control" path="recptdoc" name="recptdoc" formControlName="recptdoc"
+                            [ngClass]="{ 'is-invalid': submitted && f.recptdoc.errors }" />
+                        <div *ngIf="submitted && f.recptdoc.errors" class="invalid-feedback">
+                            <div *ngIf="f.recptdoc.errors.required">Receipt Document is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="supName" for="supName" cssClass="required">Supplier</label>
+                        <input class="form-control" type="hidden" path="supName" />
+                        <select class="form-control" id="supplierList" name="supName" formControlName="supName"
+                            [ngClass]="{ 'is-invalid': submitted && f.supName.errors }">
+                            <option value="" hidden> - Select the Supplier - </option>
+                            <option value="null"> - Select the Supplier - </option>
+                            <option *ngFor="let system of fsystemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.supName.errors" class="invalid-feedback">
+                            <div *ngIf="f.supName.errors.required">Supplier is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="grandTotal" for="grandTotal" cssClass="required">Grand Total</label>
+                        <input class="form-control" path="grandTotal" name="grandTotal" formControlName="grandTotal"
+                            [ngClass]="{ 'is-invalid': submitted && f.grandTotal.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.grandTotal.errors" class="invalid-feedback">
+                            <div *ngIf="f.grandTotal.errors.required">Grand Total is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Voucher List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

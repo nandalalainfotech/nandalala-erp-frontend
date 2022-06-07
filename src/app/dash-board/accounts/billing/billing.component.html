@@ -1,0 +1,143 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <div>
+        <a mat-tab-link [matMenuTriggerFor]="salesInvoice"
+            >Sales Invoice<b class="caret"></b
+        ></a>
+        <mat-menu #salesInvoice="matMenu">
+            <ul>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-accounts-receivable"
+                        routerLinkActive
+                        >Accounts Receivable</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-accountsrec-summary"
+                        routerLinkActive
+                        >Accounts Receivable Summary</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-delivered-items"
+                        routerLinkActive
+                        >Delivered Items to be Billed</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-gross-profit"
+                        routerLinkActive
+                        >Gross Profit</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-order-bill"
+                        routerLinkActive
+                        >Ordered Items to be Billed</a
+                    >
+                </li>
+            </ul>
+        </mat-menu>
+    </div>
+
+    <div>
+        <a mat-tab-link [matMenuTriggerFor]="purchaseInvoice"
+            >Purchase Invoice<b class="caret"></b
+        ></a>
+        <mat-menu #purchaseInvoice="matMenu">
+            <ul>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-accounts-payable"
+                        routerLinkActive
+                        >Accounts Payable</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-accountspay-summary"
+                        routerLinkActive
+                        >Accounts Payable Summary</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-received-items"
+                        routerLinkActive
+                        >Received Items to be Billed</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-itemwise-purchase"
+                        routerLinkActive
+                        >Item-Wise Purchase Register</a
+                    >
+                </li>
+                <li [ngStyle]="{ color: colorthemes_1 }">
+                    <a
+                        mat-menu-item
+                        mat-tab-link
+                        routerLink="./app-purchase-order"
+                        routerLinkActive
+                        >Purchase Order Items to be Billed</a
+                    >
+                </li>
+            </ul>
+        </mat-menu>
+    </div>
+    <a
+        mat-menu-item
+        mat-tab-link
+        routerLink="./app-payment-request"
+        routerLinkActive
+        #payReqTab="routerLinkActive"
+        [active]="payReqTab.isActive"
+        >Payment Request</a
+    >
+    <a
+        mat-menu-item
+        mat-tab-link
+        routerLink="./app-payment-entry"
+        routerLinkActive
+        #payEntryTab="routerLinkActive"
+        [active]="payEntryTab.isActive"
+        >Payment Entry</a
+    >
+    <a
+        mat-menu-item
+        mat-tab-link
+        routerLink="./app-itemwisepurchase"
+        routerLinkActive
+        #itemWisePurchaseTab="routerLinkActive"
+        [active]="itemWisePurchaseTab.isActive"
+        >Item-Wise Purchase Register</a
+    >
+</nav>
+<router-outlet></router-outlet>

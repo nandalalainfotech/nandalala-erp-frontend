@@ -1,0 +1,118 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Make New Production List</legend>
+    <div class="formData">
+        <form [formGroup]="openOrderForm" (ngSubmit)="onOrderClick($event,openOrderForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="prodId" />
+                        <label path="prorderCode" for="series" cssClass="required">PROrder Code</label>
+                        <input class="form-control" type="hidden" path="prorderCode" />
+                        <select class="form-control" id="prodorderlist" name="prorderCode" formControlName="prorderCode" [ngClass]="{ 'is-invalid': submitted && f.prorderCode.errors }">
+                            <option value="" hidden> - Select the PROrder - </option>
+                            <option value="null" > - Select the PROrder - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.prorderCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.prorderCode.errors.required">PROrder Code is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="date" for="date" cssClass="required">Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="date" name="date" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.date.errors.required">Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="itemtoManufacture" for="series" cssClass="required">Item To Manufacture
+                        </label>
+                        <input class="form-control" type="hidden" path="itemtoManufacture" />
+                        <select class="form-control" id="prodorderitemlist" name="itemtoManufacture" formControlName="itemtoManufacture" [ngClass]="{ 'is-invalid': submitted && f.itemtoManufacture.errors }">
+                            <option value="" hidden> - Select the Items - </option>
+                            <option value="null"> - Select the Items - </option>
+                            <option *ngFor="let itemmanu of prodOrders" [value]="itemmanu.itemtoManufacture">
+                                {{itemmanu.itemtoManufacture}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemtoManufacture.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemtoManufacture.errors.required">Item To Manufacture is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="toProduce" for="toProduce" cssClass="required">To Produce</label>
+                        <input class="form-control" path="toProduce" name="toProduce" formControlName="toProduce" [ngClass]="{ 'is-invalid': submitted && f.toProduce.errors }" />
+                        <div *ngIf="submitted && f.toProduce.errors" class="invalid-feedback">
+                            <div *ngIf="f.toProduce.errors.required">To Produce is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="produced" for="produced" cssClass="required">Produced</label>
+                        <input class="form-control" path="produced" name="produced" formControlName="produced" [ngClass]="{ 'is-invalid': submitted && f.produced.errors }" />
+                        <div *ngIf="submitted && f.produced.errors" class="invalid-feedback">
+                            <div *ngIf="f.produced.errors.required">Produced is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empCompany" for="empCompany" cssClass="required">Company</label>
+                        <input class="form-control" path="empCompany" name="empCompany" formControlName="empCompany" [ngClass]="{ 'is-invalid': submitted && f.empCompany.errors }" />
+                        <div *ngIf="submitted && f.empCompany.errors" class="invalid-feedback">
+                            <div *ngIf="f.empCompany.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<fieldset class="scheduler-border">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    <legend class="scheduler-border">Open Production Order</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

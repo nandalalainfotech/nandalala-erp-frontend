@@ -1,0 +1,189 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Purchase History</legend>
+    <div class="formData">
+        <form [formGroup]="itPuhisForm" (ngSubmit)="onOrderClick($event,itPuhisForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="histId" />
+                        <label path="itemCode" for="poSeries" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select class="form-control" id="itemCodelist" name="itemCode" formControlName="itemCode" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }">
+                            <option value ="" hidden> - Select the Item - </option>
+                            <option value ="null" > - Select the Item - </option>
+                            <option *ngFor="let items of itemlist" [value]="items.itemcode">
+                                {{items.itemcode}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="itemGroup" for="toProduce" cssClass="required">Item Group</label>
+
+                        <input class="form-control" type="hidden" path="itemGroup" />
+                        <select class="form-control" id="itemgrouplist" name="itemGroup" formControlName="itemGroup" [ngClass]="{ 'is-invalid': submitted && f.itemGroup.errors }">
+                            <option value="" hidden> - Select the Group - </option>
+                            <option value="null"> - Select the Group - </option>
+                            <option *ngFor="let system of gpsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.itemGroup.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemGroup.errors.required">Item Group is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="quantity" for="toProduce" cssClass="required">Quantity</label>
+
+                        <input class="form-control" path="quantity" name="quantity" formControlName="quantity" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.quantity.errors.required">Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="uom" for="toProduce" cssClass="required">UOM</label>
+                        <input class="form-control" path="uom" name="uom" formControlName="uom" [ngClass]="{ 'is-invalid': submitted && f.uom.errors }" />
+                        <div *ngIf="submitted && f.uom.errors" class="invalid-feedback">
+                            <div *ngIf="f.uom.errors.required">UOM is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="date" for="date" cssClass="required">Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="date" name="date" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.date.errors.required">Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="amount" for="toProduce" cssClass="required">Amount</label>
+                        <input class="form-control" path="amount" name="amount" formControlName="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                            <div *ngIf="f.amount.errors.required">Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="poSeries" for="toProduce" cssClass="required">Purchase Order</label>
+                        <input class="form-control" type="hidden" path="poSeries" />
+                        <select class="form-control" id="purchaseorderlist" name="poSeries" formControlName="poSeries" [ngClass]="{ 'is-invalid': submitted && f.poSeries.errors }">
+                            <option value="" hidden> - Select the Purchase Order - </option>
+                            <option value="null" > - Select the Purchase Order - </option>
+                            <option *ngFor="let system of posystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.poSeries.errors" class="invalid-feedback">
+                            <div *ngIf="f.poSeries.errors.required">Purchase Order is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="transDate" for="transDate" cssClass="required"> Transaction Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="transDate" name="date" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.transDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.transDate.errors.required">Transaction Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="supplier" for="toProduce" cssClass="required">Supplier</label>
+                        <input class="form-control" type="hidden" path="supplier" />
+                        <select class="form-control" id="supplierlist" name="supplier" formControlName="supplier" [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }">
+                            <option value="" hidden> - Select the Supplier - </option>
+                            <option value="null" > - Select the Supplier - </option>
+                            <option *ngFor="let system of supsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+                            <div *ngIf="f.supplier.errors.required">Supplier is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="receivedQty" for="toProduce" cssClass="required">Received Qty</label>
+
+                        <input class="form-control" path="receivedqty" name="receivedqty" formControlName="receivedqty" [ngClass]="{ 'is-invalid': submitted && f.receivedqty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.receivedqty.errors" class="invalid-feedback">
+                            <div *ngIf="f.receivedqty.errors.required">Received Qty is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="company" for="toProduce" cssClass="required">Company</label>
+                        <input class="form-control" path="company" name="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="description" for="reason" cssClass="required">Description</label>
+                        <textarea class="form-control" path="description" name="description" rows="5" cols="30" name="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+                        </textarea>
+
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        <legend class="scheduler-border">Item History List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

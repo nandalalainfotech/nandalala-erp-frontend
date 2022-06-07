@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-crm-sales-pipe-line" routerLinkActive #salesPipeLineTab="routerLinkActive" [active]="salesPipeLineTab.isActive">Sales PipeLine</a>
+    <a mat-tab-link routerLink="./app-crm-contact" routerLinkActive #contactTab="routerLinkActive" [active]="contactTab.isActive">Contact</a>
+    <a mat-tab-link routerLink="./app-customer" routerLinkActive #custTab="routerLinkActive" [active]="custTab.isActive">Customer</a>
+    <a mat-tab-link routerLink="./app-opportunity" routerLinkActive #oppertunityTab="routerLinkActive" [active]="oppertunityTab.isActive">Opportunity</a>
+</nav>
+
+<router-outlet></router-outlet>

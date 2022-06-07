@@ -1,0 +1,113 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Stock Reconcile</legend>
+    <div class="formData">
+        <form [formGroup]="stocksForm" (ngSubmit)="onOrderClick($event,stocksForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="stkrecId" />
+                        <label path="series" for="series" cssClass="required">Series</label>
+                        <input class="form-control" path="series" name="series" formControlName="series"
+                            [ngClass]="{ 'is-invalid': submitted && f.series.errors }" />
+                        <div *ngIf="submitted && f.series.errors" class="invalid-feedback">
+                            <div *ngIf="f.series.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" name="company" formControlName="company"
+                            [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="postingDate" for="postingDate" cssClass="required">Posting Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="postingDate"
+                                    name="postingDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true"
+                                    inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.postingDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.postingDate.errors.required">Posting Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="postingTime" for="postingTime" cssClass="required">Posting Time</label>
+                                <p-calendar [timeOnly]="true" hourFormat="24" [showSeconds]="true" inputId="timeonly"
+                                    formControlName="postingTime">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.postingTime.errors" class="invalid-feedback">
+                                    <div *ngIf="f.postingTime.errors.required">Posting Time is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="diffAcc" for="series" cssClass="required">Difference Account</label>
+                        <input class="form-control" path="diffAcc" name="diffAcc" formControlName="diffAcc"
+                            [ngClass]="{ 'is-invalid': submitted && f.diffAcc.errors }" />
+                        <div *ngIf="submitted && f.diffAcc.errors" class="invalid-feedback">
+                            <div *ngIf="f.diffAcc.errors.required">Difference Account is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="costCenter" for="series" cssClass="required">Cost Center</label>
+                        <input class="form-control" path="costCenter" name="costCenter" formControlName="costCenter"
+                            [ngClass]="{ 'is-invalid': submitted && f.costCenter.errors }" />
+                        <div *ngIf="submitted && f.costCenter.errors" class="invalid-feedback">
+                            <div *ngIf="f.costCenter.errors.required">Cost Center is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Stock Reconcile</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+        [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+        [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

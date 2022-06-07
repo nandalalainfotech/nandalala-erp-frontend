@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+  text:
+  <mat-form-field>
+    <input matInput >
+  </mat-form-field>
+  color:
+  <mat-form-field>
+    <input matInput >
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>OK</button>
+  <button mat-button [mat-dialog-close]="null">Cancel</button>
+</div>

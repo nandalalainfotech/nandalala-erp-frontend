@@ -1,0 +1,185 @@
+<div class="box">
+    <div class="row">
+        <div class="col-xs-6  col-sm-6">
+            <div class="card">
+                <div class="d-flex card-body ">
+                    <div class=" w-100 align-items- left row">
+                        <div class="mb-4 mb-sm-0 col-sm-5">
+                            <!-- <h3 class="mb-0 d-flex align-items: center;">
+                                <span>98</span>
+                                <span class="dot bg-green d-inline - block ms-4">
+                                </span>
+                            </h3> -->
+                            <span class= "text-upper case small">Working
+                            </span>
+                            <hr>
+                            <small class="text-muted">Hours</small>
+                        </div>
+                        <div class="card-body  d-flex justify-content-between align-items-center">
+                            <h5 class="card-visit mb-0">{{Visit}}</h5>
+                            <div class="progress-bar-circle ">
+                                <div class="progressbar-text">{{ percent }}%</div>
+                                <round-progress [current]="percent" [max]="100" [responsive]="true" [duration]="800"
+                                    [animation]="'easeInOutQuart'" [animationDelay]="0" [radius]="50" [rounded]="true"
+                                    [stroke]="4" >
+                                </round-progress>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- style="padding-bottom: 68px;" -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col-xs-6  col-sm-6">
+        <div class="card fix1">
+            <div class="d-flex card-body cherry">
+                <div class=" w-100 align-items- left row">
+                    <div class="mb-4 mb-sm-0 col-sm-5">
+                        <!-- <h3 class="mb-0 d-flex align-items: center;">
+                            <span>66</span>
+                            <span class="dot bg-green d-inline - block ms-4">
+                            </span>
+                        </h3> -->
+                        <span class="text- upper case small">People
+                        </span>
+                        <hr>
+                        <small class="text-muted">Views</small>
+                    </div>
+                    <!-- <div col-sm-7> -->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h5 class="card-visit mb-0">{{Downloads}}</h5>
+                        <div class="progress-bar-circle ">
+                            <!-- norml round bar -->
+                            <div class="progressbar-text">{{dollarpercent}}%</div>
+                            <round-progress [current]="dollarpercent" [max]="100" [responsive]="true" [duration]="800"
+                                [animation]="'easeInOutQuart'" [animationDelay]="0" [radius]="50" [rounded]="true"
+                                [stroke]="4">
+                            </round-progress>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col-xs-8  col-sm-8">
+        <div class="card bar1">
+            <div class="d-flex card-body brix">
+                <div class=" w-100 align-items- left row">
+                    <div class="mb-4 mb-sm-0 col-sm-5">
+                        <!-- <h3 class="mb-0 d-flex align-items: center;">
+                            <span>55</span>
+                            <span class="dot bg-green d-inline - block ms-4">
+                            </span>
+                        </h3> -->
+                        <span class="text- upper case small">Subscribe
+                        </span>
+                        <hr>
+                        <small class="text-muted">Likes</small>
+                    </div>
+                    <!-- <div col-sm-7> -->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h5 class="card-visit mb-0">{{Movies}}</h5>
+                        <div class="progress-bar-circle ">
+                            <!-- norml round bar -->
+                            <div class="progressbar-text">{{amountperpercent}}%</div>
+                            <round-progress [current]="amountperpercent" [max]="100" [responsive]="true" [duration]="800"
+                                [animation]="'easeInOutQuart'" [animationDelay]="0" [radius]="50" [rounded]="true"
+                                [stroke]="4">
+                            </round-progress>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col-xs-8  col-sm-8">
+        <div class="card stone1">
+            <div class="d-flex card-body gravel">
+                <div class=" w-100 align-items- left row">
+                    <div class="mb-4 mb-sm-0 col-sm-5">
+                        <!-- <h3 class="mb-0 d-flex align-items: center;">
+                            <span>80</span>
+                            <span class="dot bg-green d-inline - block ms-4">
+                            </span>
+                        </h3> -->
+                        <span class="text- upper case small">Social Media
+                        </span>
+                        <hr>
+                        <small class="text-muted">Installed</small>
+                    </div>
+                    <!-- <div col-sm-7> -->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h5 class="card-visit mb-0">{{Applications}}</h5>
+                        <div class="progress-bar-circle ">
+                            <div class="progressbar-text">{{pricepercent}}%</div>
+                            <round-progress [current]="pricepercent" [max]="100" [responsive]="true" [duration]="800"
+                                [animation]="'easeInOutQuart'" [animationDelay]="0" [radius]="50" [rounded]="true"
+                                [stroke]="4">
+                            </round-progress>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <!-- <div class="main-card mb-3 card">
+                            <div class="no-gutters row">
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="widget-content">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-right ml-0 mr-3">
+                                                <div class="widget-numbers text-success">1896</div>
+                                            </div>
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Total Orders</div>
+                                                <div class="widget-subheading">Last year expenses</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="widget-content">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-right ml-0 mr-3">
+                                                <div class="widget-numbers text-warning">$ 14M</div>
+                                            </div>
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Products Sold</div>
+                                                <div class="widget-subheading">Total revenue streams</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="widget-content">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-right ml-0 mr-3">
+                                                <div class="widget-numbers text-danger">45.9%</div>
+                                            </div>
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Followers</div>
+                                                <div class="widget-subheading">People Interested</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-xl-none d-md-block col-md-6 col-xl-4">
+                                    <div class="widget-content">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-right ml-0 mr-3">
+                                                <div class="widget-numbers text-danger">45.9%</div>
+                                            </div>
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Followers</div>
+                                                <div class="widget-subheading">People Interested</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->

@@ -1,0 +1,465 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Monthly Attendance Record</legend>
+    <div class="formData">
+        <form [formGroup]="attendForm" (ngSubmit)="onOrderClick($event, attendForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="atsId" />
+                        <label path="attYear" for="attYear" cssClass="required">Year</label>
+                        <input class="form-control" type="hidden" path="attYear" />
+                        <select formControlName="attYear" class="form-control" id="yearpicker" [ngClass]="{ 'is-invalid': submitted && f.attYear.errors }" name="attYear">
+                            <option value="" hidden> - Select the Year - </option>
+                            <option value="null" > - Select the Year - </option>
+                            <option *ngFor="let system of yearsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.attYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.attYear.errors.required">Year is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empNumber" for="empNumberlist" cssClass="required">Employee Number</label>
+                        <input class="form-control" type="hidden" path="empNumber" />
+                        <select formControlName="empNumber" class="form-control" id="empNumberlist" [ngClass]="{ 'is-invalid': submitted && f.empNumber.errors }" name="empNumber">
+                            <option value="" hidden> - Select the Employee Number - </option>
+                            <option value="null" > - Select the Employee Number - </option>
+                            <option *ngFor="let system of numsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.empNumber.errors.required">Employee Number is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empName" for="empNamelist" cssClass="required">Employee Name</label>
+                        <input class="form-control" type="hidden" path="empName" />
+                        <select formControlName="empName" class="form-control" id="empNamelist" [ngClass]="{ 'is-invalid': submitted && f.empName.errors }" name="empName">
+                            <option value="" hidden> - Select the Employee Name - </option>
+                            <option value="null"> - Select the Employee Name - </option>
+                            <option *ngFor="let system of empsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empName.errors" class="invalid-feedback">
+                            <div *ngIf="f.empName.errors.required">Employee Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="deptName" for="deptName" cssClass="required">Department Name</label>
+                        <input class="form-control" type="hidden" path="deptName" />
+                        <select formControlName="deptName" class="form-control" id="deptNamelist" [ngClass]="{ 'is-invalid': submitted && f.deptName.errors }" name="deptName">
+                            <option value="" hidden > - Select the Department - </option>
+                            <option value="null" > - Select the Department - </option>
+                            <option *ngFor="let system of depsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.deptName.errors" class="invalid-feedback">
+                            <div *ngIf="f.deptName.errors.required">Department Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="branch" for="branch" cssClass="required">Branch</label>
+                        <input class="form-control" type="hidden" path="branch" />
+                        <select formControlName="branch" class="form-control" id="branchlist" [ngClass]="{ 'is-invalid': submitted && f.branch.errors }" name="branch">
+                            <option value="" hidden> - Select the Branch- </option>
+                            <option value="null"> - Select the Branch- </option>
+                            <option *ngFor="let system of branchsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.branch.errors" class="invalid-feedback">
+                            <div *ngIf="f.branch.errors.required">Branch is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="empCompany" for="empCompany" cssClass="required">Company</label>
+                        <input class="form-control" type="hidden" path="empCompany" />
+                        <select formControlName="empCompany" class="form-control" id="companylist" [ngClass]="{ 'is-invalid': submitted && f.empCompany.errors }" name="empCompany">
+                            <option value="" hidden> - Select the Employee- </option>
+                            <option value="null" > - Select the Employee- </option>
+                            <option *ngFor="let system of companysystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empCompany.errors" class="invalid-feedback">
+                            <div *ngIf="f.empCompany.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="empDesign" for="empDesign" cssClass="required">Designation</label>
+                        <input class="form-control" type="hidden" path="empDesign" />
+                        <select formControlName="empDesign" class="form-control" id="designationlist" [ngClass]="{ 'is-invalid': submitted && f.empDesign.errors }" name="empDesign">
+                            <option value="" hidden> - Select the Designation- </option>
+                            <option value="null"> - Select the Designation- </option>
+                            <option *ngFor="let system of designsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empDesign.errors" class="invalid-feedback">
+                            <div *ngIf="f.empDesign.errors.required">Designation is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="one1">One</label>
+                        <input formControlName="one1" class="form-control" path="one1" [ngClass]="{ 'is-invalid': submitted && f.one1.errors }" name="one1" />
+                        <div *ngIf="submitted && f.one1.errors" class="invalid-feedback">
+                            <div *ngIf="f.one1.errors.required">One is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="two2">Two</label>
+                        <input formControlName="two2" class="form-control" path="two2" [ngClass]="{ 'is-invalid': submitted && f.two2.errors }" name="two2" />
+                        <div *ngIf="submitted && f.two2.errors" class="invalid-feedback">
+                            <div *ngIf="f.two2.errors.required">Two is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="three3">Three</label>
+                        <input formControlName="three3" class="form-control" path="three3" [ngClass]="{ 'is-invalid': submitted && f.three3.errors }" name="three3" />
+                        <div *ngIf="submitted && f.three3.errors" class="invalid-feedback">
+                            <div *ngIf="f.three3.errors.required">Three is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="four4">Four</label>
+                        <input formControlName="four4" class="form-control" path="four4" [ngClass]="{ 'is-invalid': submitted && f.four4.errors }" [(ngModel)]="four4" name="four4" />
+                        <div *ngIf="submitted && f.four4.errors" class="invalid-feedback">
+                            <div *ngIf="f.four4.errors.required">Four is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="five5" for="five5">Five</label>
+                        <input formControlName="five5" class="form-control" path="five5" [ngClass]="{ 'is-invalid': submitted && f.five5.errors }" name="five5" />
+                        <div *ngIf="submitted && f.five5.errors" class="invalid-feedback">
+                            <div *ngIf="f.five5.errors.required">Five is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="six6" for="six6">Six</label>
+                        <input formControlName="six6" class="form-control" path="six6" [ngClass]="{ 'is-invalid': submitted && f.six6.errors }" name="six6" />
+                        <div *ngIf="submitted && f.six6.errors" class="invalid-feedback">
+                            <div *ngIf="f.six6.errors.required">Six is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="seven7" for="seven7">Seven</label>
+                        <input formControlName="seven7" class="form-control" path="seven7" [ngClass]="{ 'is-invalid': submitted && f.seven7.errors }" name="seven7" />
+                        <div *ngIf="submitted && f.seven7.errors" class="invalid-feedback">
+                            <div *ngIf="f.seven7.errors.required">Seven is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="eight8" for="eight8">Eight</label>
+                        <input formControlName="eight8" class="form-control" path="eight8" [ngClass]="{ 'is-invalid': submitted && f.eight8.errors }" name="eight8" />
+                        <div *ngIf="submitted && f.eight8.errors" class="invalid-feedback">
+                            <div *ngIf="f.eight8.errors.required">Eight is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="nine9" for="nine9">Nine</label>
+                        <input formControlName="nine9" class="form-control" path="nine9" [ngClass]="{ 'is-invalid': submitted && f.nine9.errors }" name="nine9" />
+                        <div *ngIf="submitted && f.nine9.errors" class="invalid-feedback">
+                            <div *ngIf="f.nine9.errors.required">Nine is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="ten10" for="ten10">Ten</label>
+                        <input formControlName="ten10" class="form-control" path="ten10" [ngClass]="{ 'is-invalid': submitted && f.ten10.errors }" name="ten10" />
+                        <div *ngIf="submitted && f.ten10.errors" class="invalid-feedback">
+                            <div *ngIf="f.ten10.errors.required">Ten is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="eleven11" for="eleven11">Eleven</label>
+                        <input formControlName="eleven11" class="form-control" path="eleven11" [ngClass]="{ 'is-invalid': submitted && f.eleven11.errors }" name="eleven11" />
+                        <div *ngIf="submitted && f.eleven11.errors" class="invalid-feedback">
+                            <div *ngIf="f.eleven11.errors.required">Eleven is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twelve12" for="twelve12">Twelve</label>
+                        <input formControlName="twelve12" class="form-control" path="twelve12" [ngClass]="{ 'is-invalid': submitted && f.twelve12.errors }" name="twelve12" />
+                        <div *ngIf="submitted && f.twelve12.errors" class="invalid-feedback">
+                            <div *ngIf="f.twelve12.errors.required">Twelve is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="thirteen13" for="thirteen13">Thirteen</label>
+                        <input formControlName="thirteen13" class="form-control" path="thirteen13" [ngClass]="{ 'is-invalid': submitted && f.thirteen13.errors }" name="thirteen13" />
+                        <div *ngIf="submitted && f.thirteen13.errors" class="invalid-feedback">
+                            <div *ngIf="f.thirteen13.errors.required">Thirteen is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="fourteen14" for="fourteen14">Fourteen</label>
+                        <input formControlName="fourteen14" class="form-control" path="fourteen14" [ngClass]="{ 'is-invalid': submitted && f.fourteen14.errors }" name="fourteen14" />
+                        <div *ngIf="submitted && f.fourteen14.errors" class="invalid-feedback">
+                            <div *ngIf="f.fourteen14.errors.required">Fourteen is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="fifteen15" for="fifteen15">Fifteen</label>
+                        <input formControlName="fifteen15" class="form-control" path="fifteen15" [ngClass]="{ 'is-invalid': submitted && f.fifteen15.errors }" name="fifteen15" />
+                        <div *ngIf="submitted && f.fifteen15.errors" class="invalid-feedback">
+                            <div *ngIf="f.fifteen15.errors.required">Fifteen is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="sixteen16" for="sixteen16">Sixteen</label>
+                        <input formControlName="sixteen16" class="form-control" path="sixteen16" [ngClass]="{ 'is-invalid': submitted && f.sixteen16.errors }" name="sixteen16" />
+                        <div *ngIf="submitted && f.sixteen16.errors" class="invalid-feedback">
+                            <div *ngIf="f.sixteen16.errors.required">Sixteen is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="seventeen17" for="seventeen17">Seventeen</label>
+                        <input formControlName="seventeen17" class="form-control" path="seventeen17" [ngClass]="{ 'is-invalid': submitted && f.seventeen17.errors }" name="seventeen17" />
+                        <div *ngIf="submitted && f.seventeen17.errors" class="invalid-feedback">
+                            <div *ngIf="f.seventeen17.errors.required">Seventeen is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="eighteen18" for="eighteen18">Eighteen</label>
+                        <input formControlName="eighteen18" class="form-control" path="eighteen18" [ngClass]="{ 'is-invalid': submitted && f.eighteen18.errors }" name="eighteen18" />
+                        <div *ngIf="submitted && f.eighteen18.errors" class="invalid-feedback">
+                            <div *ngIf="f.eighteen18.errors.required">Eighteen is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="nineteen19" for="nineteen19">Nineteen</label>
+                        <input formControlName="nineteen19" class="form-control" path="nineteen19" [ngClass]="{ 'is-invalid': submitted && f.nineteen19.errors }" name="nineteen19" />
+                        <div *ngIf="submitted && f.nineteen19.errors" class="invalid-feedback">
+                            <div *ngIf="f.nineteen19.errors.required">Nineteen is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twenty20" for="twenty20">Twenty</label>
+                        <input formControlName="twenty20" class="form-control" path="twenty20" [ngClass]="{ 'is-invalid': submitted && f.twenty20.errors }" name="twenty20" />
+                        <div *ngIf="submitted && f.twenty20.errors" class="invalid-feedback">
+                            <div *ngIf="f.twenty20.errors.required">Twenty is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentyone21" for="twentyone21">Twenty One</label>
+                        <input formControlName="twentyone21" class="form-control" path="twentyone21" [ngClass]="{ 'is-invalid': submitted && f.twentyone21.errors }" name="twentyone21" />
+                        <div *ngIf="submitted && f.twentyone21.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentyone21.errors.required">Twenty One is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentytwo22" for="twentytwo22">Twenty Two</label>
+                        <input formControlName="twentytwo22" class="form-control" path="twentytwo22" [ngClass]="{ 'is-invalid': submitted && f.twentytwo22.errors }" name="twentytwo22" />
+                        <div *ngIf="submitted && f.twentytwo22.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentytwo22.errors.required">Twenty Two is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentythree23" for="twentythree23">Twenty Three</label>
+                        <input formControlName="twentythree23" class="form-control" path="twentythree23" [ngClass]="{ 'is-invalid': submitted && f.twentythree23.errors }" name="twentythree23" />
+                        <div *ngIf="submitted && f.twentythree23.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentythree23.errors.required">Twenty Three is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentyfour24" for="twentyfour24">Twenty Four</label>
+                        <input formControlName="twentyfour24" class="form-control" path="twentyfour24" [ngClass]="{ 'is-invalid': submitted && f.twentyfour24.errors }" name="twentyfour24" />
+                        <div *ngIf="submitted && f.twentyfour24.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentyfour24.errors.required">Twenty Four is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentyfive25" for="twentyfive25">Twenty Five</label>
+                        <input formControlName="twentyfive25" class="form-control" path="twentyfive25" [ngClass]="{ 'is-invalid': submitted && f.twentyfive25.errors }" name="twentyfive25" />
+                        <div *ngIf="submitted && f.twentyfive25.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentyfive25.errors.required">Twenty Five is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentysix26" for="twentysix26">Twenty Six</label>
+                        <input formControlName="twentysix26" class="form-control" path="twentysix26" [ngClass]="{ 'is-invalid': submitted && f.twentysix26.errors }" name="twentysix26" />
+                        <div *ngIf="submitted && f.twentysix26.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentysix26.errors.required">Twenty Six is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentyseven27" for="twentyseven27">Twenty Seven</label>
+                        <input formControlName="twentyseven27" class="form-control" path="twentyseven27" [ngClass]="{ 'is-invalid': submitted && f.twentyseven27.errors }" name="twentyseven27" />
+                        <div *ngIf="submitted && f.twentyseven27.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentyseven27.errors.required">Twenty Seven is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentyeight28" for="twentyeight28">Twenty Eight</label>
+                        <input formControlName="twentyeight28" class="form-control" path="twentyeight28" [ngClass]="{ 'is-invalid': submitted && f.twentyeight28.errors }" name="twentyeight28" />
+                        <div *ngIf="submitted && f.twentyeight28.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentyeight28.errors.required">Twenty Eight is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="twentynine29" for="twentynine29">Twenty Nine</label>
+                        <input formControlName="twentynine29" class="form-control" path="twentynine29" [ngClass]="{ 'is-invalid': submitted && f.twentynine29.errors }" name="twentynine29" />
+                        <div *ngIf="submitted && f.twentynine29.errors" class="invalid-feedback">
+                            <div *ngIf="f.twentynine29.errors.required">Twenty Nine is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="thirty30" for="thirty30">Thirty</label>
+                        <input formControlName="thirty30" class="form-control" path="thirty30" [ngClass]="{ 'is-invalid': submitted && f.thirty30.errors }" name="thirty30" />
+                        <div *ngIf="submitted && f.thirty30.errors" class="invalid-feedback">
+                            <div *ngIf="f.thirty30.errors.required">Thirty is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalPresent" for="totalPresent">Total Present</label>
+                        <input formControlName="totalPresent" class="form-control" id="totalPresent" path="totalPresent" [ngClass]="{ 'is-invalid': submitted && f.totalPresent.errors }" name="totalPresent" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalPresent.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalPresent.errors.required">Total Present is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalAbsent" for="totalAbsent">Total Absent</label>
+                        <input formControlName="totalAbsent" class="form-control" id="totalAbsent" path="totalAbsent" [ngClass]="{ 'is-invalid': submitted && f.totalAbsent.errors }" name="totalAbsent" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalAbsent.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalAbsent.errors.required">Total Absent is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="months" for="months">Month</label>
+                        <input class="form-control" type="hidden" path="months" />
+                        <select formControlName="months" class="form-control" name="monthlist" id="monthlist" [ngClass]="{ 'is-invalid': submitted && f.months.errors }" name="months">
+                            <option value="" hidden> - Select the Month - </option>
+                            <option value="null"> - Select the Month - </option>
+                            <option *ngFor="let system of monthsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.months.errors" class="invalid-feedback">
+                            <div *ngIf="f.months.errors.required">Month is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Employee Monthly Attendance</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

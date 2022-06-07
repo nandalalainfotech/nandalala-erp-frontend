@@ -1,0 +1,21 @@
+li span{
+    color: var(--color_l1) !important;
+    font-size:12px;
+    font-weight: bold;
+}
+h3{
+    color: var(--color_l1) !important;
+    font-weight: bold;
+}
+ul li{
+    color: var(--color_l1) !important;
+}
+::ng-deep .customer{
+    margin-bottom:-27px !important;
+}
+::ng-deep .item {
+    margin-bottom:-27px !important;
+}
+::ng-deep .projects {
+    margin-bottom:-27px !important;
+}

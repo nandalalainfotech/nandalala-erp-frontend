@@ -1,0 +1,18 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-sales-taxes" routerLinkActive #salesTaxTab="routerLinkActive"
+        [active]="salesTaxTab.isActive">Sales Taxes and Charges</a>
+    <a mat-tab-link routerLink="./app-purtax-changes" routerLinkActive #purchaseTaxTab="routerLinkActive"
+        [active]="purchaseTaxTab.isActive">Purchase Taxes and Charges</a>
+    <a mat-tab-link routerLink="./app-tax-rule" routerLinkActive #taxRuleTab="routerLinkActive"
+        [active]="taxRuleTab.isActive">Tax Rule</a>
+    <a mat-tab-link routerLink="./app-sale-register" routerLinkActive #salesRegisterTab="routerLinkActive"
+        [active]="salesRegisterTab.isActive">Sales Register</a>
+    <a mat-tab-link routerLink="./app-purchase-register" routerLinkActive #purchaseRegTab="routerLinkActive"
+        [active]="purchaseRegTab.isActive">Purchase Register</a>
+</nav>
+
+<router-outlet></router-outlet>

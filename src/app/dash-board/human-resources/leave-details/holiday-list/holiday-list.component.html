@@ -1,0 +1,68 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Holiday List</legend>
+    <div class="formData">
+        <form [formGroup]="holistForm" (ngSubmit)="onOrderClick($event,holistForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="hlistId" />
+                        <label path="holidayName" for="series" cssClass="required">Holiday Name</label>
+                        <input formControlName="holidayName" class="form-control" path="holidayName" [ngClass]="{ 'is-invalid': submitted && f.holidayName.errors }" name="holidayName" />
+                        <div *ngIf="submitted && f.holidayName.errors" class="invalid-feedback">
+                            <div *ngIf="f.holidayName.errors.required">Holiday Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="weeklyOff" for="reason" cssClass="required">Weekly Off</label>
+                        <input class="form-control" type="hidden" path="weeklyOff" name="weeklyOff" />
+                        <select formControlName="weeklyOff" class="form-control" name="holidaylist" id="holidaylist" [ngClass]="{ 'is-invalid': submitted && f.weeklyOff.errors }" name="weeklyOff">
+                            <option value="" hidden> - Select Day - </option>
+                            <option value="null"> - Select Day - </option>
+                            <option *ngFor="let system of weeksystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.weeklyOff.errors" class="invalid-feedback">
+                            <div *ngIf="f.weeklyOff.errors.required">Weekly Off is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <div class="sample">
+        <fieldset class="scheduler-border">
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                        </button>
+                        <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <legend class="scheduler-border">Employee Attendance List</legend>
+            <div class="boxData">
+                <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+                </ag-grid-angular>
+            </div>
+        </fieldset>
+    </div>
+</div>

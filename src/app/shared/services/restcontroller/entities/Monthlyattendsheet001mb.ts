@@ -1,0 +1,45 @@
+import { BaseEntity } from "./BaseEntity";
+
+export class Monthlyattendsheet001mb extends BaseEntity  {
+    atsId?: number;
+    attYear?: number;
+    empNumber?: string;
+    empName?: string;
+    deptName?: string;
+    branch?: string;
+    empCompany?: string;
+    empDesign?: string;
+    one1?: string | null;
+    two2?: string | null;
+    three3?: string | null;
+    four4?: string | null;
+    five5?: string | null;
+    six6?: string | null;
+    seven7?: string | null;
+    eight8?: string | null;
+    nine9?: string | null;
+    ten10?: string | null;
+    eleven11?: string | null;
+    twelve12?: string | null;
+    thirteen13?: string | null;
+    fourteen14?: string | null;
+    fifteen15?: string | null;
+    sixteen16?: string | null;
+    seventeen17?: string | null;
+    eighteen18?: string | null;
+    nineteen19?: string | null;
+    twenty20?: string | null;
+    twentyone21?: string | null;
+    twentytwo22?: string | null;
+    twentythree23?: string | null;
+    twentyfour24?: string | null;
+    twentyfive25?: string | null;
+    twentysix26?: string | null;
+    twentyseven27?: string | null;
+    twentyeight28?: string | null;
+    twentynine29?: string | null;
+    thirty30?: string | null;
+    totalPresent?: string | null;
+    totalAbsent?: string | null;
+    months?: string | null;
+}

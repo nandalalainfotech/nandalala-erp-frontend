@@ -1,0 +1,37 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link [matMenuTriggerFor]="issues">Issues<b class="caret"></b></a>
+    <mat-menu #issues="matMenu">
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-issue"
+                routerLinkActive
+                >Issues</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-minutes-to-response"
+                routerLinkActive
+                >Minutes to First Response</a
+            >
+        </li>
+    </mat-menu>
+    <a
+        mat-tab-link
+        routerLink="./app-communication"
+        routerLinkActive
+        #commTab="routerLinkActive"
+        [active]="commTab.isActive"
+        >Communication</a
+    >
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,16 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-prod-order" routerLinkActive #prodOrderTab="routerLinkActive"
+        [active]="prodOrderTab.isActive">Production Order</a>
+    <a mat-tab-link routerLink="./app-product-plan" routerLinkActive #prodPlanTab="routerLinkActive"
+        [active]="prodPlanTab.isActive">Product Planning Tool</a>
+    <a mat-tab-link routerLink="./app-product-stock" routerLinkActive #prodStackTab="routerLinkActive"
+        [active]="prodStackTab.isActive">Product Stock Entry</a>
+    <a mat-tab-link routerLink="./app-product-timest" routerLinkActive #timestTab="routerLinkActive"
+        [active]="timestTab.isActive">Product TimeSheet</a>
+</nav>
+
+<router-outlet></router-outlet>

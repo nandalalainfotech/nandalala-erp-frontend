@@ -1,0 +1,14 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-periodclosing-voucher" routerLinkActive #periodClosingTab="routerLinkActive"
+        [active]="periodClosingTab.isActive">Period Closing Voucher</a>
+    <a mat-tab-link routerLink="./app-asset-movement" routerLinkActive #assetTab="routerLinkActive"
+        [active]="assetTab.isActive">Asset Movement</a>
+    <a mat-tab-link routerLink="./app-chequeprint-template" routerLinkActive #chequeprintTab="routerLinkActive"
+        [active]="chequeprintTab.isActive">Cheque Print Template</a>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,299 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add General Ledger</legend>
+    <div class="formData">
+        <form [formGroup]="chequPrintForm" (ngSubmit)="onOrderClick($event, chequPrintForm)">
+            <div id="AlertDivPrm">
+                <h4>Primary Settings</h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3" style="margin-top: -14px;">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="cheqId" />
+                        <label path="prmaccountName" for="prmaccountName" cssClass="required">Account</label>
+                        <input class="form-control" type="hidden" path="prmaccountName" />
+                        <select class="form-control" id="accountNameList" name="prmaccountName" formControlName="prmaccountName" [ngClass]="{ 'is-invalid': submitted && f.prmaccountName.errors }">
+                            <option value="" hidden> - Select the Account Name - </option>
+                            <option value="null" > - Select the Account Name - </option>
+                            <option *ngFor="let system of accsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.prmaccountName.errors" class="invalid-feedback">
+                            <div *ngIf="f.prmaccountName.errors.required">Account Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="prmisaccPay">Is Account Payable</label>
+                        <input type="checkbox" name="prmisaccPay" formControlName="prmisaccPay">
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="prmcheqSize" for="prmcheqSize">Cheque Size</label>
+                        <input class="form-control" path="prmcheqSize" name="prmcheqSize" formControlName="prmcheqSize">
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="prmdistfromTop" for="prmdistfromTop">Distance From Top Edge</label>
+                        <input class="form-control" path="prmdistfromTop" name="prmdistfromTop" formControlName="prmdistfromTop" [ngClass]="{ 'is-invalid': submitted && f.prmdistfromTop.errors }">
+                        <div *ngIf="submitted && f.prmdistfromTop.errors" class="invalid-feedback">
+                            <div *ngIf="f.prmdistfromTop.errors.required">Distance From Top Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="prmcheqWidth" for="prmcheqSize">Cheque Width</label>
+                        <input class="form-control" path="prmcheqWidth" name="prmcheqWidth" formControlName="prmcheqWidth" [ngClass]="{ 'is-invalid': submitted && f.prmcheqWidth.errors }">
+                        <div *ngIf="submitted && f.prmcheqWidth.errors" class="invalid-feedback">
+                            <div *ngIf="f.prmcheqWidth.errors.required">Cheque Width is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="prmdistfromLeft" for="prmdistfromTop">Distance From Left Edge</label>
+                        <input class="form-control" path="prmdistfromLeft" name="prmdistfromLeft" formControlName="prmdistfromLeft" [ngClass]="{ 'is-invalid': submitted && f.prmdistfromLeft.errors }">
+                        <div *ngIf="submitted && f.prmdistfromLeft.errors" class="invalid-feedback">
+                            <div *ngIf="f.prmdistfromLeft.errors.required">Distance From Left Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="prmcheqHeight" for="prmcheqHeight">Cheque Height</label>
+                        <input class="form-control" path="prmcheqHeight" name="prmcheqHeight" formControlName="prmcheqHeight" [ngClass]="{ 'is-invalid': submitted && f.prmcheqHeight.errors }">
+                        <div *ngIf="submitted && f.prmcheqHeight.errors" class="invalid-feedback">
+                            <div *ngIf="f.prmcheqHeight.errors.required">Cheque Height is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="scanCheq" for="prmcheqSize">Scanned Cheque</label>
+                        <input class="form-control" path="scanCheq" name="scanCheq" formControlName="scanCheq" [ngClass]="{ 'is-invalid': submitted && f.scanCheq.errors }">
+                        <div *ngIf="submitted && f.scanCheq.errors" class="invalid-feedback">
+                            <div *ngIf="f.scanCheq.errors.required">Scanned Cheque is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div id="AlertDivPrm">
+                        <h4>Date Settings</h4>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div id="AlertDivPrm">
+                        <h4>Payer Settings</h4>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="dtdistfromTop" for="prmdistfromTop">Distance From Top Edge</label>
+                        <input class="form-control" path="dtdistfromTop" name="dtdistfromTop" formControlName="dtdistfromTop" [ngClass]="{ 'is-invalid': submitted && f.dtdistfromTop.errors }">
+                        <div *ngIf="submitted && f.dtdistfromTop.errors" class="invalid-feedback">
+                            <div *ngIf="f.dtdistfromTop.errors.required">Distance From Top Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="dtdistfromLeft" for="prmcheqSize">Distance From Left Edge</label>
+                        <input class="form-control" path="dtdistfromLeft" name="dtdistfromLeft" formControlName="dtdistfromLeft" [ngClass]="{ 'is-invalid': submitted && f.dtdistfromLeft.errors }">
+                        <div *ngIf="submitted && f.dtdistfromLeft.errors" class="invalid-feedback">
+                            <div *ngIf="f.dtdistfromLeft.errors.required">Distance From Left Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="paydistfromTop" for="prmdistfromTop">Distance From Top</label>
+                        <input class="form-control" path="paydistfromTop" name="paydistfromTop" formControlName="paydistfromTop" [ngClass]="{ 'is-invalid': submitted && f.paydistfromTop.errors }">
+                        <div *ngIf="submitted && f.paydistfromTop.errors" class="invalid-feedback">
+                            <div *ngIf="f.paydistfromTop.errors.required">Distance From Top is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="paydistfromLeft" for="prmcheqSize">Distance From Left</label>
+                        <input class="form-control" path="paydistfromLeft" name="paydistfromLeft" formControlName="paydistfromLeft" [ngClass]="{ 'is-invalid': submitted && f.paydistfromLeft.errors }">
+                        <div *ngIf="submitted && f.paydistfromLeft.errors" class="invalid-feedback">
+                            <div *ngIf="f.paydistfromLeft.errors.required">Distance From Left is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="AlertDivPrm">
+                <h4>Amount In Words</h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amtwdistfromTop" for="prmdistfromTop">Distance From Top Edge</label>
+                        <input class="form-control" path="amtwdistfromTop" name="amtwdistfromTop" formControlName="amtwdistfromTop" [ngClass]="{ 'is-invalid': submitted && f.amtwdistfromTop.errors }">
+                        <div *ngIf="submitted && f.amtwdistfromTop.errors" class="invalid-feedback">
+                            <div *ngIf="f.amtwdistfromTop.errors.required">Distance From Top Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amtwdistfromLeft" for="prmcheqSize">Distance From Left Edge</label>
+                        <input class="form-control" path="amtwdistfromLeft" name="amtwdistfromLeft" formControlName="amtwdistfromLeft" [ngClass]="{ 'is-invalid': submitted && f.amtwdistfromLeft.errors }">
+                        <div *ngIf="submitted && f.amtwdistfromLeft.errors" class="invalid-feedback">
+                            <div *ngIf="f.amtwdistfromLeft.errors.required">Distance From Left Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amtwWidth" for="prmdistfromTop">Amount Words Width</label>
+                        <input class="form-control" path="amtwWidth" name="amtwWidth" formControlName="amtwWidth" [ngClass]="{ 'is-invalid': submitted && f.amtwWidth.errors }">
+                        <div *ngIf="submitted && f.amtwWidth.errors" class="invalid-feedback">
+                            <div *ngIf="f.amtwWidth.errors.required">Amount Words Width is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amtwlineSpace" for="prmcheqSize">Amount in Words Line Space</label>
+                        <input class="form-control" path="amtwlineSpace" name="amtwlineSpace" formControlName="amtwlineSpace" [ngClass]="{ 'is-invalid': submitted && f.amtwlineSpace.errors }">
+                        <div *ngIf="submitted && f.amtwlineSpace.errors" class="invalid-feedback">
+                            <div *ngIf="f.amtwlineSpace.errors.required">Amount in Words Line Space is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div id="AlertDivPrm">
+                        <h4>Amount In Figure</h4>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div id="AlertDivAcc">
+                        <h4>Account Number Settings</h4>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amtfdistfromTop" for="prmdistfromTop">Distance From Top Edge</label>
+                        <input class="form-control" path="amtfdistfromTop" name="amtfdistfromTop" formControlName="amtfdistfromTop" [ngClass]="{ 'is-invalid': submitted && f.amtfdistfromTop.errors }">
+                        <div *ngIf="submitted && f.amtfdistfromTop.errors" class="invalid-feedback">
+                            <div *ngIf="f.amtfdistfromTop.errors.required">Distance From Top Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amtfdistfromLeft" for="prmcheqSize">Distance From Left Edge</label>
+                        <input class="form-control" path="amtfdistfromLeft" name="amtfdistfromLeft" formControlName="amtfdistfromLeft" [ngClass]="{ 'is-invalid': submitted && f.amtfdistfromLeft.errors }">
+                        <div *ngIf="submitted && f.amtfdistfromLeft.errors" class="invalid-feedback">
+                            <div *ngIf="f.amtfdistfromLeft.errors.required">Distance From Left Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="accnodistfromTop" for="prmdistfromTop">Distance From Top Edge</label>
+                        <input class="form-control" path="accnodistfromTop" name="accnodistfromTop" formControlName="accnodistfromTop" [ngClass]="{ 'is-invalid': submitted && f.accnodistfromTop.errors }">
+                        <div *ngIf="submitted && f.accnodistfromTop.errors" class="invalid-feedback">
+                            <div *ngIf="f.accnodistfromTop.errors.required">Distance From Top Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="accnodistfromLeft" for="prmcheqSize">Distance From Left Edge</label>
+                        <input class="form-control" path="accnodistfromLeft" name="accnodistfromLeft" formControlName="accnodistfromLeft" [ngClass]="{ 'is-invalid': submitted && f.accnodistfromLeft.errors }">
+                        <div *ngIf="submitted && f.accnodistfromLeft.errors" class="invalid-feedback">
+                            <div *ngIf="f.accnodistfromLeft.errors.required">Distance From Left Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="AlertDivPrm">
+                <h4>Signatory Positions</h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="signposdistfromTop" for="prmdistfromTop">Distance From Top Edge</label>
+                        <input class="form-control" path="signposdistfromTop" name="signposdistfromTop" formControlName="signposdistfromTop" [ngClass]="{ 'is-invalid': submitted && f.signposdistfromTop.errors }">
+                        <div *ngIf="submitted && f.signposdistfromTop.errors" class="invalid-feedback">
+                            <div *ngIf="f.signposdistfromTop.errors.required">Distance From Top Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="signposdistfromLeft" for="prmcheqSize">Distance From Left Edge</label>
+                        <input class="form-control" path="signposdistfromLeft" name="signposdistfromLeft" formControlName="signposdistfromLeft" [ngClass]="{ 'is-invalid': submitted && f.signposdistfromLeft.errors }">
+                        <div *ngIf="submitted && f.signposdistfromLeft.errors" class="invalid-feedback">
+                            <div *ngIf="f.signposdistfromLeft.errors.required">Distance From Left Edge is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6" style="margin-top: -14px;">
+                    <div class="form-group">
+                        <label path="prmmesgtoShow" for="prmmesgtoShow" cssClass="required">Default Message
+                        </label>
+                        <textarea class="form-control" path="prmmesgtoShow" name="prmmesgtoShow" rows="5" cols="30" name="prmmesgtoShow" formControlName="prmmesgtoShow" [ngClass]="{ 'is-invalid': submitted && f.prmmesgtoShow.errors }"></textarea>
+                        <div *ngIf="submitted && f.prmmesgtoShow.errors" class="invalid-feedback">
+                            <div *ngIf="f.prmmesgtoShow.errors.required">Default Message is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Cheque Template</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

@@ -1,0 +1,170 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Customer Details</legend>
+    <div class="formData">
+        <form [formGroup]="customerForm" (ngSubmit)="onOrderClick($event,customerForm)">
+            <div class="row">
+                <input class="form-control" path="id" type="hidden" readonly="true" />
+                <div class="col-xs-3 form-group">
+                    <label path="customerid" for="customerid" cssClass="required">Customer ID</label>
+                    <input formControlName="customerid" class="form-control" path="customerid" [ngClass]="{ 'is-invalid': submitted && f.customerid.errors }" name="customerid" />
+                    <div *ngIf="submitted && f.customerid.errors" class="invalid-feedback">
+                        <div *ngIf="f.customerid.errors.required">Customer ID is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="customername" for="customername" cssClass="required">Customer Name
+                    </label>
+                    <input formControlName="customername" class="form-control" path="customername" [ngClass]="{ 'is-invalid': submitted && f.customername.errors }" name="customername" />
+                    <div *ngIf="submitted && f.customername.errors" class="invalid-feedback">
+                        <div *ngIf="f.customername.errors.required">Customer Name is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="customergroup" for="customergroup" cssClass="required">Customer Group</label>
+                    <select formControlName="customergroup" class="form-control" path="customergroup" [ngClass]="{ 'is-invalid': submitted && f.customergroup.errors }" name="customergroup">
+                        <option value="" hidden> - Select Customer Group-</option>
+                        <option value="null" > - Select Customer Group-</option>
+                        <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.customergroup.errors" class="invalid-feedback">
+                        <div *ngIf="f.customergroup.errors.required">Customer Group is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="addressline1" for="addressline1" cssClass="required">Address Line 1</label>
+                    <input formControlName="addressline1" class="form-control" path="addressline1" [ngClass]="{ 'is-invalid': submitted && f.addressline1.errors }" name="addressline1" />
+                    <div *ngIf="submitted && f.addressline1.errors" class="invalid-feedback">
+                        <div *ngIf="f.addressline1.errors.required">Address Line 1 is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="addressline2" for="addressline2" cssClass="required">Address Line 2</label>
+                    <input formControlName="addressline2" class="form-control" path="addressline2" [ngClass]="{ 'is-invalid': submitted && f.addressline2.errors }" name="addressline2" />
+                    <div *ngIf="submitted && f.addressline2.errors" class="invalid-feedback">
+                        <div *ngIf="f.addressline2.errors.required">Address Line 2 is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="city" for="city" cssClass="required">City</label>
+                    <input formControlName="city" class="form-control" path="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" name="city" />
+                    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                        <div *ngIf="f.city.errors.required">City is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="state" for="state" cssClass="required">State</label>
+                    <input formControlName="state" class="form-control" path="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }" name="state" />
+                    <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                        <div *ngIf="f.state.errors.required">State is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="postalcode" for="postalcode" cssClass="required">Postal Code</label>
+                    <input formControlName="postalcode" class="form-control" path="postalcode" [ngClass]="{ 'is-invalid': submitted && f.postalcode.errors }" name="postalcode" />
+                    <div *ngIf="submitted && f.postalcode.errors" class="invalid-feedback">
+                        <div *ngIf="f.postalcode.errors.required">Postal Code is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="country" for="country" cssClass="required">Country</label>
+                    <input formControlName="country" class="form-control" path="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" name="country" />
+                    <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                        <div *ngIf="f.country.errors.required">Country is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="isprimaryaddress" for="isprimaryaddress" cssClass="required">Is Primary Address</label>
+                    <select formControlName="isprimaryaddress" class="form-control" path="isprimaryaddress" id="isprimaryaddress" [ngClass]="{ 'is-invalid': submitted && f.isprimaryaddress.errors }">
+                        <option value="" hidden> - Select Is Primary Address -</option>
+                        <option value="null"> - Select Is Primary Address -</option>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                    <div *ngIf="submitted && f.isprimaryaddress.errors" class="invalid-feedback">
+                        <div *ngIf="f.isprimaryaddress.errors.required">Is Primary Address is Required</div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 form-group">
+                    <label path="firstname" for="firstname" cssClass="required">First Name</label>
+                    <input formControlName="firstname" class="form-control" path="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" name="firstname" />
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstname.errors.required">First Name is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="lastname" for="lastname" cssClass="required">Last Name</label>
+                    <input formControlName="lastname" class="form-control" path="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" name="lastname" />
+                    <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastname.errors.required">Last Name is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="phone" for="phone" cssClass="required">Phone</label>
+                    <input formControlName="phone" class="form-control" path="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" name="phone" prefix="+91 " mask="(000) 000 0000" />
+                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                        <div *ngIf="f.phone.errors.required">Phone Number is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="mobilenumber" for="mobilenumber" cssClass="required">Mobile Number</label>
+                    <input formControlName="mobilenumber" class="form-control" path="mobilenumber" [ngClass]="{ 'is-invalid': submitted && f.mobilenumber.errors }" name="mobilenumber" prefix="+91 " mask="(000) 000 0000" />
+                    <div *ngIf="submitted && f.mobilenumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.mobilenumber.errors.required">Mobile Number is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="emailid" for="emailid" cssClass="required">Email ID</label>
+                    <input formControlName="emailid" class="form-control" path="emailid" [ngClass]="{ 'is-invalid': submitted && f.emailid.errors }" name="emailid" />
+                    <div *ngIf="submitted && f.emailid.errors" class="invalid-feedback">
+                        <div *ngIf="f.emailid.errors.required">Email ID is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="isprimarycontact" for="isprimarycontact" cssClass="required">Is Primary Contact</label>
+                    <select formControlName="isprimarycontact" class="form-control" path="isprimarycontact" id="isprimarycontact" [ngClass]="{ 'is-invalid': submitted && f.isprimarycontact.errors }">
+                        <option value="" hidden> - Select Is Primary Contact-</option>
+                        <option value="null" > - Select Is Primary Contact-</option>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                    <div *ngIf="submitted && f.isprimarycontact.errors" class="invalid-feedback">
+                        <div *ngIf="f.isprimarycontact.errors.required">Is Primary Contact is Required</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Customer Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

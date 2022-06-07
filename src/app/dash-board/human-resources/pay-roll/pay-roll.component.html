@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-pay-rolls" routerLinkActive #payRollsTab="routerLinkActive" [active]="payRollsTab.isActive">PayRoll</a>
+    <a mat-tab-link routerLink="./app-process-payroll" routerLinkActive #processPayrollsTab="routerLinkActive" [active]="processPayrollsTab.isActive">Process Payroll</a>
+    <a mat-tab-link routerLink="./app-salary-structure" routerLinkActive #salaryStructureTab="routerLinkActive" [active]="salaryStructureTab.isActive">Salary Structure</a>
+    <a mat-tab-link routerLink="./app-salary-component" routerLinkActive #salaryCompomnentTab="routerLinkActive" [active]="salaryCompomnentTab.isActive">Salary Component</a>
+</nav>
+
+<router-outlet></router-outlet>

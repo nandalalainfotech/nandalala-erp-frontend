@@ -1,0 +1,66 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Appraisal List</legend>
+    <div class="formData">
+        <form [formGroup]="appraisalForm" (ngSubmit)="onOrderClick($event,appraisalForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="apprId" />
+                        <label path="series" for="series" cssClass="required">Series</label>
+                        <input formControlName="series" name="series" class="form-control" path="series" [ngClass]="{ 'is-invalid': submitted && f.series.errors }" />
+                        <div *ngIf="submitted && f.series.errors" class="invalid-feedback">
+                            <div *ngIf="f.series.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="appraisalTemp" for="appraisalTemp" cssClass="required">Appraisal Template</label>
+                        <input class="form-control" path="appraisalTemp" type="hidden" name="appraisalTemp" />
+                        <select formControlName="appraisalTemp" name="appraisalTemp" class="form-control" id="apptemplist" [ngClass]="{ 'is-invalid': submitted && f.appraisalTemp.errors.markFormGroupTouched}">
+                            <option value="" hidden> - Select the Employee - </option>
+                            <option value="null"> - Select the Employee - </option>
+                            <option *ngFor="let system of apprtemp" [value]="system.appraisalTemp">
+                                {{system.appraisalTemp}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.appraisalTemp.errors" class="invalid-feedback">
+                            <div *ngIf="f.appraisalTemp.errors.required">Appraisal Template is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <legend class="scheduler-border">Appraisal List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

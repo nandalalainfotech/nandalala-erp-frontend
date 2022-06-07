@@ -1,0 +1,13 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-territory" routerLinkActive #territoryTab="routerLinkActive" [active]="territoryTab.isActive">Territory</a>
+    <a mat-tab-link routerLink="./app-salse-partner" routerLinkActive #salesPartnerTab="routerLinkActive" [active]="salesPartnerTab.isActive">Salse Partner</a>
+    <a mat-tab-link routerLink="./app-salse-person" routerLinkActive #salesPersonTab="routerLinkActive" [active]="salesPersonTab.isActive">Salse Person</a>
+    <a mat-tab-link routerLink="./app-territory-tar-var-itm-grp" routerLinkActive #territoryTargetTab="routerLinkActive" [active]="territoryTargetTab.isActive">Territory Target Variance Item (Group Wise)</a>
+    <a mat-tab-link routerLink="./app-salse-per-tar-var-itm-grp" routerLinkActive #salesPersonTargetTab="routerLinkActive" [active]="salesPersonTargetTab.isActive">Salse Person Target Variance Item (Group Wise)</a>
+</nav>
+
+<router-outlet></router-outlet>

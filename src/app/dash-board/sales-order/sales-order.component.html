@@ -1,0 +1,10 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-support-analytics" routerLinkActive #supAnalyticTab="routerLinkActive" [active]="supAnalyticTab.isActive">Support Analytics</a>
+    <a mat-tab-link routerLink="./app-minutes-first-response" routerLinkActive #minuteTab="routerLinkActive" [active]="minuteTab.isActive">Minutes to First Response</a>
+</nav>
+
+<router-outlet></router-outlet>

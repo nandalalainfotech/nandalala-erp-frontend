@@ -1,0 +1,11 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-pu-analytics" routerLinkActive #puAnalyticsTab="routerLinkActive" [active]="puAnalyticsTab.isActive">PU Analytics</a>
+    <a mat-tab-link routerLink="./app-supplier-wise-analytics" routerLinkActive #SupplierAnalyticsTab="routerLinkActive" [active]="SupplierAnalyticsTab.isActive">Supplier Wise Analytics</a>
+    <a mat-tab-link routerLink="./app-order-trend" routerLinkActive #orderTrendTab="routerLinkActive" [active]="orderTrendTab.isActive">Order Trend</a>
+</nav>
+
+<router-outlet></router-outlet>

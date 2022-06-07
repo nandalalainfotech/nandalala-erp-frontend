@@ -1,0 +1,181 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Daily Time Sheet Summary</legend>
+    <div class="formData">
+        <form [formGroup]="timeSheetForm" (ngSubmit)="onOrderClick($event, timeSheetForm)">
+            <div class="row">
+                <input class="form-control" path="id" type="hidden" readonly="true" />
+
+                <div class="col-xs-3 form-group">
+                    <input class="form-control" path="employee" id="employee" type="hidden" />
+                    <label path="employee" for="employee" cssClass="required">Employee Code</label>
+                    <select class="form-control" name="employee" id="employeecodelist" name="employee"
+                        formControlName="employee" [ngClass]="{ 'is-invalid': submitted && f.employee.errors }">
+                        <option value="" hidden> - Select the Employee Code - </option>
+                        <option value="null"> - Select the Employee Code - </option>
+                        <option *ngFor="let system of systemproperties " [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.employee.errors" class="invalid-feedback">
+                        <div *ngIf="f.employee.errors.required">Employee Code is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <input class="form-control" path="employeename" id="employeename" type="hidden" />
+                    <label path="employeename" for="employeename" cssClass="required">Employee Name</label>
+                    <select class="form-control" name="employees" id="employeenamelist" readonly="true"
+                        name="employeename" formControlName="employeename"
+                        [ngClass]="{ 'is-invalid': submitted && f.employeename.errors }">
+                        <option value="" hidden> - Select the Employee Name - </option>
+                        <option value="null"> - Select the Employee Name - </option>
+                        <option *ngFor="let system of systemproperties " [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.employeename.errors" class="invalid-feedback">
+                        <div *ngIf="f.employeename.errors.required">Employee Name is Required</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="fromdatetime" for="fromdatetime" cssClass="required">From Date</label>
+                                    <p-calendar [monthNavigator]="true" [yearNavigator]="true"
+                                        formControlName="fromdatetime" name="fromdatetime" yearRange="2000:2030"
+                                        inputId="navigators" [showIcon]="true" inputId="icon">
+                                    </p-calendar>
+                                    <div *ngIf="submitted && f.fromdatetime.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fromdatetime.errors.required">From Date is Required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="todatetime" for="todatetime" cssClass="required">To Date</label>
+                                    <p-calendar [monthNavigator]="true" [yearNavigator]="true"
+                                        formControlName="todatetime" name="todatetime" yearRange="2000:2030"
+                                        inputId="navigators" [showIcon]="true" inputId="icon">
+                                    </p-calendar>
+                                    <div *ngIf="submitted && f.todatetime.errors" class="invalid-feedback">
+                                        <div *ngIf="f.todatetime.errors.required">To Date is Required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 form-group">
+                        <label path="hours" for="hours" cssClass="required">Hours</label>
+                        <input class="form-control" path="hours" name="hours" formControlName="hours"
+                            [ngClass]="{ 'is-invalid': submitted && f.hours.errors }" />
+                        <div *ngIf="submitted && f.hours.errors" class="invalid-feedback">
+                            <div *ngIf="f.hours.errors.required">Hours is Required</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 form-group">
+                        <label path="activitytype" for="activitytype" cssClass="required">Activity Type</label>
+                        <input class="form-control" path="activitytype" name="activitytype"
+                            formControlName="activitytype"
+                            [ngClass]="{ 'is-invalid': submitted && f.activitytype.errors }" />
+                        <div *ngIf="submitted && f.activitytype.errors" class="invalid-feedback">
+                            <div *ngIf="f.activitytype.errors.required">Activity Type is Required</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 form-group">
+                        <input class="form-control" path="project" id="project" type="hidden" />
+                        <label path="project" for="project" cssClass="required">Project</label>
+                        <select class="form-control" name="projectlist" id="projectlist" name="project"
+                            formControlName="project" [ngClass]="{ 'is-invalid': submitted && f.project.errors }">
+                            <option value="" hidden> - Select the Project Name - </option>
+                            <option value="null"> - Select the Project Name - </option>
+                            <option *ngFor="let timesheets of projects " [value]="timesheets.projectname">
+                                {{timesheets.projectname}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
+                            <div *ngIf="f.project.errors.required">Project is Required</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 form-group">
+                        <input class="form-control" path="status" id="status" type="hidden" />
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <select class="form-control" name="status" id="statuslist" readonly="true" name="status"
+                            formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select the Status - </option>
+                            <option value="null"> - Select the Status - </option>
+                            <option *ngFor="let system of asystemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 form-group">
+
+                        <input class="form-control" path="task" id="task" type="hidden" />
+                        <label path="task" for="task" cssClass="required">Task</label>
+                        <select class="form-control" name="tasklist" id="tasklist" name="task" formControlName="task"
+                            [ngClass]="{ 'is-invalid': submitted && f.task.errors }">
+                            <option value="" hidden> - Select the Task - </option>
+                            <option value="null"> - Select the Task - </option>
+                            <option *ngFor="let timesheets of tasks " [value]="timesheets.taskdescription">
+                                {{timesheets.taskdescription}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
+                            <div *ngIf="f.task.errors.required">Task is Required</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 form-group">
+                        <label path="timesheet" for="timesheet" cssClass="required">Task</label>
+                        <input class="form-control" path="timesheet" name="timesheet" formControlName="timesheet"
+                            [ngClass]="{ 'is-invalid': submitted && f.timesheet.errors }" />
+                        <div *ngIf="submitted && f.timesheet.errors" class="invalid-feedback">
+                            <div *ngIf="f.timesheet.errors.required">Task is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Daily TimeSheet Summary</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+        [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+        [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

@@ -1,0 +1,188 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Gross Profit</legend>
+    <div class="formData">
+        <form [formGroup]="purchasesForm" (ngSubmit)="onOrderClick($event,purchasesForm)">
+            <div class="row">
+                <input class="form-control" path="id" type="hidden" readonly="true" />
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="salesinvoice" for="salesinvoice" cssClass="required">Sales Invoice</label>
+                        <input formControlName="salesinvoice" class="form-control" path="salesinvoice" [ngClass]="{ 'is-invalid': submitted && f.salesinvoice.errors }" name="salesinvoice" />
+                        <div *ngIf="submitted && f.salesinvoice.errors" class="invalid-feedback">
+                            <div *ngIf="f.salesinvoice.errors.required">Sales Invoice is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="postingdate" for="postingdate" cssClass="required">Posting Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="postingdate" name="postingdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.postingdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.postingdate.errors.required">Posting Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="customer" for="customer" cssClass="required">Customer</label>
+                    <input class="form-control" path="customer" id="customer" type="hidden" />
+                    <select formControlName="customer" class="form-control" name="customerlist" id="customerlist" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }" name="customer">
+                        <option value="" hidden> - Select the User Name - </option>
+                        <option value="null" > - Select the User Name - </option>
+                        <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
+                        <div *ngIf="f.customer.errors.required">Customer is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="itemname" for="itemname" cssClass="required">Item List</label>
+                    <input class="form-control" path="itemname" id="itemname" type="hidden" />
+                    <select formControlName="itemname" class="form-control" name="itemlist" id="itemlist" [ngClass]="{ 'is-invalid': submitted && f.itemname.errors }" name="itemname">
+                        <option value="" hidden> - Select the item - </option>
+                        <option value="null" > - Select the item - </option>
+                        <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.itemname.errors" class="invalid-feedback">
+                        <div *ngIf="f.itemname.errors.required">Item List is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="Description" for="Description" cssClass="required">Quantity</label>
+                        <input formControlName="description" class="form-control" path="Description" id="Description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" name="description" mask="0*.00" />
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="warehouse" for="warehouse" cssClass="required">Warehouse</label>
+                        <input formControlName="warehouse" class="form-control" path="warehouse" id="warehouse" [ngClass]="{ 'is-invalid': submitted && f.warehouse.errors }" name="warehouse" />
+                        <div *ngIf="submitted && f.warehouse.errors" class="invalid-feedback">
+                            <div *ngIf="f.warehouse.errors.required">Warehouse is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="project" for="project" cssClass="required">Project</label>
+                        <input formControlName="project" class="form-control" path="project" id="project" [ngClass]="{ 'is-invalid': submitted && f.project.errors }" name="project" />
+                        <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
+                            <div *ngIf="f.project.errors.required">Project is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="currency" for="currency" cssClass="required">Currency</label>
+                        <input formControlName="currency" class="form-control" path="currency" id="currency" [ngClass]="{ 'is-invalid': submitted && f.currency.errors }" name="currency" mask="0*.00" />
+                        <div *ngIf="submitted && f.currency.errors" class="invalid-feedback">
+                            <div *ngIf="f.currency.errors.required">Currency is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="quantity" for="quantity" cssClass="required">Quantity</label>
+                        <input formControlName="quantity" class="form-control" path="quantity" id="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" name="quantity" mask="0*.00" />
+                        <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.quantity.errors.required">Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="averagesellingrate" for="averagesellingrate" cssClass="required">Average Selling
+                            Rate</label>
+                        <input formControlName="averagesellingrate" class="form-control" path="averagesellingrate" id="averagesellingrate" [ngClass]="{ 'is-invalid': submitted && f.averagesellingrate.errors }" name="averagesellingrate" mask="0*.00" />
+                        <div *ngIf="submitted && f.averagesellingrate.errors" class="invalid-feedback">
+                            <div *ngIf="f.averagesellingrate.errors.required">Average Selling Rate is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="averagebuyingrate" for="averagebuyingrate" cssClass="required">Average Buying
+                            Rate</label>
+                        <input formControlName="averagebuyingrate" class="form-control" path="averagebuyingrate" id="averagebuyingrate" [ngClass]="{ 'is-invalid': submitted && f.averagebuyingrate.errors }" name="averagebuyingrate" mask="0*.00" />
+                        <div *ngIf="submitted && f.averagebuyingrate.errors" class="invalid-feedback">
+                            <div *ngIf="f.averagebuyingrate.errors.required">Average Buying Rate is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="sellingamount" for="sellingamount" cssClass="required">Selling Amount </label>
+                        <input formControlName="sellingamount" class="form-control" path="sellingamount" id="sellingamount" [ngClass]="{ 'is-invalid': submitted && f.sellingamount.errors }" name="sellingamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.sellingamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.sellingamount.errors.required">Selling Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="buyingamount" for="buyingamount" cssClass="required">Buying Amount</label>
+                        <input formControlName="buyingamount" class="form-control" path="buyingamount" id="buyingamount" [ngClass]="{ 'is-invalid': submitted && f.buyingamount.errors }" name="buyingamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.buyingamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.buyingamount.errors.required">Buying Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="grossprofit" for="grossprofit" cssClass="required">Gross Profit</label>
+                        <input formControlName="grossprofit" class="form-control" path="grossprofit" id="grossprofit" [ngClass]="{ 'is-invalid': submitted && f.grossprofit.errors }" name="grossprofit" mask="0*.00" />
+                        <div *ngIf="submitted && f.grossprofit.errors" class="invalid-feedback">
+                            <div *ngIf="f.grossprofit.errors.required">Gross Profit is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="grosspercentage" for="grosspercentage" cssClass="required">Gross Profit %</label>
+                        <input formControlName="grosspercentage" class="form-control" path="grosspercentage" id="grosspercentage" [ngClass]="{ 'is-invalid': submitted && f.grosspercentage.errors }" name="grosspercentage" mask="0*.00" />
+                        <div *ngIf="submitted && f.grosspercentage.errors" class="invalid-feedback">
+                            <div *ngIf="f.grosspercentage.errors.required">Gross Profit % is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Gross Profit</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

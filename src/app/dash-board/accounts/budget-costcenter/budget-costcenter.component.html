@@ -1,0 +1,18 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-costcenter" routerLinkActive #costCenterTab="routerLinkActive"
+        [active]="costCenterTab.isActive">CostCenter Chart</a>
+    <a mat-tab-link routerLink="./app-budget-account" routerLinkActive #budgetAcTab="routerLinkActive"
+        [active]="budgetAcTab.isActive">Budget Account Type</a>
+    <a mat-tab-link routerLink="./app-budget" routerLinkActive #budgetTab="routerLinkActive"
+        [active]="budgetTab.isActive">Budget</a>
+    <a mat-tab-link routerLink="./app-budget-monthdist" routerLinkActive #monthdistTab="routerLinkActive"
+        [active]="monthdistTab.isActive">Budget Monthly Distribution</a>
+    <a mat-tab-link routerLink="./app-budget-variancerep" routerLinkActive #varianceTab="routerLinkActive"
+        [active]="varianceTab.isActive">Budget Variance Report</a>
+</nav>
+
+<router-outlet></router-outlet>

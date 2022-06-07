@@ -1,0 +1,215 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Task</legend>
+    <div class="formData">
+        <form [formGroup]="tasksForm" (ngSubmit)="onOrderClick($event,tasksForm)">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label path="projectname" for="projectname" cssClass="required">Select Project</label>
+                        <input type="hidden" class="form-control" path="projectname" />
+                        <select formControlName="projectname" class="form-control" name="projectname" id="projectlist"
+                            [ngClass]="{ 'is-invalid': submitted && f.projectname.errors }" name="projectname">
+                            <option value="" hidden> - Select Project - </option>
+                            <option value="null"> - Select Project - </option>
+                            <option *ngFor="let task of projects " [value]="task.projectname">
+                                {{task.projectname}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.projectname.errors" class="invalid-feedback">
+                            <div *ngIf="f.projectname.errors.required">Select Project is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label path="taskdescription" for="taskdescription" cssClass="required">Task Description</label>
+                        <input formControlName="taskdescription" class="form-control" path="taskdescription"
+                            id="taskdescription" [ngClass]="{ 'is-invalid': submitted && f.taskdescription.errors }"
+                            name="taskdescription" />
+                        <div *ngIf="submitted && f.taskdescription.errors" class="invalid-feedback">
+                            <div *ngIf="f.taskdescription.errors.required">Task Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input type="hidden" class="form-control" path="status" />
+                        <select formControlName="status" class="form-control" name="status" id="statuslist"
+                            [ngClass]="{ 'is-invalid': submitted && f.status.errors }" name="status">
+                            <option value="" hidden> - Select the Status - </option>
+                            <option value="null"> - Select the Status - </option>
+                            <option *ngFor="let system of bsystemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label path="assignTo" for="assignTo" cssClass="required">Assign To</label>
+                        <input class="form-control hide" path="assignTo" id="assignTo" />
+                        <select formControlName="assignTo" class="form-control" id="assignTo-Drop"
+                            [ngClass]="{ 'is-invalid': submitted && f.assignTo.errors }" name="assignTo">
+                            <option value="" hidden> - Select the Employee - </option>
+                            <option value="null"> - Select the Employee - </option>
+                            <option *ngFor="let system of asystemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.assignTo.errors" class="invalid-feedback">
+                            <div *ngIf="f.assignTo.errors.required">Assign To is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+
+                        <label path="assignBy" for="assignBy" cssClass="required">Assign By</label>
+
+                        <input class="form-control hide" path="assignBy" id="assignBy" />
+                        <select formControlName="assignBy" class="form-control" id="assignBy-Drop"
+                            [ngClass]="{ 'is-invalid': submitted && f.assignBy.errors }" name="assignBy">
+                            <option value="" hidden> - Select the Employee - </option>
+                            <option value="null"> - Select the Employee - </option>
+                            <option *ngFor="let system of asystemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.assignBy.errors" class="invalid-feedback">
+                            <div *ngIf="f.assignBy.errors.required">Assign By is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 hide">
+                    <div class="form-group">
+                        <label for="taskid">taskid</label>
+                        <input class="form-control" path="taskid" readonly="true" name="taskid" />
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="starton" for="starton" cssClass="required">Starts On</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="starton"
+                                    name="starton" yearRange="2000:2030" inputId="navigators" [showIcon]="true"
+                                    inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.starton.errors" class="invalid-feedback">
+                                    <div *ngIf="f.starton.errors.required"> Start on is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="endon" for="endon" cssClass="required">Ends On</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="endon"
+                                    name="endon" yearRange="2000:2030" inputId="navigators" [showIcon]="true"
+                                    inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.endon.errors" class="invalid-feedback">
+                                    <div *ngIf="f.endon.errors.required"> Ends On is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="duration" for="duration" cssClass="required">Task Duration</label>
+                                <p-calendar [timeOnly]="true" hourFormat="24" [showSeconds]="true" inputId="timeonly"
+                                    formControlName="duration">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+                                    <div *ngIf="f.duration.errors.required">Task Duration is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-xs-3">
+                    <div class="form-group">
+                        <label path="duration" for="duration" cssClass="required">Task Duration</label>
+                        <input formControlName="duration" class="form-control" path="duration" id="duration" [ngClass]="{ 'is-invalid': submitted && f.duration.errors }" name="duration" />
+                        <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+                            <div *ngIf="f.duration.errors.required">Task Duration is Required</div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-xs-3" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label path="allday" for="allday">All Day</label>
+                        <input formControlName="allday" type="checkbox" name="allday">
+                    </div>
+                </div>
+                <div class="col-xs-3" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label path="sendanemail" for="sendanemail">Send An Email Reminder</label>
+                        <input formControlName="sendanemail" id="checkid" type="checkbox" name="sendanemail">
+                    </div>
+                </div>
+                <div class="col-xs-3" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="repeatthisevent" path="repeatthisevent">Repeat this Event</label>
+                        <input formControlName="repeatthisevent" id="checkid" type="checkbox" name="repeatthisevent">
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label path="taskdescription" for="taskdescription" cssClass="required">Project Id</label>
+                        <input formControlName="projectid" class="form-control" path="projectid"
+                            [ngClass]="{ 'is-invalid': submitted && f.projectid.errors }" name="projectid" />
+                        <div *ngIf="submitted && f.projectid.errors" class="invalid-feedback">
+                            <div *ngIf="f.projectid.errors.required">Project Id is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="menulink">
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <legend class="scheduler-border">Task Details</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+        [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+        [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

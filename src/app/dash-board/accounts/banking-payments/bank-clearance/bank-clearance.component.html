@@ -1,0 +1,164 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Clearance Statement</legend>
+    <div class="formData">
+        <form [formGroup]="bankForm" (ngSubmit)="onOrderClick($event,bankForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="fromDate" for="fromDate" cssClass="required">From Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="fromDate" name="fromDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.fromDate.errors.required">From Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="toDate" for="toDate" cssClass="required">To Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="toDate" name="toDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.toDate.errors.required">To Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="bankAccount" for="bankAccount" cssClass="required">Bank Account</label>
+                        <input class="form-control" type="hidden" path="bankAccount" />
+                        <select formControlName="bankAccount" class="form-control" id="accountNameList" [ngClass]="{ 'is-invalid': submitted && f.bankAccount.errors }" name="bankAccount">
+                            <option value="" hidden> - Select the Account Name - </option>
+                            <option value="null" > - Select the Account Name - </option>
+                            <option *ngFor="let system of basystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.bankAccount.errors" class="invalid-feedback">
+                            <div *ngIf="f.bankAccount.errors.required">Bank Account is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="payDocument" for="payDocument" cssClass="required">Payment Document
+                        </label>
+                        <input formControlName="payDocument" class="form-control" path="payDocument" [ngClass]="{ 'is-invalid': submitted && f.payDocument.errors }" name="payDocument" />
+                        <div *ngIf="submitted && f.payDocument.errors" class="invalid-feedback">
+                            <div *ngIf="f.payDocument.errors.required">Payment Document is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="entrySeries" for="entrySeries" cssClass="required">Payment Entry</label>
+                        <input class="form-control" type="hidden" path="entrySeries" />
+                        <select formControlName="entrySeries" class="form-control" id="paymententryList" [ngClass]="{ 'is-invalid': submitted && f.entrySeries.errors }" name="entrySeries">
+                            <option value="" hidden> - Select the Payment Entry- </option>
+                            <option value="null"> - Select the Payment Entry- </option>
+                            <option *ngFor="let payment of payments" [value]="payment.entrySeries">
+                                {{payment.entrySeries}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.entrySeries.errors" class="invalid-feedback">
+                            <div *ngIf="f.entrySeries.errors.required">Payment Entry is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="chequeref" for="chequeref" cssClass="required">Cheque Reference</label>
+                        <input formControlName="chequeref" class="form-control" path="chequeref" [ngClass]="{ 'is-invalid': submitted && f.chequeref.errors }" name="chequeref" />
+                        <div *ngIf="submitted && f.chequeref.errors" class="invalid-feedback">
+                            <div *ngIf="f.chequeref.errors.required">Cheque Reference is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="clearanceDate" for="clearanceDate" cssClass="required">Clearance
+                                    Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="clearanceDate" name="clearanceDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.clearanceDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.clearanceDate.errors.required">Clearance Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="againstAccount" for="againstAccount" cssClass="required">Against Accountee
+                        </label>
+                        <input class="form-control" type="hidden" path="againstAccount" />
+                        <select formControlName="againstAccount" class="form-control" id="againstaccList" [ngClass]="{ 'is-invalid': submitted && f.againstAccount.errors }" name="againstAccount">
+                            <option value="" hidden> - Select the Account holder - </option>
+                            <option value="null"> - Select the Account holder - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.againstAccount.errors" class="invalid-feedback">
+                            <div *ngIf="f.againstAccount.errors.required">Against Accountee is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amount" for="amount" cssClass="required">Amount</label>
+                        <input formControlName="amount" class="form-control" path="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" name="amount" mask="0*.00" />
+                        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                            <div *ngIf="f.amount.errors.required">Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <div class="sample">
+        <fieldset class="scheduler-border">
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                        </button>
+                        <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <legend class="scheduler-border">Bank Clearance Statement</legend>
+            <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+            </ag-grid-angular>
+        </fieldset>
+    </div>
+</div>

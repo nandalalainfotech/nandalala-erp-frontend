@@ -1,0 +1,85 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Make New Salary Structure</legend>
+    <div class="formData">
+        <form [formGroup]="salaryForm" (ngSubmit)="onOrderClick($event, salaryForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empName" for="empName" cssClass="required">Employee</label>
+                        <input class="form-control" type="hidden" path="empName" />
+                        <select class="form-control" id="empNamelist" name="empName" formControlName="empName" [ngClass]="{ 'is-invalid': submitted && f.empName.errors }">
+                            <option value="" hidden> - Select the Employee - </option>
+                            <option value="null" > - Select the Employee - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.empName.errors" class="invalid-feedback">
+                            <div *ngIf="f.empName.errors.required">Employee is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="isActive" for="leaveType" cssClass="required">Salary Mode</label>
+                        <input class="form-control" type="hidden" path="isActive" />
+                        <select class="form-control" name="salmode" id="salmode" name="isActive" formControlName="isActive" [ngClass]="{ 'is-invalid': submitted && f.isActive.errors }">
+                            <option value="" hidden> - Select Leave Type - </option>
+                            <option value="null" > - Select Leave Type - </option>
+                            <option *ngFor="let system of salsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.isActive.errors" class="invalid-feedback">
+                            <div *ngIf="f.isActive.errors.required">Salary Mode is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="fromDate" for="fromDate" cssClass="required">From Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="fromDate" name="fromDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.fromDate.errors.required">From Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<!-- Grid Table Components -->
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <legend class="scheduler-border">Salary Structure</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

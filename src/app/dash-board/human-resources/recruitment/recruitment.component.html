@@ -1,0 +1,13 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-job-opening" routerLinkActive #jobOpeningTab="routerLinkActive" [active]="jobOpeningTab.isActive">Job Opening</a>
+    <a mat-tab-link routerLink="./app-job-applicant" routerLinkActive #jobApplicantTab="routerLinkActive" [active]="jobApplicantTab.isActive">Job Applicant</a>
+    <a mat-tab-link routerLink="./app-offer-letter" routerLinkActive #offerLetterTab="routerLinkActive" [active]="offerLetterTab.isActive">Offer Letter</a>
+    <a mat-tab-link routerLink="./app-relieving-letter" routerLinkActive #relievingLetterTab="routerLinkActive" [active]="relievingLetterTab.isActive">Relieving Letter</a>
+    <a mat-tab-link routerLink="./app-experience-letter" routerLinkActive #expLetterTab="routerLinkActive" [active]="expLetterTab.isActive">Experience Letter</a>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,14 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-emp-leave-balance" routerLinkActive #empLevBalTab="routerLinkActive" [active]="empLevBalTab.isActive">Employee Leave Balance</a>
+    <a mat-tab-link routerLink="./app-emp-birthday" routerLinkActive #empBirthdayTab="routerLinkActive" [active]="empBirthdayTab.isActive">Employee Birthday</a>
+    <a mat-tab-link routerLink="./app-emp-holiday-work" routerLinkActive #holidayWorkTab="routerLinkActive" [active]="holidayWorkTab.isActive">Employee Working on Holiday</a>
+    <a mat-tab-link routerLink="./app-emp-sales-register" routerLinkActive #salesRegTab="routerLinkActive" [active]="salesRegTab.isActive">Employee Sales Register</a>
+    <a mat-tab-link routerLink="./app-month-attend-sheet" routerLinkActive #monthAttendTab="routerLinkActive" [active]="monthAttendTab.isActive">Employee Monthly Attendance</a>
+    <a mat-tab-link routerLink="./app-emp-information" routerLinkActive #empInfoTab="routerLinkActive" [active]="empInfoTab.isActive">Employee Information</a>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,176 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Employee Birthday List</legend>
+    <div class="formData">
+        <form [formGroup]="birthForm" (ngSubmit)="onOrderClick($event, birthForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="empbirthId" />
+                        <label path="ebmonth" for="ebmonth" cssClass="required">Month</label>
+                        <input class="form-control" type="hidden" path="ebmonth" />
+                        <select formControlName="ebmonth" class="form-control" name="monthlist" id="monthlist" [ngClass]="{ 'is-invalid': submitted && f.ebmonth.errors }" name="ebmonth">
+                            <option value="" hidden> - Select the Month - </option>
+                            <option value="null"> - Select the Month - </option>
+                            <option *ngFor="let system of monthsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.ebmonth.errors" class="invalid-feedback">
+                            <div *ngIf="f.ebmonth.errors.required">Month is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="empDob" for="empDob" cssClass="required">Employee DOB</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="empDob" name="empDob" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.empDob.errors" class="invalid-feedback">
+                                    <div *ngIf="f.empDob.errors.required">Employee DOB is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empNumber" for="empNumberlist" cssClass="required">Employee Number</label>
+                        <input class="form-control" type="hidden" path="empNumber" />
+                        <select formControlName="empNumber" class="form-control" id="empNumberlist" [ngClass]="{ 'is-invalid': submitted && f.empNumber.errors }" name="empNumber">
+                            <option value="" hidden> - Select the Employee Number - </option>
+                            <option value="null" > - Select the Employee Number - </option>
+                            <option *ngFor="let system of numsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.empNumber.errors.required">Employee Number is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empName" for="empNamelist" cssClass="required">Employee Name</label>
+                        <input class="form-control" type="hidden" path="empName" />
+                        <select formControlName="empName" class="form-control" id="empNamelist" [ngClass]="{ 'is-invalid': submitted && f.empName.errors }" name="empName">
+                            <option value="" hidden> - Select the Employee Name - </option>
+                            <option value="null"> - Select the Employee Name - </option>
+                            <option *ngFor="let system of empsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empName.errors" class="invalid-feedback">
+                            <div *ngIf="f.empName.errors.required">Employee Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="deptName" for="deptName" cssClass="required">Department Name</label>
+                        <input class="form-control" type="hidden" path="deptName" />
+                        <select formControlName="deptName" class="form-control" id="deptNamelist" [ngClass]="{ 'is-invalid': submitted && f.deptName.errors }" name="deptName">
+                            <option value="" hidden> - Select the Department - </option>
+                            <option value="null" > - Select the Department - </option>
+                            <option *ngFor="let system of depsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.deptName.errors" class="invalid-feedback">
+                            <div *ngIf="f.deptName.errors.required">Department Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="branch" for="branch" cssClass="required">Branch</label>
+                        <input class="form-control" type="hidden" path="branch" />
+                        <select formControlName="branch" class="form-control" id="branchlist" [ngClass]="{ 'is-invalid': submitted && f.branch.errors }" name="branch">
+                            <option value="" hidden> - Select the Branch- </option>
+                            <option value="null" > - Select the Branch- </option>
+                            <option *ngFor="let system of branchsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.branch.errors" class="invalid-feedback">
+                            <div *ngIf="f.branch.errors.required">Branch is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="empCompany" for="empCompany" cssClass="required">Company</label>
+                        <input class="form-control" type="hidden" path="empCompany" />
+                        <select formControlName="empCompany" class="form-control" id="companylist" [ngClass]="{ 'is-invalid': submitted && f.empCompany.errors }" name="empCompany">
+                            <option value="" hidden> - Select the Employee- </option>
+                            <option value="null" > - Select the Employee- </option>
+                            <option *ngFor="let system of companysystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empCompany.errors" class="invalid-feedback">
+                            <div *ngIf="f.empCompany.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="empDesign" for="empDesign" cssClass="required">Designation</label>
+                        <input class="form-control" type="hidden" path="empDesign" />
+                        <select formControlName="empDesign" class="form-control" id="designationlist" [ngClass]="{ 'is-invalid': submitted && f.empDesign.errors }" name="empDesign">
+                            <option value="" hidden> - Select the Designation- </option>
+                            <option value="null" > - Select the Designation- </option>
+                            <option *ngFor="let system of designsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empDesign.errors" class="invalid-feedback">
+                            <div *ngIf="f.empDesign.errors.required">Designation is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="empGender" for="empGender" cssClass="required">Gender</label>
+                        <input class="form-control" type="hidden" path="empGender" />
+                        <select formControlName="empGender" class="form-control" id="genderlist" [ngClass]="{ 'is-invalid': submitted && f.empGender.errors }" name="empGender">
+                            <option value="" hidden> - Select the Gender- </option>
+                            <option value="null" > - Select the Gender- </option>
+                            <option *ngFor="let system of gendersystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empGender.errors" class="invalid-feedback">
+                            <div *ngIf="f.empGender.errors.required">Gender is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Employee Birthday</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

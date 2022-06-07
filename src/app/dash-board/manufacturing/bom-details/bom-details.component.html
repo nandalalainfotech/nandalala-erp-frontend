@@ -1,0 +1,40 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a
+        mat-tab-link
+        routerLink="./app-material"
+        routerLinkActive
+        #materialTab="routerLinkActive"
+        [active]="materialTab.isActive"
+        >Bill of Materials</a
+    >
+    <a
+        mat-tab-link
+        routerLink="./app-item-status"
+        routerLinkActive
+        #itemStatusTab="routerLinkActive"
+        [active]="itemStatusTab.isActive"
+        >Item Status</a
+    >
+    <a
+        mat-tab-link
+        routerLink="./app-work-station"
+        routerLinkActive
+        #workStationTab="routerLinkActive"
+        [active]="workStationTab.isActive"
+        >Work Station</a
+    >
+    <a
+        mat-tab-link
+        routerLink="./app-operation"
+        routerLinkActive
+        #operationTab="routerLinkActive"
+        [active]="operationTab.isActive"
+        >BOM Operation</a
+    >
+</nav>
+
+<router-outlet></router-outlet>

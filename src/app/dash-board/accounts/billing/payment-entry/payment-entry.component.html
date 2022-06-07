@@ -1,0 +1,131 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Payment Entry</legend>
+    <div class="formData">
+        <form [formGroup]="paymentForm" (ngSubmit)="onOrderClick($event,paymentForm)">
+            <div class="row">
+                <input class="form-control" path="payentId" type="hidden" />
+                <div class="col-xs-3 form-group">
+                    <label path="entrySeries" for="entrySeries" cssClass="required">Series</label>
+                    <input class="form-control" path="entrySeries" id="entrySeries" name="entrySeries" formControlName="entrySeries" [ngClass]="{ 'is-invalid': submitted && f.entrySeries.errors }" />
+                    <div *ngIf="submitted && f.entrySeries.errors" class="invalid-feedback">
+                        <div *ngIf="f.entrySeries.errors.required">Series is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="postingDate" for="postingDate" cssClass="required">Posting Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="postingDate" name="postingDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.postingDate .errors" class="invalid-feedback">
+                                    <div *ngIf="f.postingDate.errors.required">Posting Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="paymentType" for="paymentType" cssClass="required">Payment Type</label>
+                        <input class="form-control" type="hidden" path="paymentType" />
+                        <select class="form-control" name="PaymentTypeList" name="paymentType" id="PaymentTypeList" formControlName="paymentType" [ngClass]="{ 'is-invalid': submitted && f.paymentType.errors }">
+                            <option value="" hidden> - Select Payment Type - </option>
+                            <option value="null"> - Select Payment Type - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.paymentType.errors" class="invalid-feedback">
+                            <div *ngIf="f.paymentType.errors.required">Payment Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="paymentMode" for="paymentMode" cssClass="required">Payment Mode</label>
+                        <input class="form-control" type="hidden" path="paymentMode" />
+                        <select class="form-control" name="PaymentModeList" id="PaymentModeList" name="paymentMode" formControlName="paymentMode" [ngClass]="{ 'is-invalid': submitted && f.paymentMode.errors }">
+                            <option value="" hidden> - Select Payment Mode - </option>
+                            <option value="null"> - Select Payment Mode - </option>
+                            <option *ngFor="let system of msystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.paymentMode.errors" class="invalid-feedback">
+                            <div *ngIf="f.paymentMode.errors.required">Payment Mode is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="partyType" for="partyType" cssClass="required">Party Type</label>
+                        <input class="form-control" type="hidden" path="partyType" />
+                        <select class="form-control" name="PartytypeList" id="PartytypeList" name="partyType" formControlName="partyType" [ngClass]="{ 'is-invalid': submitted && f.partyType.errors }">
+                            <option value="" hidden> - Select Party Type - </option>
+                            <option value="null"> - Select Party Type - </option>
+                            <option *ngFor="let system of ptypesystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.partyType.errors" class="invalid-feedback">
+                            <div *ngIf="f.partyType.errors.required">Party Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="partyName" for="partyName" cssClass="required">Party Name</label>
+                        <input class="form-control" type="hidden" path="partyName" />
+                        <select class="form-control" id="supplierList" [(ngModel)]="partyName" name="partyName" formControlName="partyName" [ngClass]="{ 'is-invalid': submitted && f.partyName.errors }">
+                            <option value="" hidden> - Select the Party - </option>
+                            <option value="null"> - Select the Party - </option>
+                            <option *ngFor="let system of pnamesystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.partyName.errors" class="invalid-feedback">
+                            <div *ngIf="f.partyName.errors.required">Party Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="accpaidTo" for="accpaidTo" cssClass="required">Account PaidTo</label>
+                    <input class="form-control" path="accpaidTo" id="accpaidTo" name="accpaidTo" formControlName="accpaidTo" [ngClass]="{ 'is-invalid': submitted && f.accpaidTo.errors }" />
+                    <div *ngIf="submitted && f.accpaidTo.errors" class="invalid-feedback">
+                        <div *ngIf="f.accpaidTo.errors.required">Account PaidTo is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Payment Entry List</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

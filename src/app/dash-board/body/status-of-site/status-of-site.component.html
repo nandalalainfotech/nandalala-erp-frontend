@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ 'ERP Sales Statistics' | translate}}</h5>
+
+        <div class="mb-1" *ngFor="let s of data">
+            <p class="mb-0">
+                {{s.title}}
+                <span class="float-right text-muted">
+                    {{s.status}}/{{s.total}}
+                </span>
+            </p>
+            <progressbar [value]="(s.status / s.total) * 100"></progressbar>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Group</legend>
+    <div class="formData">
+        <form [formGroup]="custForm" (ngSubmit)="onOrderClick($event,custForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="cugrpId" />
+                        <label path="customergroup" for="series" cssClass="required">Customer Group</label>
+                        <input class="form-control" path="customergroup" name="customergroup" formControlName="customergroup" [ngClass]="{ 'is-invalid': submitted && f.customergroup.errors }">
+                        <div *ngIf="submitted && f.customergroup.errors" class="invalid-feedback">
+                            <div *ngIf="f.customergroup.errors.required">Customer Group is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="salesPerson" for="series" cssClass="required">Sales Person</label>
+                        <input class="form-control" path="salesPerson" name="salesPerson" formControlName="salesPerson" [ngClass]="{ 'is-invalid': submitted && f.salesPerson.errors }">
+                        <div *ngIf="submitted && f.salesPerson.errors" class="invalid-feedback">
+                            <div *ngIf="f.salesPerson.errors.required">Sales Person is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    <legend class="scheduler-border">Group Details</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

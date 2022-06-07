@@ -1,0 +1,159 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Stock Settings</legend>
+    <div class="formData">
+        <form [formGroup]="settingForm" (ngSubmit)="onOrderClick($event,settingForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="setId" />
+                        <label path="itemnameBy" for="itemnameBy" cssClass="required">Item Naming By</label>
+                        <input class="form-control" type="hidden" path="itemnameBy" />
+                        <select class="form-control" name="itemNamingbyList" id="itemNamingbyList" name="itemnameBy"
+                            formControlName="itemnameBy" [ngClass]="{ 'is-invalid': submitted && f.itemnameBy.errors }">
+                            <option value="" hidden> - Select Item Naming By - </option>
+                            <option value="null"> - Select Item Naming By - </option>
+                            <option *ngFor="let system of itmsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.itemnameBy.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemnameBy.errors.required">Item Naming By is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="defaultValue" for="defaultValue" cssClass="required">Default Valuation</label>
+                        <input class="form-control" type="hidden" path="defaultValue" />
+                        <select class="form-control" name="defaultList" id="defaultList" name="defaultValue"
+                            formControlName="defaultValue"
+                            [ngClass]="{ 'is-invalid': submitted && f.defaultValue.errors }">
+                            <option value="" hidden> - Select default method - </option>
+                            <option value="null"> - Select default method - </option>
+                            <option *ngFor="let system of defsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.defaultValue.errors" class="invalid-feedback">
+                            <div *ngIf="f.defaultValue.errors.required">Default Valuation is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="itemGroup" for="series" cssClass="required">Item Group</label>
+                        <input class="form-control" type="hidden" path="itemGroup" />
+                        <select class="form-control" name="itemGroupList" id="itemGroupList" name="itemGroup"
+                            formControlName="itemGroup" [ngClass]="{ 'is-invalid': submitted && f.itemGroup.errors }">
+                            <option value="" hidden> - Select Item Group - </option>
+                            <option value="null"> - Select Item Group - </option>
+                            <option *ngFor="let system of grpsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.itemGroup.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemGroup.errors.required">Item Group is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="series" path="allowancePercent" cssClass="required">Allowance Percent</label>
+                        <input class="form-control" path="allowancePercent" name="allowancePercent"
+                            formControlName="allowancePercent"
+                            [ngClass]="{ 'is-invalid': submitted && f.allowancePercent.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.allowancePercent.errors" class="invalid-feedback">
+                            <div *ngIf="f.allowancePercent.errors.required">Allowance Percent is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="series" path="defaultUOM" cssClass="required">UOM</label>
+                        <input class="form-control" path="defaultUOM" name="defaultUom" formControlName="defaultUom"
+                            [ngClass]="{ 'is-invalid': submitted && f.defaultUom.errors }">
+                        <div *ngIf="submitted && f.defaultUom.errors" class="invalid-feedback">
+                            <div *ngIf="f.defaultUom.errors.required">UOM is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="warehouseName" path="warehouseName" cssClass="required">WareHouse Name</label>
+                        <input class="form-control" type="hidden" path="warehouseName" />
+                        <select class="form-control" name="warehouseNameList" id="warehouseNameList"
+                            name="warehouseName" formControlName="warehouseName"
+                            [ngClass]="{ 'is-invalid': submitted && f.warehouseName.errors }">
+                            <option value="" hidden> - Select Item warehouse name - </option>
+                            <option value="null"> - Select Item warehouse name - </option>
+                            <option *ngFor="let stkwarehouse of wrHouses" [value]="stkwarehouse.warehouseName">
+                                {{stkwarehouse.warehouseName}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.warehouseName.errors" class="invalid-feedback">
+                            <div *ngIf="f.warehouseName.errors.required">WareHouse Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="showbarcodeField">Show BarCode Field</label>
+                        <input type="checkbox" name="showbarcodeField" id="showbarcodeField"
+                            formControlName="showbarcodeField" name="showbarcodeField">
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="autoinsertPricelist">Auto Insert Price List</label>
+                        <input type="checkbox" id="autoinsertPricelist" name="autoinsertPricelist"
+                            formControlName="autoinsertPricelist" name="autoinsertPricelist">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="autosetSerialno">Auto Set Serial no</label>
+                        <input type="checkbox" id="autosetSerialno" name="autosetSerialno"
+                            formControlName="autosetSerialno" name="autosetSerialno">
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="allownegativeStock">Allow Negative Stock</label>
+                        <input type="checkbox" id="allownegativeStock" name="allownegativeStock"
+                            formControlName="allownegativeStock" name="allownegativeStock">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Stock Settings</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+        [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+        [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

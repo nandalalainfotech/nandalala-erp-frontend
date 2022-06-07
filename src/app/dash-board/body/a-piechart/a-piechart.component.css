@@ -1,0 +1,81 @@
+.card{
+  width: 100%;
+  background-color: #fff;
+  border-radius: 19px;
+  border: none;
+  position: relative;
+  margin-bottom: 30px;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90 97 105 / 10%);
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+/* .col-lg-8 {
+/* width: 100.666667px; */
+/* margin-left: 20px; */
+/* }  */
+
+ .row {
+    overflow: hidden;
+    /* max-width: 1040px; */
+    margin: 0px 0px; 
+    display: flex;
+  } 
+
+  .col-md-4 {
+    width: 33.33%;
+    padding: 0 25px;
+  } 
+  
+  table {
+    width: 100%;
+  }
+  
+  tbody tr {
+    border-top: 1px solid #9dc9f1;
+  }
+  
+  th {
+    font-weight: bold;
+    font-family: Helvetica;
+    padding-bottom: 20px;
+  }
+  td,
+  th {
+    width: 25%;
+    text-align: center;
+    height: 65px;
+  }
+  
+  td div {
+    margin: 0 auto;
+  }
+  
+  .left {
+    float: left;
+  }
+  
+  .right {
+    float: right;
+  }
+/*   
+  @media only screen and (max-width: 480px) {
+    th:first-child,
+    td:first-child {
+      display: none;
+    }
+    .row {
+      display: block;
+    }
+    .col-md-4 {
+      padding: 0;
+      width: 100%;
+    }
+  } */
+  /* .chart-font{
+    font-family: 'Raliway';
+    font-weight: 700;
+  } */

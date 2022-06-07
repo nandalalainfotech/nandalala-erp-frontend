@@ -1,0 +1,265 @@
+<div [@.disabled]="temporaryDisabled">
+    <div class="header-container">
+        <!-- <input type="checkbox" id="menu"> -->
+        <div class="header col-sm-12 col-md-12 col-lg-12 padding">
+            <div class="col-md-5 col-lg-7 logo">
+                <h2 class="h2">
+                    <!-- <label for="menu" class="menu-bar is-active"> -->
+                    <i class="fa fa-bars" [ngClass]="isOpen ? 'rerotation' : 'rotation'" style="margin-left: 10px" (click)="clickMenu()"></i>
+                    <img src="../../../assets/images/ERP-logo.png" />
+                    <!-- <img src="{{downloadUrl}}"> -->
+                    <!-- </label> -->
+                    <span routerLink="/app-dash-board" style="margin-left: -6px">
+                        <i aria-hidden="true"></i>&nbsp; ERP SYSTEM
+                    </span>
+                </h2>
+            </div>
+            <div>
+                <ul class="setting-menu-list pull-right" style="margin: 0">
+                    <li class="setting">
+                        Welcome {{ user?.firstname | titlecase }} {{ user?.lastname | titlecase }}&nbsp;
+                    </li>
+
+                    <li class="setting">
+                        <a><i
+                                class="fa fa-paint-brush"
+                                style="color: white"
+                                aria-hidden="true"
+                                [(colorPicker)]="themes"
+                                [cpOKButton]="true"
+                                [cpOKButtonClass]="' btn-primary btn-xs button'"
+                                [cpOKButtonText]="'Reset'"
+                                [cpCancelButton]="true"
+                                [cpCancelButtonClass]="'btn-primary btn-xs'"
+                                [cpCancelButtonText]="'Cancel'"
+                                [cpSaveClickOutside]="false"
+                                [cpCloseClickOutside]="false"
+                                [cpPresetColors]="[
+                                    '#9400D3',
+                                    '#0000FF',
+                                    '#00FF00',
+                                    '#FFFF00',
+                                    '#FF7F00',
+                                    '#FF0000'
+                                ]"
+                                [cpPositionRelativeToArrow]="true"
+                                [cpPosition]="'left'"
+                                [cpPositionOffset]="'80%'"
+                                [cpAlphaChannel]="'disabled'"
+                                [cpDisableInput]="false"
+                                [cpOutputFormat]="'hex'"
+                                [cpWidth]="'270px'"
+                                [cpHeight]="'390px'"
+                                (cpSliderChange)="colorPicker($event)"
+                                (colorPickerSelect)="defaultColor()"
+                            ></i
+                        ></a>
+                    </li>
+
+                    <li class="link" class="setting">
+                        <span id="notification_count"></span>
+                        <span style="color: white" id="notificationLink">
+                            <i
+                                class="fa fa-bell"
+                                aria-hidden="true"
+                                title="View Notification"
+                            ></i
+                        ></span>
+                        <div id="notificationContainer">
+                            <div id="notificationsBody" class="notifications"></div>
+                        </div>
+                    </li>
+
+                    <li class="setting">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" style="color: white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="bttn">
+                                <i
+                                    class="fa fa-cog"
+                                    [ngClass]="
+                                        parentMenuString == 'Setting'
+                                            ? 'is-active'
+                                            : ''
+                                    "
+                                    aria-hidden="true"
+                                    title="More options"
+                                ></i>
+                            </button>
+
+                            <!-- [ngClass]="parentMenuString == 'Purchase Order' ? 'is-active' : ''"
+                        (click)="onMenuParentClick('Purchase Order', 'Purchase Order')">
+                            <a><i class="fa fa-shopping-cart" [ngClass]="parentMenuString == 'Purchase Order' ? 'is-active' : ''">
+                            </i><span [ngClass]="parentMenuString == 'Purchase Order' ? 'is-active' : ''" -->
+
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li routerLink="/app-dash-board">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'DashBoard'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Setting',
+                                                'DashBoard'
+                                            )
+                                        ">DashBoard</a
+                                    >
+                                </li>
+
+                                <li
+                                    routerLink="./app-setting/app-profile/app-registration"
+                                >
+                                    <a
+                                        [ngStyle]="{ color: colorthemes_1 }"
+                                        [ngClass]="
+                                            childMenuString == 'Profile'
+                                                ? 'is-active'
+                                                : ''
+                                        "
+                                        (click)="
+                                            onMenuChildClick(
+                                                'Setting',
+                                                'Profile'
+                                            )
+                                        "
+                                        >Profile</a
+                                    >
+                                </li>
+
+                                <li routerLink="./app-setting/app-settings">
+                                    <a
+                                        [ngStyle]="{ color: colorthemes_1 }"
+                                        [ngClass]="
+                                            childMenuString == 'Settings'
+                                                ? 'is-active'
+                                                : ''
+                                        "
+                                        (click)="
+                                            onMenuChildClick(
+                                                'Setting',
+                                                'Settings'
+                                            )
+                                        "
+                                        >Settings</a
+                                    >
+                                </li>
+
+                                <li routerLink="./app-setting/app-user-theme">
+                                    <a
+                                        [ngStyle]="{ color: colorthemes_1 }"
+                                        [ngClass]="
+                                            childMenuString == 'UserTheme'
+                                                ? 'is-active'
+                                                : ''
+                                        "
+                                        (click)="
+                                            onMenuChildClick(
+                                                'Setting',
+                                                'UserTheme'
+                                            )
+                                        "
+                                        >Themes</a
+                                    >
+                                </li>
+                                <li routerLink="./app-setting/app-favourites">
+                                    <a
+                                        [ngStyle]="{ color: colorthemes_1 }"
+                                        [ngClass]="
+                                            childMenuString == 'Favourites'
+                                                ? 'is-active'
+                                                : ''
+                                        "
+                                        (click)="
+                                            onMenuChildClick(
+                                                'Setting',
+                                                'Favourites'
+                                            )
+                                        "
+                                        >Favourites</a
+                                    >
+                                </li>
+
+                                <li routerLink="./app-setting/app-about">
+                                    <a
+                                        [ngStyle]="{ color: colorthemes_1 }"
+                                        [ngClass]="
+                                            childMenuString == 'About'
+                                                ? 'is-active'
+                                                : ''
+                                        "
+                                        (click)="
+                                            onMenuChildClick('Setting', 'About')
+                                        "
+                                        >About</a
+                                    >
+                                </li>
+
+                                <li
+                                    routerLink="./app-setting/app-import-export"
+                                >
+                                    <a
+                                        [ngStyle]="{ color: colorthemes_1 }"
+                                        [ngClass]="
+                                            childMenuString == 'Import / Export'
+                                                ? 'is-active'
+                                                : ''
+                                        "
+                                        (click)="
+                                            onMenuChildClick(
+                                                'Setting',
+                                                'Import / Export'
+                                            )
+                                        "
+                                        >Import / Export</a
+                                    >
+                                </li>
+                                <li
+                                    routerLink="./app-setting/app-application-setting"
+                                >
+                                    <a
+                                        [ngStyle]="{ color: colorthemes_1 }"
+                                        [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        "
+                                        (click)="
+                                            onMenuChildClick(
+                                                'Setting',
+                                                'Application Setting'
+                                            )
+                                        "
+                                        >Application Setting</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="setting" routerLink="./app-help">
+                        <a>
+                            <i
+                                class="fa fa-question-circle"
+                                aria-hidden="true"
+                                title="Help"
+                                style="color: white"
+                                [ngClass]="
+                                    parentMenuString == 'Help'
+                                        ? 'is-active'
+                                        : ''
+                                "
+                                (click)="onMenuParentClick('Help', 'Help')"
+                            ></i
+                        ></a>
+                                </li>
+                                <li class="setting">
+                                    <a (click)="submit()" [ngClass]="
+                                parentMenuString == 'Logout' ? 'is-actived' : ''
+                            " (click)="onMenuParentClick('Logout', 'Logout')">
+                                        <i class="fa fa-sign-out color" aria-hidden="true" title="Logout"></i
+                        ></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-customer-ac-lo" routerLinkActive #customerAcTab="routerLinkActive" [active]="customerAcTab.isActive">Customer Acquisitionand Loyality</a>
+    <a mat-tab-link routerLink="./app-customer-details" routerLinkActive #customerDetailsTab="routerLinkActive" [active]="customerDetailsTab.isActive">Customer Details </a>
+    <a mat-tab-link routerLink="./app-customer-crt-bal" routerLinkActive #customerCrtBalTab="routerLinkActive" [active]="customerCrtBalTab.isActive">Customer Credit Balance</a>
+</nav>
+
+<router-outlet></router-outlet>

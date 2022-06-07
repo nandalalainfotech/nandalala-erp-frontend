@@ -1,0 +1,10 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-del-note-trend" routerLinkActive #delNoteTrendTab="routerLinkActive" [active]="delNoteTrendTab.isActive">Delivery Note Trend</a>
+    <a mat-tab-link routerLink="./app-pur-recpt-trend" routerLinkActive #purReceiptTrendTab="routerLinkActive" [active]="purReceiptTrendTab.isActive">Purchase Receipt Trend</a>
+</nav>
+
+<router-outlet></router-outlet>

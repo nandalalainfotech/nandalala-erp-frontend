@@ -1,0 +1,64 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New BOM Operation</legend>
+    <div class="formData">
+        <form [formGroup]="operationsForm" (ngSubmit)="onOrderClick($event,operationsForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="opId" />
+                        <label path="opName" for="opName" cssClass="required">Operation Name</label>
+                        <input class="form-control" path="opName" name="opName" formControlName="opName" [ngClass]="{ 'is-invalid': submitted && f.opName.errors }">
+                        <div *ngIf="submitted && f.opName.errors" class="invalid-feedback">
+                            <div *ngIf="f.opName.errors.required">Operation Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="workstName" for="status" cssClass="required">Work Station</label>
+                        <input class="form-control" type="hidden" path="workstName" name="workstName" />
+                        <select class="form-control" id="WorkstationList" name="workstName" formControlName="workstName" [ngClass]="{ 'is-invalid': submitted && f.workstName.errors }">
+                            <option value="" hidden> - Select Workstation - </option>
+                            <option value="null"> - Select Workstation - </option>
+                            <option *ngFor="let workstation of workstation" [value]="workstation.workstName">
+                                {{workstation.workstName}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.workstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.workstName.errors.required">Work Station is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Operation List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

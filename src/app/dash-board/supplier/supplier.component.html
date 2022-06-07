@@ -1,0 +1,112 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Supplier</legend>
+    <div class="formData">
+        <form [formGroup]="supplierForm" (ngSubmit)="onOrderClick($event,supplierForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="supId" />
+                        <label for="series" path="supName" cssClass="required">Name</label>
+                        <input formControlName="supName" class="form-control" path="supName" [ngClass]="{ 'is-invalid': submitted && f.supName.errors }" name="supName" />
+                        <div *ngIf="submitted && f.supName.errors" class="invalid-feedback">
+                            <div *ngIf="f.supName.errors.required">Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="leaveType" path="addType" cssClass="required">Address Type</label>
+                        <input class="form-control" type="hidden" path="addType" />
+                        <select formControlName="addType" class="form-control" name="supplieraddtype" id="supplieraddtype" [ngClass]="{ 'is-invalid': submitted && f.addType.errors }" name="addType">
+                            <option value="" hidden> - Address Type - </option>
+                            <option value="null" > - Address Type - </option>
+                            <option *ngFor="let system of addsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.addType.errors" class="invalid-feedback">
+                            <div *ngIf="f.addType.errors.required">Address Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="series" path="supCity" cssClass="required">City</label>
+                        <input formControlName="supCity" class="form-control" path="supCity" [ngClass]="{ 'is-invalid': submitted && f.supCity.errors }" name="supCity" />
+                        <div *ngIf="submitted && f.supCity.errors" class="invalid-feedback">
+                            <div *ngIf="f.supCity.errors.required">City is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="series" path="supAddress" cssClass="required">Address</label>
+                        <input formControlName="supAddress" class="form-control" path="supAddress" [ngClass]="{ 'is-invalid': submitted && f.supAddress.errors }" name="supAddress" />
+                        <div *ngIf="submitted && f.supCity.errors" class="invalid-feedback">
+                            <div *ngIf="f.supAddress.errors.required">Address is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="series" path="supPhone" cssClass="required">Phone Number</label>
+                        <input formControlName="supPhone" class="form-control" path="supPhone" [ngClass]="{ 'is-invalid': submitted && f.supPhone.errors }" name="supPhone" prefix="+91 " mask="(000) 000 0000" />
+                        <div *ngIf="submitted && f.supPhone.errors" class="invalid-feedback">
+                            <div *ngIf="f.supPhone.errors.required">Phone Number is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="series" path="supCountry" cssClass="required">Country</label>
+                        <input formControlName="supCountry" class="form-control" path="supCountry" [ngClass]="{ 'is-invalid': submitted && f.supCountry.errors }" name="supCountry" />
+                        <div *ngIf="submitted && f.supCountry.errors" class="invalid-feedback">
+                            <div *ngIf="f.supCountry.errors.required">Country is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="supState" path="supState" cssClass="required">State</label>
+                        <input formControlName="supState" class="form-control" path="supState" [ngClass]="{ 'is-invalid': submitted && f.supState.errors }" name="supState" />
+                        <div *ngIf="submitted && f.supState.errors" class="invalid-feedback">
+                            <div *ngIf="f.supState.errors.required">State is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Supplier List</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

@@ -1,0 +1,18 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-open-order" routerLinkActive #openOrderTab="routerLinkActive"
+        [active]="openOrderTab.isActive">Open Production Order</a>
+    <a mat-tab-link routerLink="./app-progress-order" routerLinkActive #progressOrderTab="routerLinkActive"
+        [active]="progressOrderTab.isActive">Production Order in Progress</a>
+    <a mat-tab-link routerLink="./app-complete-order" routerLinkActive #completeOrderTab="routerLinkActive"
+        [active]="completeOrderTab.isActive">Completed Production Order</a>
+    <a mat-tab-link routerLink="./app-bom-type" routerLinkActive #bomTypeTab="routerLinkActive"
+        [active]="bomTypeTab.isActive">BOM Type</a>
+    <a mat-tab-link routerLink="./app-issue-item" routerLinkActive #issueItemTab="routerLinkActive"
+        [active]="issueItemTab.isActive">Issued Item</a>
+</nav>
+
+<router-outlet></router-outlet>

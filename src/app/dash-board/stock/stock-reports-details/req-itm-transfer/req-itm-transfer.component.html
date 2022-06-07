@@ -1,0 +1,134 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add new Transfered Item</legend>
+    <div class="formData">
+        <form [formGroup]="transferForm" (ngSubmit)="onOrderClick($event, transferForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="ittransId" />
+                        <label path="mrSeries" for="mrSeries" cssClass="required">Material</label>
+                        <input class="form-control" type="hidden" path="mrSeries" />
+                        <select formControlName="mrSeries" class="form-control" id="materialrequestList" [ngClass]="{ 'is-invalid': submitted && f.mrSeries.errors }" name="mrSeries">
+                            <option value="" hidden> - Select the Material - </option>
+                            <option value="null"> - Select the Material - </option>
+                            <option *ngFor="let itemTransfer of matSupwises" [value]="itemTransfer.mrSeries">
+                                {{itemTransfer.mrSeries}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.mrSeries.errors" class="invalid-feedback">
+                            <div *ngIf="f.mrSeries.errors.required">Material is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="date" for="date" cssClass="required">Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="date" name="date" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.date.errors.required">Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="quantity" for="quantity" cssClass="required">Quantity</label>
+                        <input formControlName="quantity" class="form-control" path="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" name="quantity" mask="0*.00" />
+                        <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.quantity.errors.required">Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="transferQty" for="transferQty" cssClass="required">Transfer Qty</label>
+                        <input formControlName="transferQty" class="form-control" path="transferQty" [ngClass]="{ 'is-invalid': submitted && f.transferQty.errors }" name="transferQty" mask="0*.00" />
+                        <div *ngIf="submitted && f.transferQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.transferQty.errors.required">Transfer Qty is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="qtytoTransfer" for="qtytoTransfer" cssClass="required">Qty to Transfer</label>
+                        <input formControlName="qtytoTransfer" class="form-control" path="qtytoTransfer" [ngClass]="{ 'is-invalid': submitted && f.qtytoTransfer.errors }" name="qtytoTransfer" mask="0*.00" />
+                        <div *ngIf="submitted && f.qtytoTransfer.errors" class="invalid-feedback">
+                            <div *ngIf="f.qtytoTransfer.errors.required">Qty to Transfer is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="itemCode" for="poSeries" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select formControlName="itemCode" class="form-control" id="itemCodelist" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }" name="itemCode">
+                            <option value="" hidden> - Select the Item - </option>
+                            <option value="null"> - Select the Item - </option>
+                            <option *ngFor="let itemTransfer of stkitems" [value]="itemTransfer.itemcode">
+                                {{itemTransfer.itemcode}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input formControlName="company" class="form-control" path="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" name="company" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 ">
+                    <div class="form-group">
+                        <label path="description" for="reason" cssClass="required">Description</label>
+                        <textarea formControlName="description" class="form-control" path="description" name="description" rows="5" cols="30" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" name="description"></textarea>
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Request Item Transfer</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

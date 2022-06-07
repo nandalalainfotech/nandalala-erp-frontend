@@ -1,0 +1,257 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Employee Attendance</legend>
+    <div class="formData">
+        <form [formGroup]="empAttForm" (ngSubmit)="onOrderClick($event, empAttForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="id" />
+                        <input class="form-control" type="hidden" path="sNo" />
+                        <label path="empNumber" for="empNumberlist" cssClass="required">Employee Number
+                        </label>
+                        <input class="form-control" type="hidden" path="empNumber" />
+                        <select class="form-control" id="empNumberlist" name="empNumber" formControlName="empNumber" [ngClass]="{ 'is-invalid': submitted && f.empNumber.errors }">
+                            <option value="" hidden> - Select the Employee Number - </option>
+                            <option value="null" > - Select the Employee Number - </option>
+                            <option *ngFor="let system of nosystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.empNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.empNumber.errors.required">Employee Number is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="clTaken" for="clTaken" cssClass="required">Casual Leave Taken</label>
+                        <input class="form-control" path="clTaken" name="clTaken" formControlName="clTaken" [ngClass]="{ 'is-invalid': submitted && f.clTaken.errors }">
+                        <div *ngIf="submitted && f.clTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.clTaken.errors.required">Casual Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empName" for="empNamelist" cssClass="required">Employee Name</label>
+                        <input class="form-control" type="hidden" path="empName" />
+                        <select class="form-control" id="empNamelist" name="empName" formControlName="empName" [ngClass]="{ 'is-invalid': submitted && f.empName.errors }">
+                            <option value="" hidden> - Select the Employee Name - </option>
+                            <option value="null" > - Select the Employee Name - </option>
+                            <option *ngFor="let system of namesystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.empName.errors" class="invalid-feedback">
+                            <div *ngIf="f.empName.errors.required">Employee Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="deptName" for="deptName" cssClass="required">Department Name</label>
+                        <input class="form-control" type="hidden" path="deptName" />
+                        <select class="form-control" id="deptNamelist" name="deptName" formControlName="deptName" [ngClass]="{ 'is-invalid': submitted && f.deptName.errors }">
+                            <option value="" hidden> - Select the Department - </option>
+                            <option value="null" > - Select the Department - </option>
+                            <option *ngFor="let system of deptsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.deptName.errors" class="invalid-feedback">
+                            <div *ngIf="f.deptName.errors.required">Department Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="clBalance" for="clBalance" cssClass="required">Casual Leave Balance
+                        </label>
+                        <input class="form-control" path="clBalance" name="clBalance" formControlName="clBalance" [ngClass]="{ 'is-invalid': submitted && f.clBalance.errors }">
+                        <div *ngIf="submitted && f.clBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.clBalance.errors.required">Casual Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="compoffTaken" for="compoffTaken" cssClass="required">Componsatory Off Taken
+                        </label>
+                        <input class="form-control" path="compoffTaken" name="compoffTaken" formControlName="compoffTaken" [ngClass]="{ 'is-invalid': submitted && f.compoffTaken.errors }">
+                        <div *ngIf="submitted && f.compoffTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.compoffTaken.errors.required">Componsatory Off Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="lwtoutpTaken" for="lwtoutpTaken" cssClass="required">Leave Without Pay Taken
+                        </label>
+                        <input class="form-control" path="lwtoutpTaken" name="lwtoutpTaken" formControlName="lwtoutpTaken" [ngClass]="{ 'is-invalid': submitted && f.lwtoutpTaken.errors }">
+                        <div *ngIf="submitted && f.lwtoutpTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.lwtoutpTaken.errors.required">Leave Without Pay Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="lwtoutpBalance" for="lwtoutpBalance" cssClass="required">Leave Without Pay
+                            Balance
+                        </label>
+                        <input class="form-control" path="lwtoutpBalance" name="lwtoutpBalance" formControlName="lwtoutpBalance" [ngClass]="{ 'is-invalid': submitted && f.lwtoutpBalance.errors }">
+                        <div *ngIf="submitted && f.lwtoutpBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.lwtoutpBalance.errors.required">Leave Without Pay Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="mtlvTaken" for="mtlvTaken" cssClass="required">Maternity Leave Taken
+                        </label>
+                        <input class="form-control" path="mtlvTaken" name="mtlvTaken" formControlName="mtlvTaken" [ngClass]="{ 'is-invalid': submitted && f.mtlvTaken.errors }">
+                        <div *ngIf="submitted && f.mtlvTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.mtlvTaken.errors.required">Maternity Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="mtlvBalance" for="mtlvBalance" cssClass="required">Maternity Leave Balance
+                        </label>
+                        <input class="form-control" path="mtlvBalance" name="mtlvBalance" formControlName="mtlvBalance" [ngClass]="{ 'is-invalid': submitted && f.mtlvBalance.errors }">
+                        <div *ngIf="submitted && f.mtlvBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.mtlvBalance.errors.required">Maternity Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="ptyTaken" for="ptyTaken" cssClass="required">Paternity Leave Taken
+                        </label>
+                        <input class="form-control" path="ptyTaken" name="ptyTaken" formControlName="ptyTaken" [ngClass]="{ 'is-invalid': submitted && f.ptyTaken.errors }">
+                        <div *ngIf="submitted && f.ptyTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.ptyTaken.errors.required">Paternity Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="ptyBalance" for="ptyBalance" cssClass="required">Paternity Leave Balance
+                        </label>
+                        <input class="form-control" path="ptyBalance" name="ptyBalance" formControlName="ptyBalance" [ngClass]="{ 'is-invalid': submitted && f.ptyBalance.errors }">
+                        <div *ngIf="submitted && f.ptyBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.ptyBalance.errors.required">Paternity Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="pvglvTaken" for="pvglvTaken" cssClass="required">Privilege Leave Taken
+                        </label>
+                        <input class="form-control" path="pvglvTaken" name="pvglvTaken" formControlName="pvglvTaken" [ngClass]="{ 'is-invalid': submitted && f.pvglvTaken.errors }">
+                        <div *ngIf="submitted && f.pvglvTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.pvglvTaken.errors.required">Privilege Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="pvglvBalance" for="pvglvBalance" cssClass="required">Privilege Leave Balance
+                        </label>
+                        <input class="form-control" path="pvglvBalance" name="pvglvBalance" formControlName="pvglvBalance" [ngClass]="{ 'is-invalid': submitted && f.pvglvBalance.errors }">
+                        <div *ngIf="submitted && f.pvglvBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.pvglvBalance.errors.required">Privilege Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="sklvTaken" for="sklvTaken" cssClass="required">Sick Leave Taken</label>
+                        <input class="form-control" path="sklvTaken" name="sklvTaken" formControlName="sklvTaken" [ngClass]="{ 'is-invalid': submitted && f.sklvTaken.errors }">
+                        <div *ngIf="submitted && f.sklvTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.sklvTaken.errors.required">Sick Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="sklvBalance" for="sklvBalance" cssClass="required">Sick Leave Balance
+                        </label>
+                        <input class="form-control" path="sklvBalance" name="sklvBalance" formControlName="sklvBalance" [ngClass]="{ 'is-invalid': submitted && f.sklvBalance.errors }">
+                        <div *ngIf="submitted && f.sklvBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.sklvBalance.errors.required">Sick Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="vcTaken" for="vcTaken" cssClass="required">Vacation Leave Taken</label>
+                        <input class="form-control" path="vcTaken" name="vcTaken" formControlName="vcTaken" [ngClass]="{ 'is-invalid': submitted && f.vcTaken.errors }">
+                        <div *ngIf="submitted && f.vcTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.vcTaken.errors.required">Vacation Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="vcBalance" for="vcBalance" cssClass="required">Vacation Leave Balance
+                        </label>
+                        <input class="form-control" path="vcBalance" name="vcBalance" formControlName="vcBalance" [ngClass]="{ 'is-invalid': submitted && f.vcBalance.errors }">
+                        <div *ngIf="submitted && f.vcBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.vcBalance.errors.required">Vacation Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="compoffBalance" for="compoffBalance" cssClass="required">Componsatory Off
+                            Balance
+                        </label>
+                        <input class="form-control" path="compoffBalance" name="compoffBalance" formControlName="compoffBalance" [ngClass]="{ 'is-invalid': submitted && f.compoffBalance.errors }">
+                        <div *ngIf="submitted && f.compoffBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.compoffBalance.errors.required">Componsatory Off Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <legend class="scheduler-border">Employee Attendance List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

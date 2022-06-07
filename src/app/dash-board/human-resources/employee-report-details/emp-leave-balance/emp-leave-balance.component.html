@@ -1,0 +1,237 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Employee Leave Balance Data</legend>
+    <div class="formData">
+        <form [formGroup]="leaveForm" (ngSubmit)="onOrderClick($event, leaveForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="fromDate" for="fromDate" cssClass="required">From Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="fromDate" name="fromDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.fromDate.errors.required">From Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="toDate" for="toDate" cssClass="required">To Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="toDate" name="toDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.toDate.errors.required">To Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empNumber" for="empNumberlist" cssClass="required">Employee Number</label>
+                        <input class="form-control" type="hidden" path="empNumber" />
+                        <select formControlName="empNumber" class="form-control" id="empNumberlist" [ngClass]="{ 'is-invalid': submitted && f.empNumber.errors }" name="empNumber">
+                            <option value="" hidden> - Select the Employee Number - </option>
+                            <option value="null" > - Select the Employee Number - </option>
+                            <option *ngFor="let system of numsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.empNumber.errors.required">Employee Number is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="empName" for="empNamelist" cssClass="required">Employee Name</label>
+                        <input class="form-control" type="hidden" path="empName" />
+                        <select formControlName="empName" class="form-control" id="empNamelist" [ngClass]="{ 'is-invalid': submitted && f.empName.errors }" name="empName">
+                            <option value="" hidden > - Select the Employee Name - </option>
+                            <option value="null" > - Select the Employee Name - </option>
+                            <option *ngFor="let system of empsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.empName.errors" class="invalid-feedback">
+                            <div *ngIf="f.empName.errors.required">Employee Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="deptName" for="deptName" cssClass="required">Department Name</label>
+                        <input class="form-control" type="hidden" path="deptName" />
+                        <select formControlName="deptName" class="form-control" id="deptNamelist" [ngClass]="{ 'is-invalid': submitted && f.deptName.errors }" name="deptName">
+                            <option value="" hidden> - Select the Department - </option>
+                            <option value="null"> - Select the Department - </option>
+                            <option *ngFor="let system of depsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.deptName.errors" class="invalid-feedback">
+                            <div *ngIf="f.deptName.errors.required">Department Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="branch" for="branch" cssClass="required">Branch</label>
+                        <input class="form-control" type="hidden" path="branch" />
+                        <select formControlName="branch" class="form-control" id="branchlist" [ngClass]="{ 'is-invalid': submitted && f.branch.errors }" name="branch">
+                            <option value="" hidden> - Select the Branch- </option>
+                            <option value="null"> - Select the Branch- </option>
+                            <option *ngFor="let system of branchsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.branch.errors" class="invalid-feedback">
+                            <div *ngIf="f.branch.errors.required">Branch is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" type="hidden" path="company" />
+                        <select formControlName="company" class="form-control" id="companylist" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" name="company">
+                            <option value="" hidden> - Select the Employee- </option>
+                            <option value="null"> - Select the Employee- </option>
+                            <option *ngFor="let system of companysystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="clTaken" for="clTaken">Casual Leave Taken</label>
+                        <input formControlName="clTaken" class="form-control" path="clTaken" [ngClass]="{ 'is-invalid': submitted && f.clTaken.errors }" name="clTaken" />
+                        <div *ngIf="submitted && f.clTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.clTaken.errors.required">Casual Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="clBalance" for="clBalance">Casual Leave Balance</label>
+                        <input formControlName="clBalance" class="form-control" path="clBalance" [ngClass]="{ 'is-invalid': submitted && f.clBalance.errors }" name="clBalance" />
+                        <div *ngIf="submitted && f.clBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.clBalance.errors.required">Casual Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="compoffTaken" for="compoffTaken">Componsatory Off Taken</label>
+                        <input formControlName="compoffTaken" class="form-control" path="compoffTaken" [ngClass]="{ 'is-invalid': submitted && f.compoffTaken.errors }" name="compoffTaken" />
+                        <div *ngIf="submitted && f.compoffTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.compoffTaken.errors.required">Componsatory Off Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="compoffBalance">Componsatory Off Balance</label>
+                        <input formControlName="compoffBalance" class="form-control" path="compoffBalance" [ngClass]="{ 'is-invalid': submitted && f.compoffBalance.errors }" name="compoffBalance" />
+                        <div *ngIf="submitted && f.compoffBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.compoffBalance.errors.required">Componsatory Off Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="lvwoutpayTaken">Leave Without Pay Taken</label>
+                        <input formControlName="lvwoutpayTaken" class="form-control" path="lvwoutpayTaken" [ngClass]="{ 'is-invalid': submitted && f.lvwoutpayTaken.errors }" name="lvwoutpayTaken" />
+                        <div *ngIf="submitted && f.lvwoutpayTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.lvwoutpayTaken.errors.required">Leave Without Pay Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="lvwoutpayBalance" for="lvwoutpayBalance">Leave Without Pay Balance</label>
+                        <input formControlName="lvwoutpayBalance" class="form-control" path="lvwoutpayBalance" [ngClass]="{ 'is-invalid': submitted && f.lvwoutpayBalance.errors }" name="lvwoutpayBalance" />
+                        <div *ngIf="submitted && f.lvwoutpayBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.lvwoutpayBalance.errors.required">Leave Without Pay Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="plTaken" for="plTaken">Paternity Leave Taken</label>
+                        <input formControlName="plTaken" class="form-control" path="plTaken" [ngClass]="{ 'is-invalid': submitted && f.plTaken.errors }" name="plTaken" />
+                        <div *ngIf="submitted && f.plTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.plTaken.errors.required">Paternity Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="plBalance" for="plBalance">Paternity Leave Balance</label>
+                        <input formControlName="plBalance" class="form-control" path="plBalance" [ngClass]="{ 'is-invalid': submitted && f.plBalance.errors }" name="plBalance" />
+                        <div *ngIf="submitted && f.plBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.plBalance.errors.required">Paternity Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="slTaken" for="slTaken">Sick Leave Taken</label>
+                        <input formControlName="slTaken" class="form-control" path="slTaken" [ngClass]="{ 'is-invalid': submitted && f.slTaken.errors }" name="slTaken" />
+                        <div *ngIf="submitted && f.slTaken.errors" class="invalid-feedback">
+                            <div *ngIf="f.slTaken.errors.required">Sick Leave Taken is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="slBalance" for="slBalance">Sick Leave Balance</label>
+                        <input formControlName="slBalance" class="form-control" path="slBalance" [ngClass]="{ 'is-invalid': submitted && f.slBalance.errors }" name="slBalance" />
+                        <div *ngIf="submitted && f.slBalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.slBalance.errors.required">Sick Leave Balance is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Employee Leave Balance</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

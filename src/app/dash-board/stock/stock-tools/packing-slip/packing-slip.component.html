@@ -1,0 +1,88 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Packing Slip</legend>
+    <div class="formData">
+        <form [formGroup]="slipForm" (ngSubmit)="onOrderClick($event,slipForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="psId" />
+
+                        <label path="slipName" for="slipName" cssClass="required">Slip Name</label>
+                        <input class="form-control" path="slipName" name="slipName" formControlName="slipName"
+                            [ngClass]="{ 'is-invalid': submitted && f.slipName.errors }" />
+                        <div *ngIf="submitted && f.slipName.errors" class="invalid-feedback">
+                            <div *ngIf="f.slipName.errors.required">Slip Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="packingstatus" id="packingstatus" name="status"
+                            formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null"> - Select Status - </option>
+                            <option *ngFor="let system of tsystemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="delName" for="delName" cssClass="required">Delivery Note</label>
+                        <input class="form-control" type="hidden" path="delName" />
+                        <select class="form-control" id="packingdeliveryList" name="delName" formControlName="delName"
+                            [ngClass]="{ 'is-invalid': submitted && f.delName.errors }">
+                            <option value="" hidden> - Select the Delivery Note - </option>
+                            <option value="null"> - Select the Delivery Note - </option>
+                            <option *ngFor="let packingSslip of delivaryNotes " [value]="packingSslip.delName">
+                                {{packingSslip.delName}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.delName.errors" class="invalid-feedback">
+                            <div *ngIf="f.delName.errors.required">Delivery Note is Required</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Packing Slip</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

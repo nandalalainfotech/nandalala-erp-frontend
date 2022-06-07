@@ -1,0 +1,212 @@
+<div class="card mb-3">
+    <div class="card-header-tab card-header">
+        <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+            <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Easy Dynamic Tables
+        </div>
+        <div class="btn-actions-pane-right actions-icon-btn">
+            <div class="btn-group dropdown">
+                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    class="btn-icon btn-icon-only btn btn-link">
+                    <i class="pe-7s-menu btn-icon-wrapper"></i>
+                </button>
+                <div tabindex="-1" role="menu" aria-hidden="true"
+                    class="dropdown-menu-right rm-pointers dropdown-menu-shadow dropdown-menu-hover-link dropdown-menu">
+                    <h6 tabindex="-1" class="dropdown-header">Header</h6>
+                    <button type="button" tabindex="0" class="dropdown-item">
+                        <i class="dropdown-icon lnr-inbox"> </i><span>Menus</span>
+                    </button>
+                    <button type="button" tabindex="0" class="dropdown-item">
+                        <i class="dropdown-icon lnr-file-empty"> </i><span>Settings</span>
+                    </button>
+                    <button type="button" tabindex="0" class="dropdown-item">
+                        <i class="dropdown-icon lnr-book"> </i><span>Actions</span>
+                    </button>
+                    <div tabindex="-1" class="dropdown-divider"></div>
+                    <div class="p-3 text-right">
+                        <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
+                        <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="example_length">
+                        <label>Show <select name="example_length" aria-controls="example"
+                                class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div id="example_filter" class="dataTables_filter"><label>Search:<input type="search"
+                                class="form-control form-control-sm" placeholder="" aria-controls="example"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table style="width: 100%;" id="example"
+                        class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid"
+                        aria-describedby="example_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 149.2px;" aria-sort="ascending"
+                                    aria-label="Name: activate to sort column descending">Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 233.2px;" aria-label="Position: activate to sort column ascending">
+                                    Position</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 106.2px;" aria-label="Office: activate to sort column ascending">
+                                    Office</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 54.2px;" aria-label="Age: activate to sort column ascending">Age</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 110.2px;" aria-label="Start date: activate to sort column ascending">
+                                    Start date</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 81.2px;" aria-label="Salary: activate to sort column ascending">Salary
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+
+
+
+
+                            <tr role="row" class="odd">
+                                <td class="sorting_1 dtr-control">Jennifer Chang</td>
+                                <td>Regional Director</td>
+                                <td>Singapore</td>
+                                <td>28</td>
+                                <td>2010/11/14</td>
+                                <td>$357,650</td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1 dtr-control">Jonas Alexander</td>
+                                <td>Developer</td>
+                                <td>San Francisco</td>
+                                <td>30</td>
+                                <td>2010/07/14</td>
+                                <td>$86,500</td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1 dtr-control">Lael Greer</td>
+                                <td>Systems Administrator</td>
+                                <td>London</td>
+                                <td>21</td>
+                                <td>2009/02/27</td>
+                                <td>$103,500</td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1 dtr-control">Martena Mccray</td>
+                                <td>Post-Sales support</td>
+                                <td>Edinburgh</td>
+                                <td>46</td>
+                                <td>2011/03/09</td>
+                                <td>$324,050</td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1 dtr-control">Michael Bruce</td>
+                                <td>Javascript Developer</td>
+                                <td>Singapore</td>
+                                <td>29</td>
+                                <td>2011/06/27</td>
+                                <td>$183,000</td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1 dtr-control">Michael Silva</td>
+                                <td>Marketing Designer</td>
+                                <td>London</td>
+                                <td>66</td>
+                                <td>2012/11/27</td>
+                                <td>$198,500</td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1 dtr-control">Michelle House</td>
+                                <td>Integration Specialist</td>
+                                <td>Sidney</td>
+                                <td>37</td>
+                                <td>2011/06/02</td>
+                                <td>$95,400</td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1 dtr-control">Olivia Liang</td>
+                                <td>Support Engineer</td>
+                                <td>Singapore</td>
+                                <td>64</td>
+                                <td>2011/02/03</td>
+                                <td>$234,500</td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1 dtr-control">Paul Byrd</td>
+                                <td>Chief Financial Officer (CFO)</td>
+                                <td>New York</td>
+                                <td>64</td>
+                                <td>2010/06/09</td>
+                                <td>$725,000</td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1 dtr-control">Prescott Bartlett</td>
+                                <td>Technical Author</td>
+                                <td>London</td>
+                                <td>27</td>
+                                <td>2011/05/07</td>
+                                <td>$145,000</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th rowspan="1" colspan="1">Name</th>
+                                <th rowspan="1" colspan="1">Position</th>
+                                <th rowspan="1" colspan="1">Office</th>
+                                <th rowspan="1" colspan="1">Age</th>
+                                <th rowspan="1" colspan="1">Start date</th>
+                                <th rowspan="1" colspan="1">Salary</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-5">
+                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 31 to 40 of
+                        57 entries</div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                        <ul class="pagination">
+                            <li class="paginate_button page-item previous" id="example_previous"><a href="#"
+                                    aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                            </li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="1"
+                                    tabindex="0" class="page-link">1</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2"
+                                    tabindex="0" class="page-link">2</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="3"
+                                    tabindex="0" class="page-link">3</a></li>
+                            <li class="paginate_button page-item active"><a href="#" aria-controls="example"
+                                    data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="5"
+                                    tabindex="0" class="page-link">5</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6"
+                                    tabindex="0" class="page-link">6</a></li>
+                            <li class="paginate_button page-item next" id="example_next"><a href="#"
+                                    aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

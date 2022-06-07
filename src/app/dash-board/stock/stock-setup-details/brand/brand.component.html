@@ -1,0 +1,57 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Brand</legend>
+    <div class="formData">
+        <form [formGroup]="brdForm" (ngSubmit)="onOrderClick($event,brdForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="brandId" />
+                        <label path="brandName" for="brandName" cssClass="required">Name</label>
+                        <input class="form-control" path="brandName" name="brandName" formControlName="brandName" [ngClass]="{ 'is-invalid': submitted && f.brandName.errors }">
+                        <div *ngIf="submitted && f.brandName.errors" class="invalid-feedback">
+                            <div *ngIf="f.brandName.errors.required">Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <div class="form-group">
+                        <label path="description" for="description" cssClass="required">Description</label>
+                        <textarea class="form-control" path="description" name="description" rows="5" cols="30" name="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+                       </textarea>
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <legend class="scheduler-border">Brand</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

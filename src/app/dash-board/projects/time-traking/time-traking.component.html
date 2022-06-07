@@ -1,0 +1,11 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-time-sheet" routerLinkActive #timeSheetTab="routerLinkActive" [active]="timeSheetTab.isActive">Time Sheet</a>
+    <a mat-tab-link routerLink="./app-active-type" routerLinkActive #activeTypeTab="routerLinkActive" [active]="activeTypeTab.isActive">Active Type</a>
+    <a mat-tab-link routerLink="./app-active-cost" routerLinkActive #activeCostTab="routerLinkActive" [active]="activeCostTab.isActive">Active Cost</a>
+</nav>
+
+<router-outlet></router-outlet>

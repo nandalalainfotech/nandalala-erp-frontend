@@ -1,0 +1,9 @@
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+    color: orange;
+    font-weight: bold !important;
+}
+.nav-tabs > li > a {
+    color: var(--color_l2) !important;
+}

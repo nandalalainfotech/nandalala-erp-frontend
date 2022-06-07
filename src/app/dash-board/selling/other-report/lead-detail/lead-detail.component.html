@@ -1,0 +1,106 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Lead Details</legend>
+    <div class="formData">
+        <form [formGroup]="leadForm" (ngSubmit)="onOrderClick($event,leadForm)">
+            <div class="row">
+                <div class="col-xs-3 ">
+                    <div class="form-group">
+                        <input class="form-control" path="id" type="hidden" />
+                        <label path="personname" for="personname" cssClass="required">Person Name</label>
+                        <input formControlName="personname" class="form-control" path="personname" [ngClass]="{ 'is-invalid': submitted && f.personname.errors }" name="personname" />
+                        <div *ngIf="submitted && f.personname.errors" class="invalid-feedback">
+                            <div *ngIf="f.personname.errors.required">Person Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label path="organisationname" for="organisationname" cssClass="required">Organisation
+                            Name</label>
+                        <input formControlName="organisationname" class="form-control" path="organisationname" [ngClass]="{ 'is-invalid': submitted && f.organisationname.errors }" name="organisationname" />
+                        <div *ngIf="submitted && f.organisationname.errors" class="invalid-feedback">
+                            <div *ngIf="f.organisationname.errors.required">Organisation Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 ">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input formControlName="status" class="form-control" path="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" name="status" />
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="source" for="source" cssClass="required">Source</label>
+                    <input formControlName="source" class="form-control" path="source" [ngClass]="{ 'is-invalid': submitted && f.source.errors }" name="source" />
+                    <div *ngIf="submitted && f.source.errors" class="invalid-feedback">
+                        <div *ngIf="f.source.errors.required">Source is Required</div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 ">
+                    <div class="form-group">
+                        <label path="leadowner" for="leadowner" cssClass="required">Lead Owner</label>
+                        <input formControlName="leadowner" class="form-control" path="leadowner" [ngClass]="{ 'is-invalid': submitted && f.leadowner.errors }" name="leadowner" />
+                        <div *ngIf="submitted && f.leadowner.errors" class="invalid-feedback">
+                            <div *ngIf="f.leadowner.errors.required">Lead Owner is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="nextcontactby" for="nextcontactby" cssClass="required">Next Contact By</label>
+                    <input formControlName="nextcontactby" class="form-control" path="nextcontactby" [ngClass]="{ 'is-invalid': submitted && f.nextcontactby.errors }" name="nextcontactby" />
+                    <div *ngIf="submitted && f.nextcontactby.errors" class="invalid-feedback">
+                        <div *ngIf="f.nextcontactby.errors.required">Next Contact By is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="leadtype" for="leadtype" cssClass="required">Lead Type</label>
+                    <input formControlName="leadtype" class="form-control" path="leadtype" [ngClass]="{ 'is-invalid': submitted && f.leadtype.errors }" name="leadtype" />
+                    <div *ngIf="submitted && f.leadtype.errors" class="invalid-feedback">
+                        <div *ngIf="f.leadtype.errors.required">Lead Type is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="marketsegment" for="marketsegment" cssClass="required">Market Segment</label>
+                    <input formControlName="marketsegment" class="form-control" path="marketsegment" [ngClass]="{ 'is-invalid': submitted && f.marketsegment.errors }" name="marketsegment" />
+                    <div *ngIf="submitted && f.marketsegment.errors" class="invalid-feedback">
+                        <div *ngIf="f.marketsegment.errors.required">Market Segment is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <legend class="scheduler-border">Lead Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

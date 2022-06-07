@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-stk-setting" routerLinkActive #stkSettingTab="routerLinkActive" [active]="stkSettingTab.isActive">Stock Setting</a>
+    <a mat-tab-link routerLink="./app-ware-house" routerLinkActive #warehouseTab="routerLinkActive" [active]="warehouseTab.isActive">Ware House</a>
+    <a mat-tab-link routerLink="./app-unit-of-measure" routerLinkActive #unitOfMeasureTab="routerLinkActive" [active]="unitOfMeasureTab.isActive">Unit Of Measure</a>
+    <a mat-tab-link routerLink="./app-brand" routerLinkActive #brandTab="routerLinkActive" [active]="brandTab.isActive">Brand</a>
+</nav>
+
+<router-outlet></router-outlet>

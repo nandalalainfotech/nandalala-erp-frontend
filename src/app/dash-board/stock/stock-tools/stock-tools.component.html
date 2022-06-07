@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-installation-note" routerLinkActive #installNoteTab="routerLinkActive" [active]="installNoteTab.isActive">Installation Note</a>
+    <a mat-tab-link routerLink="./app-stock-reconcile" routerLinkActive #stockReconcileTab="routerLinkActive" [active]="stockReconcileTab.isActive">Stock Reconcile</a>
+    <a mat-tab-link routerLink="./app-packing-slip" routerLinkActive #packingSlipTab="routerLinkActive" [active]="packingSlipTab.isActive">Packing Slip</a>
+    <a mat-tab-link routerLink="./app-land-cost-voucher" routerLinkActive #landCostTab="routerLinkActive" [active]="landCostTab.isActive">Land Cost Voucher</a>
+</nav>
+
+<router-outlet></router-outlet>

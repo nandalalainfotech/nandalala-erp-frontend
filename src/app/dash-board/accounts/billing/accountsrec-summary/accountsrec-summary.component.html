@@ -1,0 +1,175 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Accounts Receivable</legend>
+    <form [formGroup]="accountsReceivableForm" (ngSubmit)="onOrderClick($event,accountsReceivableForm)">
+        <div class="row">
+            <input class="form-control" path="id" type="hidden" />
+            <div class="col-xs-3 form-group">
+                <label path="customer" for="customer" cssClass="required">Customer</label>
+                <input class="form-control" path="customer" id="customer" type="hidden" />
+                <select class="form-control" id="customerslist" name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
+                    <option value="" hidden> - Select Customer - </option>
+                    <option value="null"> - Select Customer - </option>
+                    <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                        {{system.description}}
+                    </option>
+                </select>
+                <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
+                    <div *ngIf="f.customer.errors.required">Customer is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="outstandingamount" for="outstandingamount" cssClass="required">Outstanding
+                    Amount</label>
+                <input class="form-control" path="outstandingamount" id="outstandingamount" name="outstandingamount" formControlName="outstandingamount" [ngClass]="{ 'is-invalid': submitted && f.outstandingamount.errors }" mask="0*.00" />
+                <div *ngIf="submitted && f.outstandingamount.errors" class="invalid-feedback">
+                    <div *ngIf="f.outstandingamount.errors.required">Outstanding Amount is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <div class="p-fluid p-grid p-formgrid">
+                        <div class="p-field p-col-12 p-md-5">
+                            <label path="postingdate" for="postingdate" cssClass="required">Posting Date</label>
+                            <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="postingdate" name="postingdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                            </p-calendar>
+                            <div *ngIf="submitted && f.postingdate.errors" class="invalid-feedback">
+                                <div *ngIf="f.postingdate.errors.required">Posting Date is Required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3">
+                <div class="form-group">
+                    <div class="p-fluid p-grid p-formgrid">
+                        <div class="p-field p-col-12 p-md-5">
+                            <label path="duedate" for="duedate" cssClass="required">Due Date</label>
+                            <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="duedate" name="duedate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                            </p-calendar>
+                            <div *ngIf="submitted && f.duedate.errors" class="invalid-feedback">
+                                <div *ngIf="f.duedate.errors.required">Due Date is Required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 form-group">
+                <label path="vouchertype" for="vouchertype" cssClass="required">Material Request</label>
+                <input class="form-control" path="vouchertype" id="vouchertype" name="vouchertype" formControlName="vouchertype" [ngClass]="{ 'is-invalid': submitted && f.vouchertype.errors }" />
+                <div *ngIf="submitted && f.vouchertype.errors" class="invalid-feedback">
+                    <div *ngIf="f.vouchertype.errors.required">Material Request is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="voucherno" for="voucherno" cssClass="required">Voucher Number</label>
+                <input class="form-control" path="voucherno" id="voucherno" name="voucherno" formControlName="voucherno" [ngClass]="{ 'is-invalid': submitted && f.voucherno.errors }" mask="0*.00" />
+                <div *ngIf="submitted && f.voucherno.errors" class="invalid-feedback">
+                    <div *ngIf="f.voucherno.errors.required">Voucher Number is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="invoicedamount" for="invoicedamount" cssClass="required">Invoiced Amount</label>
+                <input class="form-control" path="invoicedamount" id="invoicedamount" name="invoicedamount" formControlName="invoicedamount" [ngClass]="{ 'is-invalid': submitted && f.invoicedamount.errors }" mask="0*.00" />
+                <div *ngIf="submitted && f.invoicedamount.errors" class="invalid-feedback">
+                    <div *ngIf="f.invoicedamount.errors.required">Invoiced Amount is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="paidamount" for="paidamount" cssClass="required">Paid Amount</label>
+                <input class="form-control" path="paidamount" id="paidamount" [(ngModel)]="paidamount" name="paidamount" formControlName="paidamount" [ngClass]="{ 'is-invalid': submitted && f.paidamount.errors }" mask="0*.00" />
+                <div *ngIf="submitted && f.paidamount.errors" class="invalid-feedback">
+                    <div *ngIf="f.paidamount.errors.required">Paid Amount is Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 form-group">
+                <label path="age" for="age" cssClass="required">Age</label>
+                <input class="form-control" path="age" id="age" name="age" formControlName="age" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+                <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                    <div *ngIf="f.age.errors.required">Age is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="uptothirty" for="0-30" cssClass="required">0-30</label>
+                <input class="form-control" path="uptothirty" id="uptothirty" name="uptothirty" formControlName="uptothirty" [ngClass]="{ 'is-invalid': submitted && f.uptothirty.errors }" />
+                <div *ngIf="submitted && f.uptothirty.errors" class="invalid-feedback">
+                    <div *ngIf="f.uptothirty.errors.required">Data Must be Filled</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="uptosixty" for="31-60" cssClass="required">31-60</label>
+                <input class="form-control" path="uptosixty" id="uptosixty" name="uptosixty" formControlName="uptosixty" [ngClass]="{ 'is-invalid': submitted && f.uptosixty.errors }" />
+                <div *ngIf="submitted && f.uptosixty.errors" class="invalid-feedback">
+                    <div *ngIf="f.uptosixty.errors.required">Data Must be Filled</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="uptoninety" for="61-90" cssClass="required">61-90</label>
+                <input class="form-control" path="uptoninety" id="uptoninety" name="uptoninety" formControlName="uptoninety" [ngClass]="{ 'is-invalid': submitted && f.uptoninety.errors }" />
+                <div *ngIf="submitted && f.uptoninety.errors" class="invalid-feedback">
+                    <div *ngIf="f.uptoninety.errors.required">Data Must be Filled</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 form-group">
+                <label path="ninetyabove" for="91above" cssClass="required">91 Above</label>
+                <input class="form-control" path="ninetyabove" id="ninetyabove" name="ninetyabove" formControlName="ninetyabove" [ngClass]="{ 'is-invalid': submitted && f.ninetyabove.errors }" />
+                <div *ngIf="submitted && f.ninetyabove.errors" class="invalid-feedback">
+                    <div *ngIf="f.ninetyabove.errors.required">Data Must be Filled</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="currency" for="currency" cssClass="required">Currency</label>
+                <input class="form-control" path="currency" id="currency" [(ngModel)]="currency" name="currency" formControlName="currency" [ngClass]="{ 'is-invalid': submitted && f.currency.errors }" mask="0*.00" />
+                <div *ngIf="submitted && f.currency.errors" class="invalid-feedback">
+                    <div *ngIf="f.currency.errors.required">Currency is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="territory" for="territory" cssClass="required">Territory</label>
+                <input class="form-control" path="territory" id="territory" name="territory" formControlName="territory" [ngClass]="{ 'is-invalid': submitted && f.territory.errors }" />
+                <div *ngIf="submitted && f.territory.errors" class="invalid-feedback">
+                    <div *ngIf="f.territory.errors.required">Territory is Required</div>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label path="remarks" for="remarks" cssClass="required">Remarks</label>
+                <input class="form-control" path="remarks" id="remarks" name="remarks" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }" />
+                <div *ngIf="submitted && f.remarks.errors" class="invalid-feedback">
+                    <div *ngIf="f.remarks.errors.required">Remarks is Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                    <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Accounts Receivable Summary List</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

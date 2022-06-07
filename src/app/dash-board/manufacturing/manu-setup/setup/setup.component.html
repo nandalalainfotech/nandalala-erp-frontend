@@ -1,0 +1,136 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Setup</legend>
+    <div class="formData">
+        <form [formGroup]="setUpForm" (ngSubmit)="onOrderClick($event, setUpForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="mansetId" />
+                        <label for="disableCPandTt">Disable Capacity Plan and TimeTaken</label>
+                        <input id="checkid" type="checkbox" name="disableCPandTt" formControlName="disableCPandTt">
+
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label for="allowOt">Allow Overtime</label>
+                        <input id="checkid" type="checkbox" name="allowOt" formControlName="allowOt">
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="allowProdinholy">Allow Production in Holidays</label>
+                        <input id="checkid" type="checkbox" name="allowProdinholy" formControlName="allowProdinholy">
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="prodPercent" for="prodPercent" cssClass="required">Production Percentage</label>
+                        <input class="form-control" path="prodPercent" name="prodPercent" formControlName="prodPercent" [ngClass]="{ 'is-invalid': submitted && f.prodPercent.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.prodPercent.errors" class="invalid-feedback">
+                            <div *ngIf="f.prodPercent.errors.required">Production Percentage is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="backflushRm" for="backflushRm" cssClass="required">BackFlush Raw Materials Based on
+                        </label>
+                        <input class="form-control" path="backflushRm" name="backflushRm" formControlName="backflushRm" [ngClass]="{ 'is-invalid': submitted && f.backflushRm.errors }">
+                        <div *ngIf="submitted && f.backflushRm.errors" class="invalid-feedback">
+                            <div *ngIf="f.backflushRm.errors.required">BackFlush Raw Materials Based on is Required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="capacityPlan" for="capacityPlan" cssClass="required">Capacity Planned</label>
+                        <input class="form-control" path="capacityPlan" name="capacityPlan" formControlName="capacityPlan" [ngClass]="{ 'is-invalid': submitted && f.capacityPlan.errors }">
+                        <div *ngIf="submitted && f.capacityPlan.errors" class="invalid-feedback">
+                            <div *ngIf="f.capacityPlan.errors.required">Capacity Planned is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="timebwOpern" for="timebwOpern" cssClass="required">Time Between Operation</label>
+                        <input class="form-control" path="timebwOpern" name="timebwOpern" formControlName="timebwOpern" [ngClass]="{ 'is-invalid': submitted && f.timebwOpern.errors }">
+                        <div *ngIf="submitted && f.timebwOpern.errors" class="invalid-feedback">
+                            <div *ngIf="f.timebwOpern.errors.required">Time Between Operation is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="defworkinProgWh" for="defworkinProgWh" cssClass="required">Default Work in
+                            Progress</label>
+                        <input class="form-control" type="hidden" path="defworkinProgWh" />
+                        <select class="form-control" name=" " formControlName="defworkinProgWh" [ngClass]="{ 'is-invalid': submitted && f.defworkinProgWh.errors }">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null"> - Select Status - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.defworkinProgWh.errors" class="invalid-feedback">
+                            <div *ngIf="f.defworkinProgWh.errors.required">Default Work in Progress is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="defFingoodsWh" for="defFingoodsWh" cssClass="required">Default Finished
+                            Goods</label>
+                        <input class="form-control" type="hidden" path="defFingoodsWh" />
+                        <select class="form-control" name="defFingoodsWh" formControlName="defFingoodsWh" [ngClass]="{ 'is-invalid': submitted && f.defFingoodsWh.errors }">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null"> - Select Status - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.defFingoodsWh.errors" class="invalid-feedback">
+                            <div *ngIf="f.defFingoodsWh.errors.required">Default Finished Goods is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Employee Attendance List</legend>
+        <div class="boxData">
+            <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+            </ag-grid-angular>
+        </div>
+    </fieldset>
+</div>

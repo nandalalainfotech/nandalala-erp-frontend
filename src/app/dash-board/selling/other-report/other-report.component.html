@@ -1,0 +1,103 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link [matMenuTriggerFor]="menu">
+        Report for Selling<b class="caret"></b
+    ></a>
+    <mat-menu #menu="matMenu">
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-lead-detail"
+                routerLinkActive
+                >Lead Details</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-customer-detail"
+                routerLinkActive
+                >Customer Addressess And Contacts</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-order-item-billed"
+                routerLinkActive
+                >Ordered Items To Be Delivered</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-sales-person"
+                routerLinkActive
+                >Sales Person-Wise Transaction Summary</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-item-wise"
+                routerLinkActive
+                >Item-Wise Sales Histroy</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-bill-of-material"
+                routerLinkActive
+                >BOM Search</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-inactive-customer"
+                routerLinkActive
+                >Inactive Customers</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-available-stock"
+                routerLinkActive
+                >Available Stock For Packing Item</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-pending-item"
+                routerLinkActive
+                >Pending SO Items For Purchase Request</a
+            >
+        </li>
+        <li [ngStyle]="{ color: colorthemes_1 }">
+            <a
+                mat-menu-item
+                mat-tab-link
+                routerLink="./app-customer-credit-balance"
+                routerLinkActive
+                >Customer Credit Balance</a
+            >
+        </li>
+    </mat-menu>
+</nav>
+
+<router-outlet></router-outlet>

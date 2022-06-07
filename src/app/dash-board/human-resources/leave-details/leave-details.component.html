@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-leave-application" routerLinkActive #leaveAppTab="routerLinkActive" [active]="leaveAppTab.isActive">Leave Application</a>
+    <a mat-tab-link routerLink="./app-leave-type" routerLinkActive #leaveTypeTab="routerLinkActive" [active]="leaveTypeTab.isActive">Leave Type</a>
+    <a mat-tab-link routerLink="./app-holiday-list" routerLinkActive #holidayListTab="routerLinkActive" [active]="holidayListTab.isActive">Holiday List</a>
+    <a mat-tab-link routerLink="./app-leave-block" routerLinkActive #leaveBlockTab="routerLinkActive" [active]="leaveBlockTab.isActive">Leave Block List</a>
+</nav>
+
+<router-outlet></router-outlet>

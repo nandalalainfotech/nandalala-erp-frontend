@@ -1,0 +1,60 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Payment Request</legend>
+    <div class="formData">
+        <form [formGroup]="paymentForm" (ngSubmit)="onOrderClick($event,paymentForm)">
+            <div class="row">
+                <input class="form-control" path="payreqId" type="hidden" />
+                <div class="col-xs-3 form-group">
+                    <label path="prName" for="prName" cssClass="required">Name</label>
+                    <input class="form-control" path="prName" id="prName" name="prName" formControlName="prName" [ngClass]="{ 'is-invalid': submitted && f.prName.errors }" />
+                    <div *ngIf="submitted && f.prName.errors" class="invalid-feedback">
+                        <div *ngIf="f.prName.errors.required">Name is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="status" id="PaymentrequeststatList" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null" > - Select Status - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Payment Request List</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

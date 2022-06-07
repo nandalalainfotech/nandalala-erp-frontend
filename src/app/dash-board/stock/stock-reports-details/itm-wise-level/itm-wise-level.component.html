@@ -1,0 +1,131 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Item Level</legend>
+    <div class="formData">
+        <form [formGroup]="levelForm" (ngSubmit)="onOrderClick($event, levelForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="iwlId" />
+                        <label path="itemCode" for="poSeries" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select formControlName="itemCode" class="form-control" id="itemCodelist" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }" name="itemCode">
+                            <option value="" hidden> - Select the Item - </option>
+                            <option value="null" > - Select the Item - </option>
+                            <option *ngFor="let itemwiseLevel of stkitems" [value]="itemwiseLevel.itemcode">
+                                {{itemwiseLevel.itemcode}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="safetyStk" for="safetyStk" cssClass="required">Safety Stock</label>
+                        <input formControlName="safetyStk" class="form-control" path="safetyStk" [ngClass]="{ 'is-invalid': submitted && f.safetyStk.errors }" name="safetyStk" />
+                        <div *ngIf="submitted && f.safetyStk.errors" class="invalid-feedback">
+                            <div *ngIf="f.safetyStk.errors.required">Safety Stock is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="leadtimeDays" for="leadtimeDays" cssClass="required">Lead Time Days</label>
+                        <input formControlName="leadtimeDays" class="form-control" path="leadtimeDays" [ngClass]="{ 'is-invalid': submitted && f.leadtimeDays.errors }" name="leadtimeDays" />
+                        <div *ngIf="submitted && f.leadtimeDays.errors" class="invalid-feedback">
+                            <div *ngIf="f.leadtimeDays.errors.required">Lead Time Days is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="consumed" for="consumed" cssClass="required">Consumed</label>
+                        <input formControlName="consumed" class="form-control" path="consumed" [ngClass]="{ 'is-invalid': submitted && f.consumed.errors }" name="consumed" />
+                        <div *ngIf="submitted && f.consumed.errors" class="invalid-feedback">
+                            <div *ngIf="f.consumed.errors.required">Consumed is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="delivered" for="delivered" cssClass="required">Delivered</label>
+                        <input formControlName="delivered" class="form-control" path="delivered" [ngClass]="{ 'is-invalid': submitted && f.delivered.errors }" name="delivered" />
+                        <div *ngIf="submitted && f.delivered.errors" class="invalid-feedback">
+                            <div *ngIf="f.delivered.errors.required">Delivered is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalOutgoing" for="totalOutgoing" cssClass="required">Total OutGoing</label>
+                        <input formControlName="totalOutgoing" class="form-control" path="totalOutgoing" [ngClass]="{ 'is-invalid': submitted && f.totalOutgoing.errors }" name="totalOutgoing" />
+                        <div *ngIf="submitted && f.totalOutgoing.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalOutgoing.errors.required">Total OutGoing is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="avgdailyOutgoing" for="avgdailyOutgoing" cssClass="required">Average Daily
+                            OutGoing</label>
+                        <input formControlName="avgdailyOutgoing" class="form-control" path="avgdailyOutgoing" [ngClass]="{ 'is-invalid': submitted && f.avgdailyOutgoing.errors }" name="avgdailyOutgoing" />
+                        <div *ngIf="submitted && f.avgdailyOutgoing.errors" class="invalid-feedback">
+                            <div *ngIf="f.avgdailyOutgoing.errors.required">Average Daily OutGoing is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="reorderlevel" for="reorderlevel" cssClass="required">Reorder Level</label>
+                        <input formControlName="reorderLevel" class="form-control" path="reorderlevel" [ngClass]="{ 'is-invalid': submitted && f.reorderLevel.errors }" name="reorderLevel" />
+                        <div *ngIf="submitted && f.reorderLevel.errors" class="invalid-feedback">
+                            <div *ngIf="f.reorderLevel.errors.required">Reorder Level is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 ">
+                    <div class="form-group">
+                        <label path="description" for="reason" cssClass="required">Description</label>
+                        <textarea formControlName="description" class="form-control" path="description" name="description" rows="5" cols="30" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" name="description"></textarea>
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Item Wise Level</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

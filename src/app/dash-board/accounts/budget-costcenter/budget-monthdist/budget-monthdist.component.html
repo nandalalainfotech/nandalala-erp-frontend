@@ -1,0 +1,92 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Budget Monthly Distribution</legend>
+    <div class="formData">
+        <form [formGroup]="budgetMonthForm" (ngSubmit)="onOrderClick($event,budgetMonthForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="bmdId" />
+                        <label path="distName" for="distName" cssClass="required">Distribution Name</label>
+                        <input class="form-control" path="distName" formControlName="distName" name="distName" [ngClass]="{ 'is-invalid': submitted && f.distName.errors }" />
+                        <div *ngIf="submitted && f.distName.errors" class="invalid-feedback">
+                            <div *ngIf="f.distName.errors.required">Distribution Name is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="fiscalYear" for="fiscalYear" cssClass="required">Fiscal Year</label>
+                        <input class="form-control" type="hidden" path="fiscalYear" />
+                        <select class="form-control" id="yearpicker" formControlName="fiscalYear" name="fiscalYear" [ngClass]="{ 'is-invalid': submitted && f.fiscalYear.errors }">
+                            <option value="" hidden> - Select the Year - </option>
+                            <option value="null"> - Select the Year - </option>
+                            <option *ngFor="let system of fiscalsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.fiscalYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.fiscalYear.errors.required">Fiscal Year is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="respMonth" for="respMonth" cssClass="required">Month</label>
+                        <input class="form-control" type="hidden" path="respMonth" />
+                        <select class="form-control" id="MonthsList" formControlName="respMonth" name="respMonth" [ngClass]="{ 'is-invalid': submitted && f.respMonth.errors }">
+                            <option value="" hidden> - Select the Months - </option>
+                            <option value="null" > - Select the Months - </option>
+                            <option *ngFor="let system of mosystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.respMonth.errors" class="invalid-feedback">
+                            <div *ngIf="f.respMonth.errors.required">Month is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="percentAllocate" for="percentAllocate">Percentage Allocated</label>
+                        <input class="form-control" path="percentAllocate" formControlName="percentAllocate" name="percentAllocate" [ngClass]="{ 'is-invalid': submitted && f.percentAllocate.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.percentAllocate.errors" class="invalid-feedback">
+                            <div *ngIf="f.percentAllocate.errors.required">Percentage Allocated is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Budget Monthly Distribution</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

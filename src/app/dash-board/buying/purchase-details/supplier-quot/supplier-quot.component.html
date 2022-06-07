@@ -1,0 +1,172 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Supplier Quotation</legend>
+    <div class="formData">
+        <form [formGroup]="prSupForm" (ngSubmit)="onOrderClick($event,prSupForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="prsrId" />
+                        <label path="suSeries" for="suSeries" cssClass="required">Series</label>
+                        <input class="form-control" type="hidden" path="suSeries" />
+                        <select class="form-control" name="Purchasetype" id="Purchasetype" name="suSeries" formControlName="suSeries" [ngClass]="{ 'is-invalid': submitted && f.suSeries.errors }">
+                            <option value="" hidden> - Select Type - </option>
+                            <option value="null" > - Select Type - </option>
+                            <option *ngFor="let system of seriessystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.suSeries.errors" class="invalid-feedback">
+                            <div *ngIf="f.suSeries.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="date" for="date" cssClass="required">Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="date" name="date" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.date.errors.required">Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="supplier" for="supplier" cssClass="required">Supplier</label>
+                        <input class="form-control" type="hidden" path="supplier" />
+                        <select class="form-control" name="supplierlist" id="supplierlist" name="supplier" formControlName="supplier" [ngClass]="{ 'is-invalid': submitted && f.supplier.errors }">
+                            <option value="" hidden> - Select Supplier - </option>
+                            <option value="null" > - Select Supplier - </option>
+                            <option *ngFor="let system of supsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.supplier.errors" class="invalid-feedback">
+                            <div *ngIf="f.supplier.errors.required">Supplier is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="itemCode" for="itemCode" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select class="form-control" id="itemlist" name="itemCode" formControlName="itemCode" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }">
+                            <option value="" hidden> - Select the Item - </option>
+                            <option value="null" > - Select the Item - </option>
+                            <option *ngFor="let items of itemlist" [value]="items.itemcode">
+                                {{items.itemcode}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="quantity" for="quantity" cssClass="required">Quantity</label>
+                        <input class="form-control" path="quantity" name="quantity" formControlName="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.quantity.errors.required">Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="stockUOM" for="stockUOM" cssClass="required">Stock UOM</label>
+                        <input class="form-control" path="stockUOM" name="stockUom" formControlName="stockUom" [ngClass]="{ 'is-invalid': submitted && f.stockUom.errors }">
+                        <div *ngIf="submitted && f.stockUom.errors" class="invalid-feedback">
+                            <div *ngIf="f.stockUom.errors.required">Stock UOM is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="rate" for="rate" cssClass="required">Rate</label>
+                        <input class="form-control" path="rate" name="rate" formControlName="rate" [ngClass]="{ 'is-invalid': submitted && f.rate.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
+                            <div *ngIf="f.rate.errors.required">Rate is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="sutype" for="sutype" cssClass="required">Type</label>
+                        <input class="form-control" path="sutype" name="sutype" formControlName="sutype" [ngClass]="{ 'is-invalid': submitted && f.sutype.errors }">
+                        <div *ngIf="submitted && f.sutype.errors" class="invalid-feedback">
+                            <div *ngIf="f.sutype.errors.required">Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="accountHead" for="accountHead" cssClass="required">Account Head</label>
+                        <input class="form-control" path="accountHead" name="accountHead" formControlName="accountHead" [ngClass]="{ 'is-invalid': submitted && f.accountHead.errors }">
+                        <div *ngIf="submitted && f.accountHead.errors" class="invalid-feedback">
+                            <div *ngIf="f.accountHead.errors.required">Account Head is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="squotrate" for="squotrate" cssClass="required">Quoted Rate</label>
+                        <input class="form-control" path="squotrate" name="squotrate" formControlName="squotrate" [ngClass]="{ 'is-invalid': submitted && f.squotrate.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.squotrate.errors" class="invalid-feedback">
+                            <div *ngIf="f.squotrate.errors.required">Quoted Rate is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="taxandChg" for="taxandChg" cssClass="required">Taxes & Charges</label>
+                        <input class="form-control" path="taxandChg" name="taxandChg" formControlName="taxandChg" [ngClass]="{ 'is-invalid': submitted && f.taxandChg.errors }">
+                        <div *ngIf="submitted && f.taxandChg.errors" class="invalid-feedback">
+                            <div *ngIf="f.taxandChg.errors.required">Taxes & Charges is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <div class="sample-supqot">
+        <fieldset class="scheduler-border">
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                        </button>
+                        <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <legend class="scheduler-border">Supplier Quotation Details</legend>
+            <div class="boxData">
+                <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+                </ag-grid-angular>
+            </div>
+        </fieldset>
+    </div>
+</div>

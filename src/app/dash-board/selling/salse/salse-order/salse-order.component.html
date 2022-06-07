@@ -1,0 +1,151 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Sales Order</legend>
+    <div class="formData">
+        <form [formGroup]="slordersForm" (ngSubmit)="onOrderClick($event,slordersForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="salesId" />
+                        <input class="form-control" type="hidden" path="itemid" />
+                        <label path="itemCode" for="itemCode" cssClass="required">Item Code</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select class="form-control" id="itemlist" name="itemcode" formControlName="itemcode"
+                            [ngClass]="{ 'is-invalid': submitted && f.itemcode.errors }">
+                            <option value="" hidden> - Select the item - </option>
+                            <option value="null"> - Select the item - </option>
+                            <option *ngFor="let items of itemlist" [value]="items.itemcode">
+                                {{items.itemcode}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemcode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemcode.errors.required">Item Code is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input class="form-control" path="orderid" value="${sorder.orderid}" type="hidden" />
+                        <label path="orderName" for="orderName" cssClass="required">Order Name</label>
+                        <input class="form-control" path="orderName" type="hidden" />
+                        <select class="form-control" name="orderlist" id="orderlist" name="ordername"
+                            formControlName="ordername" [ngClass]="{ 'is-invalid': submitted && f.ordername.errors }">
+                            <option value="" hidden> - Select the Order - </option>
+                            <option value="null"> - Select the Order - </option>
+                            <option *ngFor="let system of gpsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.ordername.errors" class="invalid-feedback">
+                            <div *ngIf="f.ordername.errors.required">Order Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="orderDate" for="orderDate" cssClass="required">Order Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="sorderdate"
+                                    name="sorderdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true"
+                                    inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.sorderdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.sorderdate.errors.required">Order Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="deliveryDate" for="deliveryDate" cssClass="required">Delivery Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true"
+                                    formControlName="sdeliverydate" name="sdeliverydate" yearRange="2000:2030"
+                                    inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.sdeliverydate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.sdeliverydate.errors.required">Delivery Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="purchaseOrder" for="purchaseOrder" cssClass="required">Purchase Order</label>
+                        <input class="form-control" path="purchaseOrder" name="cpurchaseorder"
+                            formControlName="cpurchaseorder"
+                            [ngClass]="{ 'is-invalid': submitted && f.cpurchaseorder.errors }" />
+                        <div *ngIf="submitted && f.cpurchaseorder.errors" class="invalid-feedback">
+                            <div *ngIf="f.cpurchaseorder.errors.required">Purchase Order is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="customerName" for="customerName" cssClass="required">Customer Name</label>
+                        <input class="form-control" path="customerName" name="customername"
+                            formControlName="customername"
+                            [ngClass]="{ 'is-invalid': submitted && f.customername.errors }" />
+                        <div *ngIf="submitted && f.customername.errors" class="invalid-feedback">
+                            <div *ngIf="f.customername.errors.required">Customer Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="statusName" for="statusName" cssClass="required">Status Name</label>
+                        <input class="form-control" path="statusName" type="hidden" />
+                        <select class="form-control" name="statusnamelist" id="statusnamelist" name="statusname"
+                            formControlName="statusname" [ngClass]="{ 'is-invalid': submitted && f.statusname.errors }">
+                            <option value="" hidden> - Select the Status - </option>
+                            <option value="null"> - Select the Status - </option>
+                            <option *ngFor="let system of posystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.statusname.errors" class="invalid-feedback">
+                            <div *ngIf="f.statusname.errors.required">Status Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="menulink">
+            <input class="form-control" path="menulink" type="hidden" />
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                    (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">SalesOrder Details</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+        [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+        [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

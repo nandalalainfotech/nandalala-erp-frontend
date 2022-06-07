@@ -1,0 +1,111 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Purchase Tax</legend>
+    <div class="formData">
+        <form [formGroup]="purTaxForm" (ngSubmit)="onOrderClick($event,purTaxForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="putaxId" />
+                        <label path="status" for="status" cssClass="required">Bank Account</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" id="modeNameList" name="status" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select the Mode - </option>
+                            <option value="null"> - Select the Mode - </option>
+                            <option *ngFor="let system of bnkaccsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Bank Account is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" name="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="taxchgType" for="taxchgType" cssClass="required">Type</label>
+                        <input class="form-control" path="taxchgType" name="taxchgType" formControlName="taxchgType" [ngClass]="{ 'is-invalid': submitted && f.taxchgType.errors }" />
+                        <div *ngIf="submitted && f.taxchgType.errors" class="invalid-feedback">
+                            <div *ngIf="f.taxchgType.errors.required">Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="accountHead" for="accountHead" cssClass="required">Account Head</label>
+                        <input class="form-control" path="accountHead" name="accountHead" formControlName="accountHead" [ngClass]="{ 'is-invalid': submitted && f.accountHead.errors }" />
+                        <div *ngIf="submitted && f.accountHead.errors" class="invalid-feedback">
+                            <div *ngIf="f.accountHead.errors.required">Account Head is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="rate" for="rate">Rate</label>
+                        <input class="form-control" path="rate" name="rate" formControlName="rate" [ngClass]="{ 'is-invalid': submitted && f.rate.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
+                            <div *ngIf="f.rate.errors.required">Rate is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="amount" for="amount">Amount</label>
+                        <input class="form-control" path="amount" name="amount" formControlName="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                            <div *ngIf="f.amount.errors.required">Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 " style="margin-top: 1px;">
+                    <div class="form-group">
+                        <label path="total" for="total">Total</label>
+                        <input class="form-control" path="total" name="total" formControlName="total" [ngClass]="{ 'is-invalid': submitted && f.total.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.total.errors" class="invalid-feedback">
+                            <div *ngIf="f.total.errors.required">Total is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Purchase Tax And Charges Statement</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

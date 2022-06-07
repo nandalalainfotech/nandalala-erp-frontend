@@ -1,0 +1,200 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Payment Reconciliation</legend>
+    <div class="formData">
+        <form [formGroup]="matchForm" (ngSubmit)="onOrderClick($event, matchForm)">
+            <div class="row">
+                <input class="form-control" path="id" type="hidden" readonly="true" />
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input formControlName="company" class="form-control" path="company" id="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" name="company" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="partytype" for="partytype" cssClass="required">Party Type</label>
+                        <input class="form-control" type="hidden" path="partytype" id="partytype" />
+                        <select formControlName="partytype" class="form-control" name="partyTypeList" id="partyTypeList" [ngClass]="{ 'is-invalid': submitted && f.partytype.errors }" name="partytype">
+                            <option value="" hidden> - Select Party Type - </option>
+                            <option value="null" > - Select Party Type - </option>
+                            <option *ngFor="let system of partytypesystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.partytype.errors" class="invalid-feedback">
+                            <div *ngIf="f.partytype.errors.required">Party Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="party" for="party" cssClass="required">Party</label>
+                        <input class="form-control" type="hidden" path="party" id="party" />
+                        <select formControlName="party" class="form-control" id="partyNameList" [ngClass]="{ 'is-invalid': submitted && f.party.errors }" name="party">
+                            <option value="" hidden> - Select the Party Name - </option>
+                            <option value="null"> - Select the Party Name - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.party.errors" class="invalid-feedback">
+                            <div *ngIf="f.party.errors.required">Party is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="receivableorpayableaccount" for="receivableorpayableaccount" cssClass="required">Receivable / Payable Account</label>
+                        <input class="form-control" type="hidden" path="receivableorpayableaccount" id="receivableorpayableaccount" />
+                        <select formControlName="receivableorpayableaccount" class="form-control" name="partyTypeList" id="recpeyList" [ngClass]="{ 'is-invalid': submitted && f.receivableorpayableaccount.errors }" name="receivableorpayableaccount">
+                            <option value="" hidden> - Select Account Type - </option>
+                            <option value="null"> - Select Account Type - </option>
+                            <option *ngFor="let system of accsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.receivableorpayableaccount.errors" class="invalid-feedback">
+                            <div *ngIf="f.receivableorpayableaccount.errors.required">Receivable / Payable Account is Required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="fromdate" for="fromdate" cssClass="required">From Invoice Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="fromdate" name="fromdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.fromdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.fromdate.errors.required">From Invoice Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="todate" for="todate" cssClass="required">To Invoice Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="todate" name="todate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.todate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.todate.errors.required">To Invoice Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="bankorcashaccount" for="bankorcashaccount" cssClass="required">Bank / Cash
+                            Account</label>
+                        <input class="form-control" type="hidden" path="bankorcashaccount" id="bankorcashaccount" />
+                        <select formControlName="bankorcashaccount" class="form-control" name="partyTypeList" id="bankCashList" [ngClass]="{ 'is-invalid': submitted && f.bankorcashaccount.errors }" name="bankorcashaccount">
+                            <option value="" hidden> - Select Account mode - </option>
+                            <option value="null"> - Select Account mode - </option>
+                            <option *ngFor="let system of bcsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.bankorcashaccount.errors" class="invalid-feedback">
+                            <div *ngIf="f.bankorcashaccount.errors.required">Bank / Cash Account is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="minimuminvoiceamount" for="minimuminvoiceamount" cssClass="required">Minimum
+                            Invoice Amount</label>
+                        <input formControlName="minimuminvoiceamount" class="form-control" path="minimuminvoiceamount" id="minimuminvoiceamount" [ngClass]="{ 'is-invalid': submitted && f.minimuminvoiceamount.errors }" name="minimuminvoiceamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.minimuminvoiceamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.minimuminvoiceamount.errors.required">Minimum Invoice Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="maximuminvoiceamount" for="maximuminvoiceamount" cssClass="required">Maximum
+                            Invoice Amount</label>
+                        <input formControlName="maximuminvoiceamount" class="form-control" path="maximuminvoiceamount" id="maximuminvoiceamount" [ngClass]="{ 'is-invalid': submitted && f.maximuminvoiceamount.errors }" name="maximuminvoiceamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.maximuminvoiceamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.maximuminvoiceamount.errors.required">Maximum Invoice Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="refName" for="refName" cssClass="required">Reference Name</label>
+                        <input formControlName="refName" class="form-control" path="refName" id="refName" [ngClass]="{ 'is-invalid': submitted && f.refName.errors }" name="refName" />
+                        <div *ngIf="submitted && f.refName.errors" class="invalid-feedback">
+                            <div *ngIf="f.refName.errors.required">Reference Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="invoiceNumber" for="invoiceNumber" cssClass="required">Invoice Number
+                        </label>
+                        <input formControlName="invoiceNumber" class="form-control" path="invoiceNumber" id="invoiceNumber" [ngClass]="{ 'is-invalid': submitted && f.invoiceNumber.errors }" name="invoiceNumber" mask="0*.00" />
+                        <div *ngIf="submitted && f.invoiceNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.invoiceNumber.errors.required">Invoice Number is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="amount" for="amount" cssClass="required">Amount</label>
+                        <input formControlName="amount" class="form-control" path="amount" id="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" name="amount" mask="0*.00" />
+                        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                            <div *ngIf="f.amount.errors.required">Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="allocatedamount" for="allocatedamount" cssClass="required">Allocated Amount
+                        </label>
+                        <input formControlName="allocatedamount" class="form-control" path="allocatedamount" id="allocatedamount" [ngClass]="{ 'is-invalid': submitted && f.allocatedamount.errors }" name="allocatedamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.allocatedamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.allocatedamount.errors.required">Allocated Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Reconciled Payment Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

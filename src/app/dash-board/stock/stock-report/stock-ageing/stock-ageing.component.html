@@ -1,0 +1,139 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Stock Ageing</legend>
+    <div class="formData">
+        <form [formGroup]="ageingForm" (ngSubmit)="onOrderClick($event,ageingForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="stageId">
+                        <label path="itemCode" for="itemCode" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select class="form-control" id="itemList" name="itemCode" formControlName="itemCode"
+                            [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }">
+                            <option value="" hidden> - Select the Item - </option>
+                            <option value="null"> - Select the Item - </option>
+                            <option *ngFor="let stkAgeing of stkitems " [value]="stkAgeing.itemcode">
+                                {{stkAgeing.itemcode}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="itemGroup" for="itemGroup" cssClass="required">Item Group</label>
+                        <input class="form-control" type="hidden" path="itemGroup" />
+                        <select class="form-control" id="itemgroupList" name="itemGroup" formControlName="itemGroup"
+                            [ngClass]="{ 'is-invalid': submitted && f.itemGroup.errors }">
+                            <option value="" hidden> - Select the Item Group- </option>
+                            <option value="null"> - Select the Item Group- </option>
+                            <option *ngFor="let system of itemgrpproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemGroup.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemGroup.errors.required">Item Group is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="brand" for="brand" cssClass="required">Brand</label>
+                        <input class="form-control" path="brand" name="brand" formControlName="brand"
+                            [ngClass]="{ 'is-invalid': submitted && f.brand.errors }" />
+                        <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
+                            <div *ngIf="f.brand.errors.required">Brand is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="averageAge" for="wareHouse" cssClass="required">Average Age</label>
+                        <input class="form-control" path="averageAge" name="averageAge" formControlName="averageAge"
+                            [ngClass]="{ 'is-invalid': submitted && f.averageAge.errors }" />
+                        <div *ngIf="submitted && f.averageAge.errors" class="invalid-feedback">
+                            <div *ngIf="f.averageAge.errors.required">Average Age is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="earliest" for="employeeAddress" cssClass="required">Earliest</label>
+                        <input class="form-control" path="earliest" name="earliest" formControlName="earliest"
+                            [ngClass]="{ 'is-invalid': submitted && f.earliest.errors }" />
+                        <div *ngIf="submitted && f.earliest.errors" class="invalid-feedback">
+                            <div *ngIf="f.earliest.errors.required">Earliest is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="latest" for="employeeAddress" cssClass="required">Latest</label>
+                        <input class="form-control" path="latest" name="latest" formControlName="latest"
+                            [ngClass]="{ 'is-invalid': submitted && f.latest.errors }" />
+                        <div *ngIf="submitted && f.latest.errors" class="invalid-feedback">
+                            <div *ngIf="f.latest.errors.required">Latest is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="UOM" for="employeeAddress" cssClass="required">UOM</label>
+                        <input class="form-control" path="UOM" name="uom" formControlName="uom"
+                            [ngClass]="{ 'is-invalid': submitted && f.uom.errors }" />
+                        <div *ngIf="submitted && f.uom.errors" class="invalid-feedback">
+                            <div *ngIf="f.uom.errors.required">UOM is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="description" for="reason" cssClass="required">Description</label>
+                        <textarea placeholder="" class="form-control" path="description" name="description" rows="5"
+                            cols="30" name="description" formControlName="description"
+                            [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Stock Ageing</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

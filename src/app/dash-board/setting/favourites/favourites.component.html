@@ -1,0 +1,987 @@
+<!-- <li *ngFor="let properties of favourites001mbs">
+    {{ properties.property }}
+</li> -->
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Favourites</legend>
+    <title>My Favourites</title>
+    <div>
+        <ul>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>Manufacturing</h3>
+                </legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <li> <span>Production Order</span>
+                            <ul>
+                                <li><input type="checkbox" (ngModelChange)="onClick($event, 'ProductionOrder')"
+                                        value="./app-manufacturing/app-product-order-details/app-prod-order"> Production
+                                    Order</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProductionPlanningTool')"
+                                        value="./app-manufacturing/app-product-order-details/app-product-plan">
+                                    Production Planning Tool</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProductStockEntry')"
+                                        value="./app-manufacturing/app-product-order-details/app-product-stock"> Product
+                                    Stock Entry</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProductTimeSheet')"
+                                        value="./app-manufacturing/app-product-order-details/app-product-timest">
+                                    Product TimeSheet</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Bill Of Materials</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'BillOfMaterials')"
+                                        value="./app-manufacturing/app-bom-details/app-material"> Bill Of Materials</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemStatus')"
+                                        value="./app-manufacturing/app-bom-details/app-item-status"> Item Status</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'WorkStation')"
+                                        value="./app-manufacturing/app-bom-details/app-work-station"> Work Station</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BOMOperation')"
+                                        value="./app-manufacturing/app-bom-details/app-operation"> BOM Operation</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Tools</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'Tools')"
+                                        value="./app-manufacturing/app-manu-tools/app-tools"> Tools</li>
+                            </ul>
+                        </li><br>
+                        <li><span>SetUp</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'ManufactureSettings')"
+                                        value="./app-manufacturing/app-manu-setup/app-setup"> Manufacture Settings</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Reports</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'OpenProductionOrder')"
+                                        value="./app-manufacturing/app-product-reportdetails/app-open-order"> Open
+                                    Production Order</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProductionOrderinProgress')"
+                                        value="./app-manufacturing/app-product-reportdetails/app-progress-order">
+                                    Production Order in Progress</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'CompletedProductionOrder')"
+                                        value="./app-manufacturing/app-product-reportdetails/app-complete-order">
+                                    Completed Production Order</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BOMType')"
+                                        value="./app-manufacturing/app-product-reportdetails/app-bom-type"> BOM Type
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'IssueItem')"
+                                        value="./app-manufacturing/app-product-reportdetails/app-issue-item"> Issue Item
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </fieldset>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>Accounts</h3>
+                </legend>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <li><span>Billing</span>
+                            <ul>
+                                <li><span>Sales Invoice</span>
+                                    <ul>
+                                        <li><input type="checkbox" (click)="onClick($event, 'AccountsReceivable')"
+                                                value="./app-accounts/app-billing/app-accounts-receivable"> Accounts
+                                            Receivable</li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'AccountsReceivableSummary')"
+                                                value="./app-accounts/app-billing/app-accountsrec-summary"> Accounts
+                                            Receivable Summary</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'DeliveredItemsToBeBilled')"
+                                                value="./app-accounts/app-billing/app-delivered-items"> Delivered Items
+                                            to
+                                            be Billed</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'GrossProfit')"
+                                                value="./app-accounts/app-billing/app-gross-profit"> Gross Profit</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'OrderedItemsToBeBilled')"
+                                                value="./app-accounts/app-billing/app-order-bill"> Ordered Items to be
+                                            Billed</li>
+                                    </ul>
+                                </li>
+                                <li><span>Purchase Invoice</span>
+                                    <ul>
+                                        <li><input type="checkbox" (click)="onClick($event, 'AccountsPayable')"
+                                                value="./app-accounts/app-billing/app-accounts-payable"> Accounts
+                                            Payable
+                                        </li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'AccountsPayableSummary')"
+                                                value="./app-accounts/app-billing/app-accountspay-summary"> Accounts
+                                            Payable
+                                            Summary</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'ReceivedItemsToBeBilled')"
+                                                value="./app-accounts/app-billing/app-received-items"> Received Items to
+                                            be
+                                            Billed</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'ItemWisePurchaseRegister')"
+                                                value="./app-accounts/app-billing/app-itemwise-purchase"> Item-Wise
+                                            Purchase
+                                            Register</li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'PurchaseOrderItemsToBeBilled')"
+                                                value="./app-accounts/app-billing/app-purchase-order"> Purchase Order
+                                            Items
+                                            to be Billed</li>
+                                    </ul>
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PaymentRequest')"
+                                        value="./app-accounts/app-billing/app-payment-request"> Payment Request</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PaymentEntry')"
+                                        value="./app-accounts/app-billing/app-payment-entry"> Payment Entry</li>
+                                <!-- <li><input type="checkbox" (click)="onClick($event, 'Item-WisePurchaseRegister')"
+                                        value="./app-accounts/app-billing/app-itemwisepurchase"> Item-Wise Purchase
+                                    Register
+                                </li> -->
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Company and Accounts</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'GeneralLedger')"
+                                        value="./app-accounts/app-company-accounts/app-general-ledger"> General Ledger
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'JournalEntery')"
+                                        value="./app-accounts/app-company-accounts/app-journal-entry"> Journal Entery
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ChartOfAccounts')"
+                                        value="./app-accounts/app-company-accounts/app-account-chart"> Chart of Accounts
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'CompanyAndAccounts')"
+                                        value="./app-accounts/app-company-accounts/app-com-account"> Company and
+                                    Accounts
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span>Masters</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'Asset')"
+                                        value="./app-accounts/app-master/app-asset"> Asset</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Customer')"
+                                        value="./app-accounts/app-master/app-customer"> Customer</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Supplier')"
+                                        value="./app-accounts/app-master/app-supplier"> Supplier</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Item')"
+                                        value="./app-accounts/app-master/app-item"> Item</li>
+                            </ul>
+                        </li>
+                        <li><span>Accounting Statements</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'TrialBalance')"
+                                        value="./app-accounts/app-accounting-stmts/app-trial-balance"> Trial Balance
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BalanceSheet')"
+                                        value="./app-accounts/app-accounting-stmts/app-balance-sheet"> Balance Sheet
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'CashFlow')"
+                                        value="./app-accounts/app-accounting-stmts/app-cash-flow"> Cash Flow</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProfitAndLossStatement')"
+                                        value="./app-accounts/app-accounting-stmts/app-profit-loss"> Profit and Loss
+                                    Statement</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Banking Payments</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'UpdateBankTransactionDates')"
+                                        value="./app-accounts/app-banking-payments/app-update-bank"> Update Bank
+                                    Transaction
+                                    Dates</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'MatchPaymentsWithInvoices')"
+                                        value="./app-accounts/app-banking-payments/app-match-payments"> Match Payments
+                                    with
+                                    Invoices</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BankReconciliationStatment')"
+                                        value="./app-accounts/app-banking-payments/app-bank-reconciliation"> Bank
+                                    Reconciliation Statment</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BankClearenceSummary')"
+                                        value="./app-accounts/app-banking-payments/app-bank-clearance"> Bank Clearence
+                                    Summary</li>
+                            </ul>
+                        </li>
+                        <li><span>Taxes</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesTaxesAndCharges')"
+                                        value="./app-accounts/app-taxes/app-sales-taxes"> Sales Taxes and Charges</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseTaxesAndCharges')"
+                                        value="./app-accounts/app-taxes/app-purtax-changes"> Purchase Taxes and Charges
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'TaxRule')"
+                                        value="./app-accounts/app-taxes/app-tax-rule"> Tax Rule</li>
+                                <li><input type="checkbox" (click)="onClick($event, ' SalesRegister')"
+                                        value="./app-accounts/app-taxes/app-sale-register"> Sales Register</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseRegister')"
+                                        value="./app-accounts/app-taxes/app-purchase-register"> Purchase Register</li>
+                            </ul>
+                        </li>
+                        <li><span>Budget and Cost Center</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'CostCenterChart')"
+                                        value="./app-accounts/app-budget-costcenter/app-costcenter"> CostCenter chart
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BudgetAccountType')"
+                                        value="./app-accounts/app-budget-costcenter/app-budget-account"> Budget Account
+                                    Type
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Budget')"
+                                        value="./app-accounts/app-budget-costcenter/app-budget"> Budget</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BudgetMonthlyDistribution')"
+                                        value="./app-accounts/app-budget-costcenter/app-budget-monthdist"> Budget
+                                    Monthly
+                                    Distribution</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'BudgetVarianceReport')"
+                                        value="./app-accounts/app-budget-costcenter/app-budget-variancerep"> Budget
+                                    Variance
+                                    Report</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Tools</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'PeriodClosingVoucher')"
+                                        value="./app-accounts/app-acc-tools/app-periodclosing-voucher"> Period Closing
+                                    Voucher</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'AssetMovement')"
+                                        value="./app-accounts/app-acc-tools/app-asset-movement"> Asset Movement</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ChequePrintTemplate')"
+                                        value="./app-accounts/app-acc-tools/app-chequeprint-template"> Cheque Print
+                                    Template
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span>Setup</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'AccountsSettings')" value="">
+                                    Accounts Settings</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'FiscalYear')" value=""> Fiscal
+                                    Year</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Currency')" value=""> Currency</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'CurrencyExchange')" value="">
+                                    Currency Exchange</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PaymentGatewayAccount')" value="">
+                                    Payment Gateway Account
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PointOfSaleProfile')" value="">
+                                    Point-of-Sale Profile
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'TermsAndConditions')" value="">
+                                    Terms and Conditions
+                                    Template
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ModeOfPayment')" value=""> Mode
+                                    of Payment</li>
+                            </ul>
+                        </li>
+                        <li><span>Analytics</span>
+                            <ul>
+                                <!-- <li><input type="checkbox" (click)="onClick($event, 'GrossProfit')"
+                                        value="./app-accounts/app-analytics/app-gross-profit"> Gross Profit</li> -->
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseInvoice')"
+                                        value="./app-accounts/app-analytics/app-purchase-invoice"> Purchase Invoice</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesInvoice')"
+                                        value="./app-accounts/app-analytics/app-sales-invoice"> Sales Invoice</li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </fieldset>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>Buying</h3>
+                </legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <li><span>Purchasing</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseMaterialRequest')"
+                                        value="./app-buying/app-purchase-details/app-prmat-req"> Purchase Material
+                                    Request
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseQuotationRequest')"
+                                        value="./app-buying/app-purchase-details/app-prreq-quot"> Purchase Quotation
+                                    Request
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseOrder')"
+                                        value="./app-buying/app-purchase-details/app-purchase-order"> Purchase Order
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SupplierQuotation')"
+                                        value="./app-buying/app-purchase-details/app-supplier-quot"> Supplier Quotation
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>Supplier</span>
+                            <ul>
+                                <!-- <li><input type="checkbox" (click)="onClick($event, 'Supplier')"
+                                        value="./app-buying/app-supplier-details/app-buying-supplier"> Supplier</li> -->
+                                <li><input type="checkbox" (click)="onClick($event, 'Type')"
+                                        value="./app-buying/app-supplier-details/app-supplier-type"> Type</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Status')"
+                                        value="./app-buying/app-supplier-details/app-supplier-status"> Status</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>Item and Pricing</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemGroup')"
+                                        value="./app-buying/app-item-price-details/app-item-group"> Item Group</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemPrice')"
+                                        value="./app-buying/app-item-price-details/app-item-price"> Item Price</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProductBundle')"
+                                        value="./app-buying/app-item-price-details/app-product-bundle"> Product Bundle
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PricingRule')"
+                                        value="./app-buying/app-item-price-details/app-pricing-rule"> Pricing Rule</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ShippingRule')"
+                                        value="./app-buying/app-item-price-details/app-shipping-rule"> Shipping Rule
+                                </li>
+                                <!-- <li><input type="checkbox" (click)="onClick($event, 'Item')"
+                                        value="./app-buying/app-item-price-details/app-sales-item"> Item</li> -->
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>Analytics</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'PUAnalytics')"
+                                        value="./app-buying/app-analytics/app-pu-analytics"> PU Analytics</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SupplierWiseAnalytics')"
+                                        value="./app-buying/app-analytics/app-supplier-wise-analytics"> Supplier Wise
+                                    Analytics</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'OrderTrend')"
+                                        value="./app-buying/app-analytics/app-order-trend"> Order Trend</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Other Reports</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemRequest')"
+                                        value="./app-buying/app-buying-report-details/app-item-request"> Item Request
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemOrdered')"
+                                        value="./app-buying/app-buying-report-details/app-item-ordered"> Item Ordered
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'MaterialRequestSupplyWise')"
+                                        value="./app-buying/app-buying-report-details/app-matreq-supwise"> Material
+                                    Request
+                                    Supply Wise</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemPUHistory')"
+                                        value="./app-buying/app-buying-report-details/app-item-puhistory">
+                                    Item-PUHistory
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </fieldset>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>Selling</h3>
+                </legend>
+                <div class="row">
+                    <div class="col-md-2">
+                        <li><span>Sales</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'QuotationTrends')"
+                                        value="./app-selling/app-salse/app-quot-trends"> Quotation Trends</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesOrder')"
+                                        value="./app-selling/app-salse/app-salse-order"> Sales Order</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li><span>Customers</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'CustomerGroup')"
+                                        value="./app-selling/app-customers/app-customer-group"> Customer Group</li>
+                                <!-- <li><input type="checkbox" (click)="onClick($event, 'Customer')"
+                                        value="./app-selling/app-customers/app-customerr"> Customer</li> -->
+                                <li><input type="checkbox" (click)="onClick($event, 'Contact')"
+                                        value="./app-selling/app-customers/app-contact"> Contact</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Address')"
+                                        value="./app-selling/app-customers/app-address"> Address</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>Analytics</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesAnalytics')"
+                                        value="./app-selling/app-analytics/app-sales-analytics"> Sales Analytics</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesFunnel')"
+                                        value="./app-selling/app-analytics/app-sales-funnel"> Sales Funnel</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'CustomerAcqustionAndLoyalty')"
+                                        value="./app-selling/app-analytics/app-customer-acqustion-loyalty"> Customer
+                                    Acqustion and Loyalty</li>
+                                <!-- <li><input type="checkbox" (click)="onClick($event, 'QuotationTrends')"
+                                        value="./app-selling/app-analytics/app-quotation-trends"> Quotation Trends</li> -->
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesOrderTrends')"
+                                        value="./app-selling/app-analytics/app-sales-order-trends"> Sales Order Trends
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-4">
+                        <li><span>Sales Partners and Territory</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'Territory')"
+                                        value="./app-selling/app-salse-pat-terr/app-territory"> Territory</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesPartner')"
+                                        value="./app-selling/app-salse-pat-terr/app-salse-partner"> Sales Partner</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesPerson')"
+                                        value="./app-selling/app-salse-pat-terr/app-salse-person"> Sales Person</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'TerritoryTargetVarianceItem')"
+                                        value="./app-selling/app-salse-pat-terr/app-territory-tar-var-itm-grp">
+                                    Territory
+                                    Target Variance Item (Group Wise)</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalesPersonTargetVarianceItem')"
+                                        value="./app-selling/app-salse-pat-terr/app-salse-per-tar-var-itm-grp"> Sales
+                                    Person
+                                    Target Variance Item (Group Wise)</li>
+                            </ul>
+                        </li>
+
+                    </div>
+                    <div class="col-md-4">
+                        <li><span>Other Reports</span>
+                            <ul>
+                                <li><span>Report For Selling</span>
+                                    <ul>
+                                        <li><input type="checkbox" (click)="onClick($event, 'LeadDetails')"
+                                                value="./app-selling/app-other-report/app-lead-detail"> Lead Details
+                                        </li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'CustomerAddressessAndContacts')"
+                                                value="./app-selling/app-other-report/app-customer-detail"> Customer
+                                            Addressess and Contacts</li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'OrderedItemsToBeDelivered')"
+                                                value="./app-selling/app-other-report/app-order-item-billed"> Ordered
+                                            Items
+                                            To Be Delivered</li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'SalesPersonWiseTransactionSummary')"
+                                                value="./app-selling/app-other-report/app-sales-person"> Sales
+                                            Person-Wise
+                                            Transaction Summary</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'ItemWiseSalesHistory')"
+                                                value="./app-selling/app-other-report/app-item-wise"> Item-Wise Sales
+                                            History</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'BOMSearch')"
+                                                value="./app-selling/app-other-report/app-bill-of-material"> BOM Search
+                                        </li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'InactiveCustomers')"
+                                                value="./app-selling/app-other-report/app-inactive-customer"> Inactive
+                                            Customers</li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'AvailableStockForPackingItem')"
+                                                value="./app-selling/app-other-report/app-available-stock"> Available
+                                            Stock
+                                            For Packing Item</li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'PendingSOItemsForPurchaseRequest')"
+                                                value="./app-selling/app-other-report/app-pending-item"> Pending SO
+                                            Items
+                                            For Purchase Request</li>
+                                        <li><input type="checkbox" (click)="onClick($event, 'CustomerCreditBalance')"
+                                                value="./app-selling/app-other-report/app-customer-credit-balance">
+                                            Customer
+                                            Credit Balance</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </fieldset>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>Human Resources</h3>
+                </legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <li><span>Employee Management</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'Employee')"
+                                        value="./app-human-resources/app-employee-details/app-employee"> Employee</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Department')"
+                                        value="./app-human-resources/app-employee-details/app-department"> Department
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Attendance')"
+                                        value="./app-human-resources/app-employee-details/app-attendance"> Attendance
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span>Recruitment</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'JobOpening')"
+                                        value="./app-human-resources/app-recruitment/app-job-opening"> Job Opening</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'JobApplicant')"
+                                        value="./app-human-resources/app-recruitment/app-job-applicant"> Job Applicant
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'OfferLetter')"
+                                        value="./app-human-resources/app-recruitment/app-offer-letter"> Offer Letter
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'RelievingLetter')"
+                                        value="./app-human-resources/app-recruitment/app-relieving-letter"> Relieving
+                                    Letter
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ExperienceLetter')"
+                                        value="./app-human-resources/app-recruitment/app-experience-letter"> Experience
+                                    Letter</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Leaves and Holiday</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'LeaveApplication')"
+                                        value="./app-human-resources/app-leave-details/app-leave-application"> Leave
+                                    Application</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'LeaveType')"
+                                        value="./app-human-resources/app-leave-details/app-leave-type"> Leave Type</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'HolidayList')"
+                                        value="./app-human-resources/app-leave-details/app-holiday-list"> Holiday List
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'LeaveBlockList')"
+                                        value="./app-human-resources/app-leave-details/app-leave-block"> Leave Block
+                                    List
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span>Pay Roll</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'PayRoll')"
+                                        value="./app-human-resources/app-pay-roll/app-pay-rolls"> Pay Roll</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProcessPayroll')"
+                                        value="./app-human-resources/app-pay-roll/app-process-payroll"> Process Payroll
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalaryStructure')"
+                                        value="./app-human-resources/app-pay-roll/app-salary-structure"> Salary
+                                    Structure
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'SalaryComponent')"
+                                        value="./app-human-resources/app-pay-roll/app-salary-component"> Salary
+                                    Component
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Expense Claims</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'ExpensesClaim')"
+                                        value="./app-human-resources/app-expense-claim/app-expenses-claims"> Expenses
+                                    Claim
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span>Appraisals</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'Appraisal')"
+                                        value="./app-human-resources/app-appraisals/app-appraisal"> Appraisal</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'AppraisalTemplate')"
+                                        value="./app-human-resources/app-appraisals/app-appraisal-template"> Appraisal
+                                    Template</li>
+                            </ul>
+                        </li>
+                        <li><span>SetUp</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'EmploymentType')"
+                                        value="./app-human-resources/app-human-setup/app-employment-type"> Employment
+                                    Type
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Branch')"
+                                        value="./app-human-resources/app-human-setup/app-branch"> Branch</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Designation')"
+                                        value="./app-human-resources/app-human-setup/app-designation"> Designation</li>
+                                <!-- <li><input type="checkbox" (click)="onClick($event, 'Department')"
+                                        value="./app-human-resources/app-human-setup/app-department"> Department</li> -->
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <li><span>Reports</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, ' EmployeeLeaveBalance')"
+                                        value="./app-human-resources/app-employee-report-details/app-emp-leave-balance">
+                                    Employee Leave Balance</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'EmployeeBirthday')"
+                                        value="./app-human-resources/app-employee-report-details/app-emp-birthday">
+                                    Employee
+                                    Birthday</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'EmployeeWorkingOnHoliday')"
+                                        value="./app-human-resources/app-employee-report-details/app-emp-holiday-work">
+                                    Employee Working On Holiday</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'EmployeeSalesRegister')"
+                                        value="./app-human-resources/app-employee-report-details/app-emp-sales-register">
+                                    Employee Sales Register</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'EmployeeMonthlyAttendance')"
+                                        value="./app-human-resources/app-employee-report-details/app-month-attend-sheet">
+                                    Employee Monthly Attendance</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'EmployeeInformation')"
+                                        value="./app-human-resources/app-employee-report-details/app-emp-information">
+                                    Employee Information</li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </fieldset>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">
+                        <h3>CRM</h3>
+                    </legend>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <li><span>Sales Pipeline</span>
+                                <ul>
+                                    <li><input type="checkbox" (click)="onClick($event, 'SalesPipeLine')"
+                                            value="./app-crm/app-sales-pipeline/app-crm-sales-pipe-line"> Sales PipeLine
+                                    </li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'contact')"
+                                            value="./app-crm/app-sales-pipeline/app-crm-contact"> contact</li>
+                                    <!-- <li><input type="checkbox" (click)="onClick($event, 'Customer')"
+                                            value="./app-crm/app-sales-pipeline/app-customer"> Customer</li> -->
+                                    <li><input type="checkbox" (click)="onClick($event, 'Opertunity')"
+                                            value="./app-crm/app-sales-pipeline/app-opportunity"> Opertunity</li>
+                                </ul>
+                            </li>
+                        </div>
+                        <div class="col-md-4">
+                            <li><span>Reports</span>
+                                <ul>
+                                    <li><input type="checkbox" (click)="onClick($event, 'MinimumTimeResponse')"
+                                            value="./app-crm/app-crm-report-details/app-mini-time-res"> Minimum Time
+                                        Response</li>
+                                    <!-- <li><input type="checkbox" (click)="onClick($event, 'LeadDetails')"
+                                            value="./app-crm/app-crm-report-details/app-crm-lead-details"> Lead Details
+                                    </li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'InactiveCustomers')"
+                                            value="./app-crm/app-crm-report-details/app-inactive-customers"> Inactive
+                                        Customers</li> -->
+                                    <li><input type="checkbox" (click)="onClick($event, 'Customers')"
+                                            value="./app-crm/app-crm-report-details/app-customers"> Customers</li>
+                                </ul>
+                            </li>
+                        </div>
+                        <div class="col-md-4">
+                            <li><span>SetUp</span>
+                                <ul>
+                                    <li><input type="checkbox" (click)="onClick($event, 'Communication')"
+                                            value="./app-crm/app-crm-setup-details/app-crm-communication"> Communication
+                                    </li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'CustomerSalesGroup')"
+                                            value="./app-crm/app-crm-setup-details/app-crm-cust-group"> Customer Sales
+                                        Group
+                                    </li>
+                                    <!-- <li><input type="checkbox" (click)="onClick($event, 'Territory')"
+                                            value="./app-crm/app-crm-setup-details/app-crm-territory"> Territory</li> -->
+                                </ul>
+                            </li><br>
+                        </div>
+                    </div>
+                </fieldset>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul>
+                <fieldset class="scheduler-border projects" style="height:217px !important;">
+                    <legend class="scheduler-border">
+                        <h3>Projects</h3>
+                    </legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <li><span>Project</span>
+                                <ul>
+                                    <li><input type="checkbox" (click)="onClick($event, 'Project')"
+                                            value="./app-projects/app-project/app-project"> Project</li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'Task')"
+                                            value="./app-projects/app-project/app-task"> Task</li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'Calander')"
+                                            value="./app-projects/app-project/app-calander"> Calander</li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'GanttChart')"
+                                            value="./app-projects/app-project/app-gantt-chart"> Gantt Chart</li>
+                                </ul>
+                            </li>
+                        </div>
+                        <div class="col-md-6">
+                            <li><span>Time Tracking</span>
+                                <ul>
+                                    <li><input type="checkbox" (click)="onClick($event, 'TimeSheet')"
+                                            value="./app-projects/app-time-traking/app-time-sheet"> Time Sheet</li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'ActiveType')"
+                                            value="./app-projects/app-time-traking/app-active-type"> Active Type</li>
+                                    <li><input type="checkbox" (click)="onClick($event, 'ActiveCost')"
+                                            value="./app-projects/app-time-traking/app-active-cost"> Active Cost</li>
+                                </ul>
+                            </li>
+                        </div>
+                    </div>
+                </fieldset>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <ul>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>Stock</h3>
+                </legend>
+                <div class="row">
+                    <div class="col-md-2">
+                        <li><span>Stock Transactions</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'StockEntry')"
+                                        value="./app-stock/app-stock-trans/app-stock-entry"> Stock Entry</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'DeliveryNote')"
+                                        value="./app-stock/app-stock-trans/app-delivery-note"> Delivery Note</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseReceipt')"
+                                        value="./app-stock/app-stock-trans/app-purchase-receipt"> Purchase Receipt</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'MaterialRequest')"
+                                        value="./app-stock/app-stock-trans/app-material-req"> Material Request</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>Stock Reports</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'StockLedger')"
+                                        value="./app-stock/app-stock-report/app-stock-ledger"> Stock Ledger</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'StockBalance')"
+                                        value="./app-stock/app-stock-report/app-stock-balance"> Stock Balance</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ProjectedQuantity')"
+                                        value="./app-stock/app-stock-report/app-projected-quantity"> Projected Quantity
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'StockAgeing')"
+                                        value="./app-stock/app-stock-report/app-stock-ageing"> Stock Ageing</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>Tools</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'InstallationNote')"
+                                        value="./app-stock/app-stock-tools/app-installation-note"> Installation Note
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'StockReconcile')"
+                                        value="./app-stock/app-stock-tools/app-stock-reconcile"> Stock Reconcile</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PackingSlip')"
+                                        value="./app-stock/app-stock-tools/app-packing-slip"> Packing Slip</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'LandCostVoucher')"
+                                        value="./app-stock/app-stock-tools/app-land-cost-voucher"> Land Cost Voucher
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>SetUp</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'StockSetting')"
+                                        value="./app-stock/app-stock-setup-details/app-stk-setting"> Stock Setting</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'WareHouse')"
+                                        value="./app-stock/app-stock-setup-details/app-ware-house"> Ware House</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'UnitOfMeasure')"
+                                        value="./app-stock/app-stock-setup-details/app-unit-of-measure"> Unit Of Measure
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'Brand')"
+                                        value="./app-stock/app-stock-setup-details/app-brand"> Brand</li>
+                            </ul>
+                        </li>
+                        <li><span>Analytics</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'DeliveryNoteTrend')"
+                                        value="./app-stock/app-stock-analytics-details/app-del-note-trend"> Delivery
+                                    Note
+                                    Trend</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseReceiptTrend')"
+                                        value="./app-stock/app-stock-analytics-details/app-pur-recpt-trend"> Purchase
+                                    Receipt Trend</li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col-md-2">
+                        <li><span>Reports</span>
+                            <ul>
+                                <li><input type="checkbox" (click)="onClick($event, 'OrderItemDelivered')"
+                                        value="./app-stock/app-stock-reports-details/app-ord-itm-deliver"> Order Item
+                                    Delivered</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'PurchaseItemOrder')"
+                                        value="./app-stock/app-stock-reports-details/app-pur-itm-order"> Purchase Item
+                                    Order
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemShortage')"
+                                        value="./app-stock/app-stock-reports-details/app-itm-shortage"> Item Shortage
+                                </li>
+                                <li><input type="checkbox" (click)="onClick($event, 'RequestItemTransfer')"
+                                        value="./app-stock/app-stock-reports-details/app-req-itm-transfer"> Request Item
+                                    Transfer</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemPriceReport')"
+                                        value="./app-stock/app-stock-reports-details/app-itm-price-report"> Item Price
+                                    Report</li>
+                                <li><input type="checkbox" (click)="onClick($event, 'ItemWiseLevel')"
+                                        value="./app-stock/app-stock-reports-details/app-itm-wise-level"> Item Wise
+                                    Level
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </fieldset>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <ul>
+                    <fieldset class="scheduler-border issue" style="height:160px !important;">
+                        <legend class="scheduler-border">
+                            <h3>Support</h3>
+                        </legend>
+                        <div class="row" style="margin-bottom:20px !important;">
+                            <div class="col-md-6">
+                                <li><span>Issues</span>
+                                    <ul>
+                                        <li><input type="checkbox" (click)="onClick($event, 'Issues')"
+                                                value="./app-support/app-support-issues/app-issue"> Issues</li>
+                                        <li><input type="checkbox" (click)="onClick($event, ' MinutesToFirstResponse')"
+                                                value="./app-support/app-support-issues/app-minutes-to-response">
+                                            Minutes to
+                                            First Response</li>
+                                    </ul>
+                                </li>
+                            </div>
+                            <div class="col-md-6">
+                                <li><span>Reports</span>
+                                    <ul>
+                                        <li><input type="checkbox" (click)="onClick($event, 'SupportAnalytics')"
+                                                value="./app-support/app-reports/app-support-analytics"> Support
+                                            Analytics
+                                        </li>
+                                        <li><input type="checkbox"
+                                                (click)="onClick($event, 'MinutesToFirstResponseforIssues')"
+                                                value="./app-support/app-reports/app-minutes-response-issues"> Minutes
+                                            to
+                                            First Response for Issues</li>
+                                    </ul>
+                                </li>
+                            </div>
+                        </div>
+                    </fieldset>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>POS</h3>
+                </legend>
+                <ul>
+                    <li><input type="checkbox" (click)="onClick($event, 'POS')" value="./app-point-of-sale/app-pos"> POS
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+        <div class="col-md-3">
+            <fieldset class="scheduler-border" style="height:157px !important;">
+                <legend class="scheduler-border item">
+                    <h3>Item</h3>
+                </legend>
+                <ul>
+                    <li style="margin-top:30px !important;"><input type="checkbox"
+                            (click)="onClick($event, 'SalesOrderOrder')" value="./app-item/app-sales-order"> Sales
+                        Order
+                        Order</li>
+                    <li><input type="checkbox" (click)="onClick($event, 'ItemDetails')"
+                            value=" ./app-item/app-item-details"> Item
+                        Details
+                    </li>
+                    <li><input type="checkbox" (click)="onClick($event, 'OrderDetails')"
+                            value="./app-item/app-order-details"> Order
+                        Details
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <fieldset class="scheduler-border" style="height:157px !important;">
+                <legend class="scheduler-border customer ">
+                    <h3>Customer</h3>
+                </legend>
+                <ul>
+                    <li style="padding-top:20px !important;"><input type="checkbox"
+                            (click)="onClick($event, ' CustomerAcquisitionAndLoyalty')"
+                            value="./app-customer/app-customer-ac-lo">
+                        Customer
+                        Acquisition and Loyalty</li>
+                    <li><input type="checkbox" (click)="onClick($event, 'CustomerDetails')"
+                            value="./app-customer/app-customer-details">
+                        Customer Details</li>
+                    <!-- <li><input type="checkbox" (click)="onClick($event, 'CustomerCreditBalance')"
+                            value="./app-customer/app-customer-crt-bal">
+                        Customer Credit Balance</li> -->
+                </ul>
+            </fieldset>
+        </div>
+        <div class="col-md-3">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>File Manager</h3>
+                </legend>
+                <ul>
+                    <li><input type="checkbox" (click)="onClick($event, 'FileManager')" value="./app-file-manager">
+                        File Manager</li>
+                </ul>
+            </fieldset>
+        </div>
+        <div class="col-md-3">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <h3>Stock Entry</h3>
+                </legend>
+                <ul>
+                    <li><input type="checkbox" (click)="onClick($event, 'StockDetails')" value="/app-stocks-entrys">
+                        Stock Details</li>
+                </ul>
+            </fieldset>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary submit" (click)="onSubmitClick($event,'property')">Submit</button>
+</fieldset>

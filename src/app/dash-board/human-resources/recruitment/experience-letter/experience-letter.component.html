@@ -1,0 +1,139 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Working Experience Details</legend>
+    <div class="formData">
+        <form [formGroup]="wrkExpForm" (ngSubmit)="onOrderClick($event,wrkExpForm)">
+            <div class="formData">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 ">
+                        <div class="form-group">
+                            <label for="applicantNamePrefix">Prefix</label>
+                            <input class="form-control" type="hidden" path="applicantNamePrefix" />
+                            <select class="form-control" id="applicantNamePrefixlist" name="applicantNamePrefix" formControlName="applicantNamePrefix" [ngClass]="{ 'is-invalid': submitted && f.applicantNamePrefix.errors }">
+                                <option value="" hidden>Select</option>
+                                <option value="null" >Select</option>
+                                <option *ngFor="let system of itsystemproperties" [value]="system.description">
+                                    {{system.description}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.applicantNamePrefix.errors" class="invalid-feedback">
+                                <div *ngIf="f.applicantNamePrefix.errors.required">Prefix is Required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 ">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control offer-holder-name" path="workingExperienceId" />
+                            <label for="applicantName">Applicant Name</label>
+                            <input class="form-control" path="applicantName" name="applicantName" formControlName="applicantName" [ngClass]="{ 'is-invalid': submitted && f.applicantName.errors }" />
+                            <div *ngIf="submitted && f.applicantName.errors" class="invalid-feedback">
+                                <div *ngIf="f.applicantName.errors.required">Applicant Name is Required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 ">
+                        <div class="form-group">
+                            <label for="companyName">Company Name</label>
+                            <input class="form-control offer-category" path="companyName" name="companyName" formControlName="companyName" [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+                            <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                                <div *ngIf="f.companyName.errors.required">Company Name is Required</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input class="form-control" path="position" name="position" formControlName="position" [ngClass]="{ 'is-invalid': submitted && f.position.errors }" />
+                            <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+                                <div *ngIf="f.position.errors.required">Position is Required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="grade">Grade</label>
+                            <input class="form-control" path="grade" name="grade" formControlName="grade" [ngClass]="{ 'is-invalid': submitted && f.grade.errors }" />
+                            <div *ngIf="submitted && f.grade.errors" class="invalid-feedback">
+                                <div *ngIf="f.grade.errors.required">Grade is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="dateOfJoin" for="dateOfJoin" cssClass="required">Joining Date</label>
+                                    <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="dateOfJoin" name="dateOfJoin" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                    </p-calendar>
+                                    <div *ngIf="submitted && f.dateOfJoin.errors" class="invalid-feedback">
+                                        <div *ngIf="f.dateOfJoin.errors.required">Joining Date is Required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="dateOfRelieve" for="dateOfRelieve" cssClass="required">Relieving
+                                        Date</label>
+                                    <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="dateOfRelieve" name="dateOfRelieve" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                    </p-calendar>
+                                    <div *ngIf="submitted && f.dateOfRelieve.errors" class="invalid-feedback">
+                                        <div *ngIf="f.dateOfRelieve.errors.required">Relieving Date is Required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 ">
+                        <div class="form-group">
+                            <label for="offerLetter">Working Experience Letter Name</label>
+                            <input class="form-control" path="workingexperienceLetter" name="workingexperienceLetter" formControlName="workingexperienceLetter" [ngClass]="{ 'is-invalid': submitted && f.workingexperienceLetter.errors }" />
+                            <div *ngIf="submitted && f.workingexperienceLetter.errors" class="invalid-feedback">
+                                <div *ngIf="f.workingexperienceLetter.errors.required">Working Experience Letter Name is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <legend class="scheduler-border">List Of Relieving Detail</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-projectt" routerLinkActive #projectTab="routerLinkActive" [active]="projectTab.isActive">Project</a>
+    <a mat-tab-link routerLink="./app-task" routerLinkActive #taskTab="routerLinkActive" [active]="taskTab.isActive">Task</a>
+    <a mat-tab-link routerLink="./app-calander" routerLinkActive #calanderTab="routerLinkActive" [active]="calanderTab.isActive">Calander</a>
+    <a mat-tab-link routerLink="./app-gantt-chart" routerLinkActive #ganttchartTab="routerLinkActive" [active]="ganttchartTab.isActive">Gantt Chart</a>
+</nav>
+
+<router-outlet></router-outlet>

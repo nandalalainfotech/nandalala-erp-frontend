@@ -1,0 +1,112 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Opportunity</legend>
+    <div class="formData">
+        <form [formGroup]="OpportunityForm" (ngSubmit)="onOrderClick($event,OpportunityForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="oppId" />
+                        <label path="oppSeries" for="series" cssClass="required">Series</label>
+                        <input class="form-control" path="oppSeries" name="oppSeries" formControlName="oppSeries"
+                            [ngClass]="{ 'is-invalid': submitted && f.oppSeries.errors }">
+                        <div *ngIf="submitted && f.oppSeries.errors" class="invalid-feedback">
+                            <div *ngIf="f.oppSeries.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="oppType" for="series" cssClass="required">Type</label>
+                        <input class="form-control" type="hidden" path="oppType" />
+                        <select class="form-control" name="crmsalesopptype" id="crmsalesopptype" name="oppType"
+                            formControlName="oppType" [ngClass]="{ 'is-invalid': submitted && f.oppType.errors }">
+                            <option value="" hidden> - Select Type - </option>
+                            <option value="null"> - Select Type - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.oppType.errors" class="invalid-feedback">
+                            <div *ngIf="f.oppType.errors.required">Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="oppFrom" for="series" cssClass="required">Source</label>
+                        <input class="form-control" type="hidden" path="oppFrom" />
+                        <select class="form-control" name="crmsalesoppfrom" id="crmsalesoppfrom" name="oppFrom"
+                            formControlName="oppFrom" [ngClass]="{ 'is-invalid': submitted && f.oppFrom.errors }">
+                            <option value="" hidden> - Select Source - </option>
+                            <option value="null"> - Select Source - </option>
+                            <option *ngFor="let system of vsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.oppFrom.errors" class="invalid-feedback">
+                            <div *ngIf="f.oppFrom.errors.required">Source is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="status" for="series" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="crmsalesoppstlist" id="crmsalesoppstlist" name="status"
+                            formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null"> - Select Status - </option>
+                            <option *ngFor="let system of psystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="withitems">With Items</label>
+                        <input type="checkbox" name="withitems" formControlName="withitems"
+                            [ngClass]="{ 'is-invalid': submitted && f.withitems.errors }">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Opportunity Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

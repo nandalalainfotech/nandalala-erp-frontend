@@ -1,0 +1,9 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-production-orders" routerLinkActive #productionOrderTab="routerLinkActive" [active]="productionOrderTab.isActive">Production Order</a>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,16 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-prmat-req" routerLinkActive #prmatReqTab="routerLinkActive"
+        [active]="prmatReqTab.isActive">Purchase Material Request</a>
+    <a mat-tab-link routerLink="./app-prreq-quot" routerLinkActive #prreqTab="routerLinkActive"
+        [active]="prreqTab.isActive">Purchase Quotation Request</a>
+    <a mat-tab-link routerLink="./app-purchase-order" routerLinkActive #purchaseOrderTab="routerLinkActive"
+        [active]="purchaseOrderTab.isActive">Purchase Order</a>
+    <a mat-tab-link routerLink="./app-supplier-quot" routerLinkActive #supplierQuotTab="routerLinkActive"
+        [active]="supplierQuotTab.isActive">Supplier Quotation</a>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,16 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-update-bank" routerLinkActive #updateBankTab="routerLinkActive"
+        [active]="updateBankTab.isActive">Update Bank Transaction Dates</a>
+    <a mat-tab-link routerLink="./app-match-payments" routerLinkActive #matchPayTab="routerLinkActive"
+        [active]="matchPayTab.isActive">Match Payments with Invoices</a>
+    <a mat-tab-link routerLink="./app-bank-reconciliation" routerLinkActive #bankReconTab="routerLinkActive"
+        [active]="bankReconTab.isActive">Bank Reconciliation Statement</a>
+    <a mat-tab-link routerLink="./app-bank-clearance" routerLinkActive #bankClearTab="routerLinkActive"
+        [active]="bankClearTab.isActive">Bank Clearance Summary</a>
+</nav>
+
+<router-outlet></router-outlet>

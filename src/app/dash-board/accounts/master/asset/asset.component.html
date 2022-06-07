@@ -1,0 +1,156 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Asset Depreciation Ledger</legend>
+    <div class="formData">
+        <form [formGroup]="assetForm" (ngSubmit)="onOrderClick($event,assetForm)">
+            <div class="row">
+                <input class="form-control" path="id" type="hidden" readonly="true" />
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="asset" for="asset" cssClass="required">Asset</label>
+                        <input formControlName="asset" name="asset" class="form-control" path="asset" id="asset" [ngClass]="{ 'is-invalid': submitted && f.asset.errors }" />
+                        <div *ngIf="submitted && f.asset.errors" class="invalid-feedback">
+                            <div *ngIf="f.asset.errors.required">Asset is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="depreciationdate" for="depreciationdate" cssClass="required">Depreciation
+                                    Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="depreciationdate" name="depreciationdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.depreciationdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.depreciationdate.errors.required">Depreciation Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="purchaseamount" path="purchaseamount" cssClass="required">Purchase Amount</label>
+                        <input formControlName="purchaseamount" class="form-control" path="purchaseamount" id="purchaseamount" [ngClass]="{ 'is-invalid': submitted && f.purchaseamount.errors }" name="purchaseamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.purchaseamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.purchaseamount.errors.required">Purchase Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="depreciationamount" path="depreciationamount" cssClass="required">Depreciation
+                            Amount</label>
+                        <input formControlName="depreciationamount" class="form-control" path="depreciationamount" id="depreciationamount" [ngClass]="{ 'is-invalid': submitted && f.depreciationamount.errors }" name="depreciationamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.depreciationamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.depreciationamount.errors.required">Depreciation is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="accumulateddepreciationamount" path="accumulateddepreciationamount" cssClass="required">Accumulated Depreciation Amount</label>
+                        <input formControlName="accumulateddepreciationamount" class="form-control" path="accumulateddepreciationamount" id="accumulateddepreciationamount" [ngClass]="{ 'is-invalid': submitted && f.accumulateddepreciationamount.errors }" name="accumulateddepreciationamount"
+                            mask="0*.00" />
+                        <div *ngIf="submitted && f.accumulateddepreciationamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.accumulateddepreciationamount.errors.required">Accumulated Depreciation Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="amountafterdepreciation" path="amountafterdepreciation" cssClass="required">
+                            Amount After Depreciation</label>
+                        <input formControlName="amountafterdepreciation" class="form-control" path="amountafterdepreciation" id="amountafterdepreciation" name="amountafterdepreciation" [ngClass]="{ 'is-invalid': submitted && f.amountafterdepreciation.errors }" />
+                        <div *ngIf="submitted && f.amountafterdepreciation.errors" class="invalid-feedback">
+                            <div *ngIf="f.amountafterdepreciation.errors.required"> Amount After Depreciation is Required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+
+                        <label path="depreciationentry" for="depreciationentry" cssClass="required">Depreciation
+                            Entry</label>
+                        <input formControlName="depreciationentry" class="form-control" path="depreciationentry" id="depreciationentry" name="depreciationentry" [ngClass]="{ 'is-invalid': submitted && f.depreciationentry.errors }" />
+                        <div *ngIf="submitted && f.depreciationentry.errors" class="invalid-feedback">
+                            <div *ngIf="f.depreciationentry.errors.required">Depreciation Entry is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="assetcategory" for="assetcategory" cssClass="required">Asset Category
+                        </label>
+                        <input formControlName="assetcategory" class="form-control" path="assetcategory" id="assetcategory" [ngClass]="{ 'is-invalid': submitted && f.assetcategory.errors }" name="assetcategory" />
+                        <div *ngIf="submitted && f.assetcategory.errors" class="invalid-feedback">
+                            <div *ngIf="f.assetcategory.errors.required">Asset Category is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="currentstatus" for="currentstatus" cssClass="required">Current Status
+                        </label>
+                        <input formControlName="currentstatus" class="form-control" path="currentstatus" id="currentstatus" [ngClass]="{ 'is-invalid': submitted && f.currentstatus.errors }" name="currentstatus" />
+                        <div *ngIf="submitted && f.currentstatus.errors" class="invalid-feedback">
+                            <div *ngIf="f.currentstatus.errors.required">Current Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="depreciationmethod" for="depreciationmethod" cssClass="required">Depreciation
+                            Method</label>
+                        <input formControlName="depreciationmethod" class="form-control" path="depreciationmethod" id="depreciationmethod" [ngClass]="{ 'is-invalid': submitted && f.depreciationmethod.errors }" name="depreciationmethod" />
+                        <div *ngIf="submitted && f.depreciationmethod.errors" class="invalid-feedback">
+                            <div *ngIf="f.depreciationmethod.errors.required">Depreciation Method is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="purchasedate" for="purchasedate" cssClass="required">Purchase Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="purchasedate" name="purchasedate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.purchasedate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.purchasedate.errors.required">Purchase Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Asset Depreciation Ledger</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

@@ -1,0 +1,89 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Expense Claim</legend>
+    <div class="formData">
+        <form [formGroup]="expensesForm" (ngSubmit)="onOrderClick($event,expensesForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="expclmId" />
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select formControlName="status" class="form-control" name="expensetypestatus" id="expensetypestatus" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" name="status">
+                            <option value="" hidden> - Select Expense Status - </option>
+                            <option value="null" > - Select Expense Status - </option>
+                            <option *ngFor="let system of statusproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalclmAmt" for="totalclmAmt" cssClass="required">Total Claim Amount</label>
+                        <input formControlName="totalclmAmt" class="form-control" path="totalclmAmt" name="expclmamount" [ngClass]="{ 'is-invalid': submitted && f.totalclmAmt.errors }" name="totalclmAmt" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalclmAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalclmAmt.errors.required">Total Claim Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="expCode" for="expCode" cssClass="required">Expense Code</label>
+                        <input formControlName="expCode" class="form-control" path="expCode" name="expcode" [ngClass]="{ 'is-invalid': submitted && f.expCode.errors }" name="expCode" />
+                        <div *ngIf="submitted && f.expCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.expCode.errors.required">Expense Code is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="expType" for="expType" cssClass="required">Expense Type</label>
+                        <input class="form-control" type="hidden" path="expType" name="expType" />
+                        <select formControlName="expType" class="form-control" name="expensetype" id="expensetype" [ngClass]="{ 'is-invalid': submitted && f.expType.errors }" name="expType">
+                            <option value="" hidden> - Select Expense Type - </option>
+                            <option value="null" > - Select Expense Type - </option>
+                            <option *ngFor="let system of esystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.expType.errors" class="invalid-feedback">
+                            <div *ngIf="f.expType.errors.required">Expense Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <legend class="scheduler-border">Expense Claim List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

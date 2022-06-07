@@ -1,0 +1,16 @@
+#AlertDivPrm {
+    width: 172px;
+    background-color: #286090;
+    color: white;
+}
+
+#AlertDivAcc {
+    width: 232px;
+    background-color: #286090;
+    color: white;
+}
+
+#AlertDiv h3 {
+    margin: auto;
+    vertical-align: middle;
+}

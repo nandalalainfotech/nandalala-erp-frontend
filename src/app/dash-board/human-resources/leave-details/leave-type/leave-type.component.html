@@ -1,0 +1,64 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Leave Type</legend>
+    <div class="formData">
+        <form [formGroup]="letypeForm" (ngSubmit)="onOrderClick($event,letypeForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="lvtypeId" />
+                        <label path="lvtypeName" for="series" cssClass="required">Series</label>
+                        <input class="form-control" type="hidden" path="lvtypeName" />
+                        <select formControlName="lvtypeName" class="form-control" name="leavetypestatus" id="leavetypestatus" [ngClass]="{ 'is-invalid': submitted && f.lvtypeName.errors }" name="lvtypeName">
+                            <option value="" hidden> - Select Leave Type - </option>
+                            <option value="null" > - Select Leave Type - </option>
+                            <option *ngFor="let system of seriessystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.lvtypeName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lvtypeName.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="maxdaysAllowed" for="reason" cssClass="required">Max Days Allowed</label>
+                        <input formControlName="maxdaysAllowed" class="form-control" path="maxdaysAllowed" name="Reason" [ngClass]="{ 'is-invalid': submitted && f.maxdaysAllowed.errors }" name="maxdaysAllowed" />
+                        <div *ngIf="submitted && f.maxdaysAllowed.errors" class="invalid-feedback">
+                            <div *ngIf="f.maxdaysAllowed.errors.required">Max Days Allowed is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <legend class="scheduler-border">Employee Attendance List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

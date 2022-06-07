@@ -1,0 +1,179 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Rule</legend>
+    <div class="formData">
+        <form [formGroup]="ruleForm" (ngSubmit)="onOrderClick($event,ruleForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="priceruleid" />
+                        <label path="itemCode" for="series" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select class="form-control" id="itemList" formControlName="itemCode" name="itemCode"
+                            [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }">
+                            <option value="" hidden> - Select Item - </option>
+                            <option value="null"> - Select Item - </option>
+                            <option *ngFor="let items of itemlist" [value]="items.itemcode">
+                                {{items.itemcode}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="priceTitle" for="series" cssClass="required">Price Title</label>
+                        <input class="form-control" path="priceTitle" formControlName="priceTitle" name="priceTitle"
+                            [ngClass]="{ 'is-invalid': submitted && f.priceTitle.errors }" />
+                        <div *ngIf="submitted && f.priceTitle.errors" class="invalid-feedback">
+                            <div *ngIf="f.priceTitle.errors.required">Price Title is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="buying">Buying</label>
+                        <input type="checkbox" id="buying" name="buying" formControlName="buying" name="buying">
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="selling">Selling</label>
+                        <input type="checkbox" id="selling" name="selling" formControlName="selling" name="selling">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="minQty" for="minQty" cssClass="required">Minimum Quantity</label>
+                        <input class="form-control" path="minQty" formControlName="minQty" name="minQty"
+                            [ngClass]="{ 'is-invalid': submitted && f.minQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.minQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.minQty.errors.required">Minimum Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="maxQty" for="maxQty" cssClass="required">Maximum Quantity</label>
+                        <input class="form-control" path="maxQty" formControlName="maxQty" name="maxQty"
+                            [ngClass]="{ 'is-invalid': submitted && f.maxQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.maxQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.maxQty.errors.required">Maximum Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="validFrom" for="toDate" cssClass="required">Valid From</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="validFrom"
+                                    name="validFrom" yearRange="2000:2030" inputId="navigators" [showIcon]="true"
+                                    inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.validFrom.errors" class="invalid-feedback">
+                                    <div *ngIf="f.validFrom.errors.required">Valid From is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" formControlName="company" name="company"
+                            [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="validUpto" for="toDate" cssClass="required">Valid Upto</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="validUpto"
+                                    name="validUpto" yearRange="2000:2030" inputId="navigators" [showIcon]="true"
+                                    inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.validUpto.errors" class="invalid-feedback">
+                                    <div *ngIf="f.validUpto.errors.required">Valid Upto is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="prordisc" for="prordisc" cssClass="required">Price or Discount</label>
+                        <input class="form-control" path="prordisc" formControlName="prordisc" name="prordisc"
+                            [ngClass]="{ 'is-invalid': submitted && f.prordisc.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.prordisc.errors" class="invalid-feedback">
+                            <div *ngIf="f.prordisc.errors.required">Price or Discount is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="discprlist" for="discprlist" cssClass="required">Discount Price List</label>
+                        <input class="form-control" path="discprlist" formControlName="discprlist" name="discprlist"
+                            [ngClass]="{ 'is-invalid': submitted && f.discprlist.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.discprlist.errors" class="invalid-feedback">
+                            <div *ngIf="f.discprlist.errors.required">Discount Price List is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="forprlist" for="discprlist" cssClass="required">For Price List</label>
+                        <input class="form-control" path="forprlist" formControlName="forprlist" name="forprlist"
+                            [ngClass]="{ 'is-invalid': submitted && f.forprlist.errors }" />
+                        <div *ngIf="submitted && f.forprlist.errors" class="invalid-feedback">
+                            <div *ngIf="f.forprlist.errors.required">For Price List is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <div class="sample">
+        <fieldset class="scheduler-border">
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                            (click)="onGeneratePdfReport()">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                        </button>
+                        <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <legend class="scheduler-border">Product Bundle List</legend>
+            <div class="boxData">
+                <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions"
+                    style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true"
+                    [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+                </ag-grid-angular>
+            </div>
+        </fieldset>
+    </div>
+</div>

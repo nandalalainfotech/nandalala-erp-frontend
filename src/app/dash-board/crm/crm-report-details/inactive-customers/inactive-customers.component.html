@@ -1,0 +1,203 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Inactive Customers</legend>
+    <div class="formData">
+        <form [formGroup]="inActForm" (ngSubmit)="onOrderClick($event, inActForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="inactcustId" />
+                        <label path="custType" for="custType" cssClass="required">Customer Type</label>
+                        <input class="form-control" type="hidden" path="custType" />
+                        <select class="form-control" name="custypelist" id="custypelist" formControlName="custType"
+                            name="custType" [ngClass]="{ 'is-invalid': submitted && f.custType.errors }">
+                            <option value="" hidden> - Select the Type - </option>
+                            <option value="null"> - Select the Type - </option>
+                            <option *ngFor="let system of custypesystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.custType.errors" class="invalid-feedback">
+                            <div *ngIf="f.custType.errors.required">Customer Type is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="customername" for="customername" cssClass="required">Customer Name
+                        </label>
+                        <input class="form-control" type="hidden" path="customername" />
+                        <select class="form-control" id="customerNameList" name="customername"
+                            formControlName="customername"
+                            [ngClass]="{ 'is-invalid': submitted && f.customername.errors }">
+                            <option value="" hidden> - Select the Customer - </option>
+                            <option value="null"> - Select the Customer - </option>
+                            <option *ngFor="let system of cusnamesystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.customername.errors" class="invalid-feedback">
+                            <div *ngIf="f.customername.errors.required">Customer Name is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="terName" for="employeeSalary" cssClass="required">Territory</label>
+                        <input type="hidden" class="form-control" path="terName" />
+                        <select class="form-control" id="territotylist" name="terName" formControlName="terName"
+                            [ngClass]="{ 'is-invalid': submitted && f.terName.errors }">
+                            <option value="" hidden> - Select the Territory - </option>
+                            <option value="null"> - Select the Territory - </option>
+                            <option *ngFor="let inactiveCustomer of territorys" [value]="inactiveCustomer.terName">
+                                {{inactiveCustomer.terName}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.terName.errors" class="invalid-feedback">
+                            <div *ngIf="f.terName.errors.required">Territory is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="customergroup" for="series" cssClass="required">Customer Group</label>
+                        <input class="form-control" type="hidden" path="customergroup" />
+                        <select class="form-control" id="customergroupList" name="customergroup"
+                            formControlName="customergroup"
+                            [ngClass]="{ 'is-invalid': submitted && f.customergroup.errors }">
+                            <option value="" hidden> - Select the Customer Group - </option>
+                            <option value="null"> - Select the Customer Group - </option>
+                            <option *ngFor="let system of grpsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.customergroup.errors" class="invalid-feedback">
+                            <div *ngIf="f.customergroup.errors.required">Customer Group is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="numoforder" for="employeeAddress" cssClass="required">Number of Order
+                        </label>
+                        <input class="form-control" path="numoforder" name="numoforder" formControlName="numoforder"
+                            [ngClass]="{ 'is-invalid': submitted && f.numoforder.errors }" />
+                        <div *ngIf="submitted && f.numoforder.errors" class="invalid-feedback">
+                            <div *ngIf="f.numoforder.errors.required">Number of Order Group is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalordval" for="employeeAddress" cssClass="required">Total Order Value
+                        </label>
+                        <input class="form-control" path="totalordval" name="totalordval" formControlName="totalordval"
+                            [ngClass]="{ 'is-invalid': submitted && f.totalordval.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalordval.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalordval.errors.required">Total Order Value is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="totalordcons" for="employeeAddress" cssClass="required">Total Order Considered
+                        </label>
+                        <input class="form-control" path="totalordcons" name="totalordcons"
+                            formControlName="totalordcons"
+                            [ngClass]="{ 'is-invalid': submitted && f.totalordcons.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalordcons.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalordcons.errors.required">Total Order Considered is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="lastordamt" for="employeeSalary" cssClass="required">Last Order Amount
+                        </label>
+                        <input class="form-control" path="lastordamt" name="lastordamt" formControlName="lastordamt"
+                            [ngClass]="{ 'is-invalid': submitted && f.lastordamt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.lastordamt.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastordamt.errors.required">Last Order Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="lastorddate" for="lastorddate" cssClass="required">Last Ordered
+                                    Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="lastorddate"
+                                    name="lastorddate" yearRange="2000:2030" inputId="navigators" [showIcon]="true"
+                                    inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.lastorddate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastorddate.errors.required">Last Ordered Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="daysinlstord" for="daysinlstord" cssClass="required">Day Last
+                                    Ordered</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true"
+                                    formControlName="daysinlstord" name="daysinlstord" yearRange="2000:2030"
+                                    inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.daysinlstord.errors" class="invalid-feedback">
+                                    <div *ngIf="f.daysinlstord.errors.required">Day Last Ordered is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Inactive Customers</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

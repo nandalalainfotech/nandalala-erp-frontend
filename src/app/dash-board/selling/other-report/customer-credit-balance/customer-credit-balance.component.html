@@ -1,0 +1,112 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Customer Credit Balance</legend>
+    <div class="formData">
+        <form [formGroup]="creditForm" (ngSubmit)="onOrderClick($event, creditForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="creditlimit" path="creditlimit" cssClass="required">Credit Limit</label>
+                        <input formControlName="creditlimit" class="form-control" path="creditlimit"
+                            [ngClass]="{ 'is-invalid': submitted && f.creditlimit.errors }" name="creditlimit" />
+                        <div *ngIf="submitted && f.creditlimit.errors" class="invalid-feedback">
+                            <div *ngIf="f.creditlimit.errors.required">Credit Limit is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="customer" path="customer" cssClass="required">Customer</label>
+                        <input formControlName="customer" class="form-control" path="customer"
+                            [ngClass]="{ 'is-invalid': submitted && f.customer.errors }" name="customer" />
+                        <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
+                            <div *ngIf="f.customer.errors.required">Customer is required</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="customer" path="customer" cssClass="required">Customer</label>
+                        <input formControlName="customer" class="form-control" path="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }" name="customer" />
+                        <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
+                            <div *ngIf="f.customer.errors.required">Customer is required</div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="outstandingamount" path="outstandingamount" cssClass="required">OutStanding
+                            Amount</label>
+                        <input formControlName="outstandingamount" class="form-control" path="outstandingamount"
+                            [ngClass]="{ 'is-invalid': submitted && f.outstandingamount.errors }"
+                            name="outstandingamount" mask="0*.00" />
+                        <div *ngIf="submitted && f.outstandingamount.errors" class="invalid-feedback">
+                            <div *ngIf="f.outstandingamount.errors.required">OutStanding Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="creditbalance" path="creditbalance" cssClass="required">Credit Balance</label>
+                        <input formControlName="creditbalance" class="form-control" path="creditbalance"
+                            [ngClass]="{ 'is-invalid': submitted && f.creditbalance.errors }" name="creditbalance" />
+                        <div *ngIf="submitted && f.creditbalance.errors" class="invalid-feedback">
+                            <div *ngIf="f.creditbalance.errors.required">Credit Balance is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input class="form-control" path="ccid" id="ccid" type="hidden" />
+                        <input class="form-control" path="id" id="id" type="hidden" />
+                        <input class="form-control" path="customername" id="customername" type="hidden" />
+                        <label for="customername" path="customername" cssClass="required">Customer Name</label>
+                        <select formControlName="customername" class="form-control" name="customerlist"
+                            id="customerlist" [ngClass]="{ 'is-invalid': submitted && f.customername.errors }"
+                            name="customername">
+                            <option value="" hidden> - Select the User Name - </option>
+                            <option value="null"> - Select the User Name - </option>
+                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.customername.errors" class="invalid-feedback">
+                            <div *ngIf="f.customername.errors.required">Customer Name is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Customer Credit Balance</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

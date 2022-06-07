@@ -1,0 +1,189 @@
+<div class="box">
+    <div class="card1">
+        <div class="col-xl-3 col-sm-3">
+            <div class="card l-bg-cherry">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fa fa-shopping-cart"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">New Orders</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                3,243
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>55% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-purple" role="progressbar" data-width="25%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-3">
+            <div class="card l-bg-blue-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fa fa-users"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Customers</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                15.07k
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>69% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 55%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-3">
+            <div class="card l-bg-green-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fa fa-ticket"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Air Bus Ticket</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                578
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>85% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-3 col-sm-3">
+            <div class="card l-bg-orange-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fa fa-usd"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Revenue</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                11.61k
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>90% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 95%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="margin-left: 8px !important;">
+    <div class="col-xl-3 col-sm-4 col-md-6 col-lg-8">
+        <app-a-piechart></app-a-piechart>
+    </div>
+
+    <div class="col-xl-3 col-sm-4 col-md-6 col-lg-4">
+        <app-logs></app-logs>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-5 col-sm-5">
+        <app-body-line-chart></app-body-line-chart>
+    </div>
+    <div class="col-5 col-sm-5">
+        <app-body-piechart></app-body-piechart>
+    </div>
+</div> -->
+
+<!-- <div class="row">
+    <div class="col-5 col-sm-5">
+        <app-body-chart></app-body-chart>
+    </div>
+    <div class="col-5 col-sm-5">
+        <app-b-barchart></app-b-barchart>
+    </div>
+</div> -->
+
+<div class="row" style="margin-top: 30px;">
+    <div class="col-sm-4 col-sm-4">
+        <app-process-card></app-process-card>
+    </div>
+
+    <!-- <div class="col-sm-4 col-sm-4">
+        <app-status-of-site></app-status-of-site>
+    </div> -->
+</div>
+
+<!-- <div class="row">
+    <div class="col-sm-12 col-md-12">
+        <app-barchart *ngIf="chartData" [data]="chartData"></app-barchart>
+    </div>
+</div> -->
+
+
+
+
+
+
+<!-- <div classs="row">
+    <div class="col-sm-12 col-md-12 ">
+        <app-client-login></app-client-login>
+    </div>
+</div> -->
+
+
+<!-- <div classs="row">
+    <div class="col-sm-8 col-md-6 mb-6">
+        <app-card-chart></app-card-chart>   over 
+    </div>
+</div> -->
+
+<!-- <div classs="row">
+    <div class="col-sm-12 col-md-12 mb-12">
+        <app-tables></app-tables>
+    </div>
+</div> -->
+
+<!-- <div classs="row">
+    <div class="col-sm-8 col-sm-8 mb-2">
+        <app-chat-box></app-chat-box>
+    </div>
+    <div class="col-sm-6 col-sm-4 mb-2">
+        <app-review></app-review>
+    </div>
+</div> -->
+
+<app-state-chart></app-state-chart>
+
+<!-- D3 chart with button -->
+<!-- <div class="col-5 col-sm-4">
+    <button class="btn btn-primary" (click)="buttonClick()">Generate Random data</button><br>
+    <app-barchart *ngIf="chartData" [data]="chartData"></app-barchart>
+</div> -->

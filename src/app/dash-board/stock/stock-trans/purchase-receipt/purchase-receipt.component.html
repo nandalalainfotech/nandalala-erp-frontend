@@ -1,0 +1,93 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Purchase Receipt</legend>
+    <div class="formData">
+        <form [formGroup]="purRecForm" (ngSubmit)="onOrderClick($event,purRecForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+
+                        <input type="hidden" class="form-control" path="stpurtId" />
+                        <label path="title" for="title" cssClass="required">Title</label>
+                        <input class="form-control" path="title" name="title" formControlName="title"
+                            [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                            <div *ngIf="f.title.errors.required">Title is Required</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="stkpurtstatuslist" id="stkpurtstatuslist" name="status"
+                            formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select the Status - </option>
+                            <option value="null"> - Select the Status - </option>
+                            <option *ngFor="let system of statusproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="grandTotal" for="grandTotal" cssClass="required">Grand Total</label>
+                        <input class="form-control" path="grandTotal" name="grandTotal" formControlName="grandTotal"
+                            [ngClass]="{ 'is-invalid': submitted && f.grandTotal.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.grandTotal.errors" class="invalid-feedback">
+                            <div *ngIf="f.grandTotal.errors.required">Grand Total is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="purtName" for="purtName" cssClass="required">Purchase Receipt</label>
+                        <input class="form-control" path="purtName" name="purtName" formControlName="purtName"
+                            [ngClass]="{ 'is-invalid': submitted && f.purtName.errors }">
+                        <div *ngIf="submitted && f.purtName.errors" class="invalid-feedback">
+                            <div *ngIf="f.purtName.errors.required">Purchase Receipt is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="menulink">
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <legend class="scheduler-border">Purchase Receipt List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

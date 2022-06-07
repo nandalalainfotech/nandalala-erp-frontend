@@ -1,0 +1,102 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Trial Balance</legend>
+    <div class="formData">
+        <form [formGroup]="trialBalanceForm" (ngSubmit)="onOrderClick($event,trialBalanceForm)">
+            <div class="row">
+                <input class="form-control" path="id" type="hidden" readonly="true" />
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="account" for="account" cssClass="required">Account</label>
+                        <input class="form-control" path="account" id="account" name="account" formControlName="account" [ngClass]="{ 'is-invalid': submitted && f.account.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.account.errors" class="invalid-feedback">
+                            <div *ngIf="f.account.errors.required">Account is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="openingcr" for="openingcr" cssClass="required">Opening (CR) </label>
+                        <input class="form-control" path="openingcr" id="openingcr" name="openingcr" formControlName="openingcr" [ngClass]="{ 'is-invalid': submitted && f.openingcr.errors }">
+                        <div *ngIf="submitted && f.openingcr.errors" class="invalid-feedback">
+                            <div *ngIf="f.openingcr.errors.required">Opening is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="openingdr" for="openingdr" cssClass="required">Opening (DR)</label>
+                        <input class="form-control" path="openingdr" id="openingdr" name="openingdr" formControlName="openingdr" [ngClass]="{ 'is-invalid': submitted && f.openingdr.errors }">
+                        <div *ngIf="submitted && f.openingdr.errors" class="invalid-feedback">
+                            <div *ngIf="f.openingdr.errors.required">Opening is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="closingcr" for="closingcr" cssClass="required">Closing (CR)</label>
+                        <input class="form-control" path="closingcr" id="closingcr" name="closingcr" formControlName="closingcr" [ngClass]="{ 'is-invalid': submitted && f.closingcr.errors }">
+                        <div *ngIf="submitted && f.closingcr.errors" class="invalid-feedback">
+                            <div *ngIf="f.closingcr.errors.required">Closing is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="closingdr" for="closingdr" cssClass="required">Closing (DR)</label>
+                        <input class="form-control" path="closingdr" id="closingdr" name="closingdr" formControlName="closingdr" [ngClass]="{ 'is-invalid': submitted && f.closingdr.errors }">
+                        <div *ngIf="submitted && f.closingdr.errors" class="invalid-feedback">
+                            <div *ngIf="f.closingdr.errors.required">Closing is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="debit" for="debit" cssClass="required">Debit</label>
+                        <input class="form-control" path="debit" id="debit" name="debit" formControlName="debit" [ngClass]="{ 'is-invalid': submitted && f.debit.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.debit.errors" class="invalid-feedback">
+                            <div *ngIf="f.debit.errors.required">Debit is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="credit" for="credit" cssClass="required">Credit</label>
+                        <input class="form-control" path="credit" id="credit" name="credit" formControlName="credit" [ngClass]="{ 'is-invalid': submitted && f.credit.errors }" mask="0*.00">
+                        <div *ngIf="submitted && f.credit.errors" class="invalid-feedback">
+                            <div *ngIf="f.credit.errors.required">Credit is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Trial Balance</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

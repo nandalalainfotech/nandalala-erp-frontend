@@ -1,0 +1,16 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-trial-balance" routerLinkActive #trailBalTab="routerLinkActive"
+        [active]="trailBalTab.isActive">Trial Balance</a>
+    <a mat-tab-link routerLink="./app-balance-sheet" routerLinkActive #balanceSheetTab="routerLinkActive"
+        [active]="balanceSheetTab.isActive">Balance Sheet</a>
+    <a mat-tab-link routerLink="./app-cash-flow" routerLinkActive #cashFlowTab="routerLinkActive"
+        [active]="cashFlowTab.isActive">Cash Flow</a>
+    <a mat-tab-link routerLink="./app-profit-loss" routerLinkActive #profitLossTab="routerLinkActive"
+        [active]="profitLossTab.isActive">Profit and Loss Statement</a>
+</nav>
+
+<router-outlet></router-outlet>

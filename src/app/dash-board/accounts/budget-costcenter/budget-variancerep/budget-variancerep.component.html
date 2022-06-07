@@ -1,0 +1,484 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Budget Variance</legend>
+    <div class="formData">
+        <form [formGroup]="budgetVarForm" (ngSubmit)="onOrderClick($event,budgetVarForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="varId" />
+                        <label path="fiscalYear" for="fiscalYear" cssClass="required">Fiscal Year</label>
+                        <input class="form-control" type="hidden" path="fiscalYear" />
+                        <select class="form-control" id="yearpicker" formControlName="fiscalYear" name="fiscalYear" [ngClass]="{ 'is-invalid': submitted && f.fiscalYear.errors }">
+                            <option value="" hidden> - Select the Year - </option>
+                            <option value="null" > - Select the Year - </option>
+                            <option *ngFor="let system of fiscalsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.fiscalYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.fiscalYear.errors.required">Fiscal Year is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="period" for="period" cssClass="required">Period</label>
+                        <input class="form-control" type="hidden" path="period" />
+                        <select class="form-control" id="periodList" formControlName="period" name="period" [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
+                            <option value="" hidden> - Select the period mode - </option>
+                            <option value="null" > - Select the period mode - </option>
+                            <option *ngFor="let system of periodsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
+                            <div *ngIf="f.period.errors.required">Period is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" formControlName="company" name="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="centerName" for="centerName" cssClass="required">Cost Center</label>
+                        <input class="form-control" type="hidden" path="centerName" />
+                        <select class="form-control" id="Centerlist" formControlName="centerName" name="centerName" [ngClass]="{ 'is-invalid': submitted && f.centerName.errors }">
+                            <option value="" hidden> - Select the Cost Center - </option>
+                            <option value="null" > - Select the Cost Center - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.centerName.errors" class="invalid-feedback">
+                            <div *ngIf="f.centerName.errors.required">Cost Center is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="bgaccountType" for="bgaccountType" cssClass="required">Budget Account Type
+                        </label>
+                        <input class="form-control" type="hidden" path="bgaccountType" />
+                        <select class="form-control" id="BgAccountTypelist" formControlName="bgaccountType" name="bgaccountType" [ngClass]="{ 'is-invalid': submitted && f.bgaccountType.errors }">
+                            <option value="" hidden> - Select the Account Type - </option>
+                            <option value="null"> - Select the Account Type - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.bgaccountType.errors" class="invalid-feedback">
+                            <div *ngIf="f.bgaccountType.errors.required">Budget Account Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualjan" for="bgAmount">Actual(Jan)</label>
+                        <input class="form-control" path="actualjan" formControlName="actualjan" name="actualjan" [ngClass]="{ 'is-invalid': submitted && f.actualjan.errors }" />
+                        <div *ngIf="submitted && f.actualjan.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualjan.errors.required">Actual(Jan) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancejan" for="variancejan">Variance(Jan)</label>
+                        <input class="form-control" path="variancejan" formControlName="variancejan" name="variancejan" [ngClass]="{ 'is-invalid': submitted && f.variancejan.errors }" />
+                        <div *ngIf="submitted && f.variancejan.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancejan.errors.required">Variance(Jan) is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetjan" for="bgAmount">Target(Jan)</label>
+                        <input class="form-control" path="targetjan" formControlName="targetjan" name="targetjan" [ngClass]="{ 'is-invalid': submitted && f.targetjan.errors }" />
+                        <div *ngIf="submitted && f.targetjan.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetjan.errors.required">Target(Jan) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualfeb" for="bgAmount">Actual(Feb)</label>
+                        <input class="form-control" path="actualfeb" formControlName="actualfeb" name="actualfeb" [ngClass]="{ 'is-invalid': submitted && f.actualfeb.errors }" />
+                        <div *ngIf="submitted && f.actualfeb.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualfeb.errors.required">Actual(Feb) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancefeb" for="variancefeb">Variance(Feb)</label>
+                        <input class="form-control" path="variancefeb" formControlName="variancefeb" name="variancefeb" [ngClass]="{ 'is-invalid': submitted && f.variancefeb.errors }" />
+                        <div *ngIf="submitted && f.variancefeb.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancefeb.errors.required">Variance(Feb) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetfeb" for="bgAmount">Target(Feb)</label>
+                        <input class="form-control" path="targetfeb" formControlName="targetfeb" name="targetfeb" [ngClass]="{ 'is-invalid': submitted && f.targetfeb.errors }" />
+                        <div *ngIf="submitted && f.targetfeb.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetfeb.errors.required">Target(Feb) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualmar" for="bgAmount">Actual(Mar)</label>
+                        <input class="form-control" path="actualmar" formControlName="actualmar" name="actualmar" [ngClass]="{ 'is-invalid': submitted && f.actualmar.errors }" />
+                        <div *ngIf="submitted && f.actualmar.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualmar.errors.required">Actual(Mar) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancemar" for="bgAmount">Variance(Mar)</label>
+                        <input class="form-control" path="variancemar" formControlName="variancemar" name="variancemar" [ngClass]="{ 'is-invalid': submitted && f.variancemar.errors }" />
+                        <div *ngIf="submitted && f.variancemar.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancemar.errors.required">Variance(Mar) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetmar" for="bgAmount">Target(Mar)</label>
+                        <input class="form-control" path="targetmar" formControlName="targetmar" name="targetmar" [ngClass]="{ 'is-invalid': submitted && f.targetmar.errors }" />
+                        <div *ngIf="submitted && f.targetmar.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetmar.errors.required">Target(Mar) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualapr" for="bgAmount">Actual(Apr)</label>
+                        <input class="form-control" path="actualapr" formControlName="actualapr" name="actualapr" [ngClass]="{ 'is-invalid': submitted && f.actualapr.errors }" />
+                        <div *ngIf="submitted && f.actualapr.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualapr.errors.required">Actual(Apr) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="varianceapr" for="bgAmount">Variance(Apr)</label>
+                        <input class="form-control" path="varianceapr" formControlName="varianceapr" name="varianceapr" [ngClass]="{ 'is-invalid': submitted && f.varianceapr.errors }" />
+                        <div *ngIf="submitted && f.varianceapr.errors" class="invalid-feedback">
+                            <div *ngIf="f.varianceapr.errors.required">Variance(Apr) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetapr" for="bgAmount">Target(Apr)</label>
+                        <input class="form-control" path="targetapr" formControlName="targetapr" name="targetapr" [ngClass]="{ 'is-invalid': submitted && f.targetapr.errors }" />
+                        <div *ngIf="submitted && f.targetapr.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetapr.errors.required">Target(Apr) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualmay" for="bgAmount">Actual(May)</label>
+                        <input class="form-control" path="actualmay" formControlName="actualmay" name="actualmay" [ngClass]="{ 'is-invalid': submitted && f.actualmay.errors }" />
+                        <div *ngIf="submitted && f.actualmay.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualmay.errors.required">Actual(May) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancemay" for="bgAmount">Variance(May)</label>
+                        <input class="form-control" path="variancemay" formControlName="variancemay" name="variancemay" [ngClass]="{ 'is-invalid': submitted && f.variancemay.errors }" />
+                        <div *ngIf="submitted && f.variancemay.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancemay.errors.required">Variance(May) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetmay" for="bgAmount">Target(May)</label>
+                        <input class="form-control" path="targetmay" formControlName="targetmay" name="targetmay" [ngClass]="{ 'is-invalid': submitted && f.targetmay.errors }" />
+                        <div *ngIf="submitted && f.targetmay.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetmay.errors.required">Target(May) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualjun" for="bgAmount">Actual(Jun)</label>
+                        <input class="form-control" path="actualjun" formControlName="actualjun" name="actualjun" [ngClass]="{ 'is-invalid': submitted && f.actualjun.errors }" />
+                        <div *ngIf="submitted && f.actualjun.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualjun.errors.required">Actual(Jun) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancejun" for="bgAmount">Variance(Jun)</label>
+                        <input class="form-control" path="variancejun" formControlName="variancejun" name="variancejun" [ngClass]="{ 'is-invalid': submitted && f.variancejun.errors }" />
+                        <div *ngIf="submitted && f.variancejun.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancejun.errors.required">Variance(Jun) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetjun" for="bgAmount">Target(Jun)</label>
+                        <input class="form-control" path="targetjun" formControlName="targetjun" name="targetjun" [ngClass]="{ 'is-invalid': submitted && f.targetjun.errors }" />
+                        <div *ngIf="submitted && f.targetjun.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetjun.errors.required">Target(Jun) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualjul" for="bgAmount">Actual(Jul)</label>
+                        <input class="form-control" path="actualjul" formControlName="actualjul" name="actualjul" [ngClass]="{ 'is-invalid': submitted && f.actualjul.errors }" />
+                        <div *ngIf="submitted && f.actualjul.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualjul.errors.required">Actual(Jul) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancejul" for="bgAmount">Variance(Jul)</label>
+                        <input class="form-control" path="variancejul" formControlName="variancejul" name="variancejul" [ngClass]="{ 'is-invalid': submitted && f.variancejul.errors }" />
+                        <div *ngIf="submitted && f.variancejul.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancejul.errors.required">Variance(Jul) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetjul" for="bgAmount">Target(Jul)</label>
+                        <input class="form-control" path="targetjul" formControlName="targetjul" name="targetjul" [ngClass]="{ 'is-invalid': submitted && f.targetjul.errors }" />
+                        <div *ngIf="submitted && f.targetjul.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetjul.errors.required">Target(Jul) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualaug" for="bgAmount">Actual(Aug)</label>
+                        <input class="form-control" path="actualaug" formControlName="actualaug" name="actualaug" [ngClass]="{ 'is-invalid': submitted && f.actualaug.errors }" />
+                        <div *ngIf="submitted && f.actualaug.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualaug.errors.required">Actual(Aug) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="varianceaug" for="bgAmount">Variance(Aug)</label>
+                        <input class="form-control" path="varianceaug" formControlName="varianceaug" name="varianceaug" [ngClass]="{ 'is-invalid': submitted && f.varianceaug.errors }" />
+                        <div *ngIf="submitted && f.varianceaug.errors" class="invalid-feedback">
+                            <div *ngIf="f.varianceaug.errors.required">Variance(Aug) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetaug" for="bgAmount">Target(Aug)</label>
+                        <input class="form-control" path="targetaug" formControlName="targetaug" name="targetaug" [ngClass]="{ 'is-invalid': submitted && f.targetaug.errors }" />
+                        <div *ngIf="submitted && f.targetaug.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetaug.errors.required">Target(Aug) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualsep" for="bgAmount">Actual(Sep)</label>
+                        <input class="form-control" path="actualsep" formControlName="actualsep" name="actualsep" [ngClass]="{ 'is-invalid': submitted && f.actualsep.errors }" />
+                        <div *ngIf="submitted && f.actualsep.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualsep.errors.required">Actual(Sep) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancesep" for="bgAmount">Variance(Sep)</label>
+                        <input class="form-control" path="variancesep" formControlName="variancesep" name="variancesep" [ngClass]="{ 'is-invalid': submitted && f.variancesep.errors }" />
+                        <div *ngIf="submitted && f.variancesep.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancesep.errors.required">Variance(Sep) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetsep" for="bgAmount">Target(Sep)</label>
+                        <input class="form-control" path="targetsep" formControlName="targetsep" name="targetsep" [ngClass]="{ 'is-invalid': submitted && f.targetsep.errors }" />
+                        <div *ngIf="submitted && f.targetsep.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetsep.errors.required">Target(Sep) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualoct" for="bgAmount">Actual(Oct)</label>
+                        <input class="form-control" path="actualoct" formControlName="actualoct" name="actualoct" [ngClass]="{ 'is-invalid': submitted && f.actualoct.errors }" />
+                        <div *ngIf="submitted && f.actualoct.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualoct.errors.required">Actual(Oct) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="varianceoct" for="bgAmount">Variance(Oct)</label>
+                        <input class="form-control" path="varianceoct" formControlName="varianceoct" name="varianceoct" [ngClass]="{ 'is-invalid': submitted && f.varianceoct.errors }" />
+                        <div *ngIf="submitted && f.varianceoct.errors" class="invalid-feedback">
+                            <div *ngIf="f.varianceoct.errors.required">Variance(Oct) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetoct" for="bgAmount">Target(Oct)</label>
+                        <input class="form-control" path="targetoct" formControlName="targetoct" name="targetoct" [ngClass]="{ 'is-invalid': submitted && f.targetoct.errors }" />
+                        <div *ngIf="submitted && f.targetoct.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetoct.errors.required">Target(Oct) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualnov" for="bgAmount">Actual(Nov)</label>
+                        <input class="form-control" path="actualnov" formControlName="actualnov" name="actualnov" [ngClass]="{ 'is-invalid': submitted && f.actualnov.errors }" />
+                        <div *ngIf="submitted && f.actualnov.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualnov.errors.required">Actual(Nov) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancenov" for="bgAmount">Variance(Nov)</label>
+                        <input class="form-control" path="variancenov" formControlName="variancenov" name="variancenov" [ngClass]="{ 'is-invalid': submitted && f.variancenov.errors }" />
+                        <div *ngIf="submitted && f.variancenov.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancenov.errors.required">Variance(Nov) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetnov" for="bgAmount">Target(Nov)</label>
+                        <input class="form-control" path="targetnov" formControlName="targetnov" name="targetnov" [ngClass]="{ 'is-invalid': submitted && f.targetnov.errors }" />
+                        <div *ngIf="submitted && f.targetnov.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetnov.errors.required">Target(Nov) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="actualdec" for="bgAmount">Actual(Dec)</label>
+                        <input class="form-control" path="actualdec" formControlName="actualdec" name="actualdec" [ngClass]="{ 'is-invalid': submitted && f.actualdec.errors }" />
+                        <div *ngIf="submitted && f.actualdec.errors" class="invalid-feedback">
+                            <div *ngIf="f.actualdec.errors.required">Actual(Dec) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="variancedec" for="bgAmount">Variance(Dec)</label>
+                        <input class="form-control" path="variancedec" formControlName="variancedec" name="variancedec" [ngClass]="{ 'is-invalid': submitted && f.variancedec.errors }" />
+                        <div *ngIf="submitted && f.variancedec.errors" class="invalid-feedback">
+                            <div *ngIf="f.variancedec.errors.required">Variance(Dec) is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="targetdec" for="bgAmount">Target(Dec)</label>
+                        <input class="form-control" path="targetdec" formControlName="targetdec" name="targetdec" [ngClass]="{ 'is-invalid': submitted && f.targetdec.errors }" />
+                        <div *ngIf="submitted && f.targetdec.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetdec.errors.required">Target(Dec) is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalTarget" for="bgAmount">Total Target</label>
+                        <input class="form-control" path="totalTarget" formControlName="totalTarget" name="totalTarget" [ngClass]="{ 'is-invalid': submitted && f.totalTarget.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalTarget.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalTarget.errors.required">Total Target is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalActual" for="bgAmount">Total Actual</label>
+                        <input class="form-control" path="totalActual" formControlName="totalActual" name="totalActual" [ngClass]="{ 'is-invalid': submitted && f.totalActual.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalActual.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalActual.errors.required">Total Actual is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalVariance" for="bgAmount">Total Variance</label>
+                        <input class="form-control" path="totalVariance" formControlName="totalVariance" name="totalVariance" [ngClass]="{ 'is-invalid': submitted && f.totalVariance.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalVariance.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalVariance.errors.required">Total Variance is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Budget Variance Statement</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

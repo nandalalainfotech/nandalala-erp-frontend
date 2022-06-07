@@ -1,0 +1,9 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-tool" routerLinkActive #toolTab="routerLinkActive" [active]="toolTab.isActive">Tools</a>
+</nav>
+
+<router-outlet></router-outlet>

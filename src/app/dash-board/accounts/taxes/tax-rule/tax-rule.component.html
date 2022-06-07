@@ -1,0 +1,161 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Tax Rule</legend>
+    <div class="formData">
+        <form [formGroup]="taxForm" (ngSubmit)="onOrderClick($event,taxForm)">
+            <div class="row">
+                <input class="form-control" path="id" type="hidden" readonly="true" />
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="taxtype" for="taxtype" cssClass="required">Tax Type</label>
+                        <input class="form-control" path="taxtype" id="taxtype" placeholder="Purchase / Sales" name="taxtype" formControlName="taxtype" [ngClass]="{ 'is-invalid': submitted && f.taxtype.errors }" />
+                        <div *ngIf="submitted && f.taxtype.errors" class="invalid-feedback">
+                            <div *ngIf="f.taxtype.errors.required">Tax Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="taxtemplate" for="taxtemplate" cssClass="required">Tax Template</label>
+                        <input class="form-control" path="taxtemplate" id="taxtemplate" name="taxtemplate" formControlName="taxtemplate" [ngClass]="{ 'is-invalid': submitted && f.taxtemplate.errors }" />
+                        <div *ngIf="submitted && f.taxtemplate.errors" class="invalid-feedback">
+                            <div *ngIf="f.taxtemplate.errors.required">Tax Template is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="customer" for="customer" cssClass="required">Customer</label>
+                    <input class="form-control" path="customer" id="customer" type="hidden" />
+                    <select class="form-control" name="customerlist" id="customerlist" name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
+                        <option value="" hidden> - Select the User Name - </option>
+                        <option value="null" > - Select the User Name - </option>
+                        <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
+                        <div *ngIf="f.customer.errors.required">Customer is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="billingcity" for="billingcity" cssClass="required">Billing City</label>
+                        <input class="form-control" path="billingcity" id="billingcity" name="billingcity" formControlName="billingcity" [ngClass]="{ 'is-invalid': submitted && f.billingcity.errors }" />
+                        <div *ngIf="submitted && f.billingcity.errors" class="invalid-feedback">
+                            <div *ngIf="f.billingcity.errors.required">Billing City is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="shippingcity" for="shippingcity" cssClass="required">Shipping City
+                        </label>
+                        <input class="form-control" path="shippingcity" id="shippingcity" name="shippingcity" formControlName="shippingcity" [ngClass]="{ 'is-invalid': submitted && f.shippingcity.errors }" />
+                        <div *ngIf="submitted && f.shippingcity.errors" class="invalid-feedback">
+                            <div *ngIf="f.shippingcity.errors.required">Shipping City is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="billingstate" for="billingstate" cssClass="required">Billing State
+                        </label>
+                        <input class="form-control" path="billingstate" id="billingstate" name="billingstate" formControlName="billingstate" [ngClass]="{ 'is-invalid': submitted && f.billingstate.errors }" />
+                        <div *ngIf="submitted && f.billingstate.errors" class="invalid-feedback">
+                            <div *ngIf="f.billingstate.errors.required">Billing State is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="shippingstate" for="shippingstate" cssClass="required">Shipping State
+                        </label>
+                        <input class="form-control" path="shippingstate" id="shippingstate" name="shippingstate" formControlName="shippingstate" [ngClass]="{ 'is-invalid': submitted && f.shippingstate.errors }" />
+                        <div *ngIf="submitted && f.shippingstate.errors" class="invalid-feedback">
+                            <div *ngIf="f.shippingstate.errors.required">Shipping State is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+
+                        <label path="billingcountry" for="billingcountry" cssClass="required">Billing Country
+                        </label>
+                        <input class="form-control" path="billingcountry" id="billingcountry" name="billingcountry" formControlName="billingcountry" [ngClass]="{ 'is-invalid': submitted && f.billingcountry.errors }" />
+                        <div *ngIf="submitted && f.billingcountry.errors" class="invalid-feedback">
+                            <div *ngIf="f.billingcountry.errors.required">Billing Country is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="shippingcountry" for="shippingcountry" cssClass="required">Shipping Country
+                        </label>
+                        <input class="form-control" path="shippingcountry" id="shippingcountry" name="shippingcountry" formControlName="shippingcountry" [ngClass]="{ 'is-invalid': submitted && f.shippingcountry.errors }" />
+                        <div *ngIf="submitted && f.shippingcountry.errors" class="invalid-feedback">
+                            <div *ngIf="f.shippingcountry.errors.required">Shipping Country is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="fromdate" for="fromdate" cssClass="required">From Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="fromdate" name="fromdate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.fromdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.fromdate.errors.required">From Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="todate" for="todate" cssClass="required">To Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="todate" name="todate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.todate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.todate.errors.required">To Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Tax Rule </legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

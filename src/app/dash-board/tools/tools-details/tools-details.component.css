@@ -1,0 +1,28 @@
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: orange ;
+    font-weight: bold !important;
+}
+
+::ng-deep .mat-tab-label, .mat-tab-link {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 11px;
+    min-width: auto;
+    color:#004683 !important;
+    text-decoration: none;
+	opacity: 1.0;
+}
+
+::ng-deep .mat-tab-link.mat-tab-label-active{
+    color:orange !important;
+    font-weight: bold;
+    min-width: auto;
+    text-decoration: none;
+}
+
+::ng-deep  .mat-ink-bar {
+    color:orange !important;
+    background-color:orange !important;
+    min-width: auto;
+    text-decoration: none;
+}

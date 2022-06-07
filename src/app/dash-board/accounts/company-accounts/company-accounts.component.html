@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-general-ledger" routerLinkActive #generalLedgerTab="routerLinkActive" [active]="generalLedgerTab.isActive">General Ledger</a>
+    <a mat-tab-link routerLink="./app-journal-entry" routerLinkActive #journalEntryTab="routerLinkActive" [active]="journalEntryTab.isActive">Journal Entry</a>
+    <a mat-tab-link routerLink="./app-account-chart" routerLinkActive #acChartTab="routerLinkActive" [active]="acChartTab.isActive">Chart of Accounts</a>
+    <a mat-tab-link routerLink="./app-com-account" routerLinkActive #comAcTab="routerLinkActive" [active]="comAcTab.isActive">Company and Accounts</a>
+</nav>
+
+<router-outlet></router-outlet>

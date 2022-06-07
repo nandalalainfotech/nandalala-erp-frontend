@@ -1,0 +1,95 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add Customer Acquisition and Loyalty</legend>
+    <div class="formData">
+        <form [formGroup]="custacloyForm" (ngSubmit)="onOrderClick($event,custacloyForm)">
+            <div class="row">
+                <div class="col-xs-3 form-group">
+                    <label for="year" if="${fields.hasErrors('year') }" path="year" cssClass="required">Year</label>
+                    <input formControlName="year" class="form-control" path="year" [ngClass]="{ 'is-invalid': submitted && f.year.errors }" name="year" />
+                    <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
+                        <div *ngIf="f.year.errors.required">Year is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label for="month" path="month" cssClass="required">Month</label>
+                    <input formControlName="month" class="form-control" path="month" [ngClass]="{ 'is-invalid': submitted && f.month.errors }" name="month" />
+                    <div *ngIf="submitted && f.month.errors" class="invalid-feedback">
+                        <div *ngIf="f.month.errors.required">Month is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label for="newcustomers" path="newcustomers" cssClass="required">New Customers</label>
+                    <input formControlName="newcustomers" class="form-control" path="newcustomers" [ngClass]="{ 'is-invalid': submitted && f.newcustomers.errors }" name="newcustomers" />
+                    <div *ngIf="submitted && f.newcustomers.errors" class="invalid-feedback">
+                        <div *ngIf="f.newcustomers.errors.required">New Customers is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label for="repeatcustomers" path="repeatcustomers" cssClass="required">Repeat Customers</label>
+                    <input formControlName="repeatcustomers" class="form-control" path="repeatcustomers" [ngClass]="{ 'is-invalid': submitted && f.repeatcustomers.errors }" name="repeatcustomers" />
+                    <div *ngIf="submitted && f.repeatcustomers.errors" class="invalid-feedback">
+                        <div *ngIf="f.repeatcustomers.errors.required">Repeat Customers is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label for="total" path="total" cssClass="required">Total</label>
+                    <input formControlName="total" class="form-control" path="total" [ngClass]="{ 'is-invalid': submitted && f.total.errors }" name="total" mask="0*.00" />
+                    <div *ngIf="submitted && f.total.errors" class="invalid-feedback">
+                        <div *ngIf="f.total.errors.required">Total is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label for="newcustomersrevenue" path="newcustomersrevenue" cssClass="required">New Customers
+                        Revenue</label>
+                    <input formControlName="newcustomersrevenue" class="form-control" path="newcustomersrevenue" [ngClass]="{ 'is-invalid': submitted && f.newcustomersrevenue.errors }" name="newcustomersrevenue" />
+                    <div *ngIf="submitted && f.newcustomersrevenue.errors" class="invalid-feedback">
+                        <div *ngIf="f.newcustomersrevenue.errors.required">New Customers Revenue is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label for="repeatcustomersrevenue" path="repeatcustomersrevenue" cssClass="required">Repeat
+                        Customers Revenue</label>
+                    <input formControlName="repeatcustomersrevenue" class="form-control" path="repeatcustomersrevenue" [ngClass]="{ 'is-invalid': submitted && f.repeatcustomersrevenue.errors }" name="repeatcustomersrevenue" />
+                    <div *ngIf="submitted && f.repeatcustomersrevenue.errors" class="invalid-feedback">
+                        <div *ngIf="f.repeatcustomersrevenue.errors.required">Repeat Customers Revenue is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label for="totalrevenue" path="totalrevenue" cssClass="required">Total Revenue</label>
+                    <input formControlName="totalrevenue" class="form-control" path="totalrevenue" [ngClass]="{ 'is-invalid': submitted && f.totalrevenue.errors }" name="totalrevenue" mask="0*.00" />
+                    <div *ngIf="submitted && f.totalrevenue.errors" class="invalid-feedback">
+                        <div *ngIf="f.totalrevenue.errors.required">Total Revenue is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Customer Acquisition And Loyalty</legend>
+    <!-- <legend class="scheduler-border">Support Analytics</legend> -->
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

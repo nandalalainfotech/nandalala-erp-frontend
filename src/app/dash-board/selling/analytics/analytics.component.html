@@ -1,0 +1,13 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-sales-analytics" routerLinkActive #salesAnalyticsTab="routerLinkActive" [active]="salesAnalyticsTab.isActive">Sales Analytics</a>
+    <a mat-tab-link routerLink="./app-sales-funnel" routerLinkActive #salesFunnelTab="routerLinkActive" [active]="salesFunnelTab.isActive">Sales Funnel</a>
+    <a mat-tab-link routerLink="./app-customer-acqustion-loyalty" routerLinkActive #customerLoyaltyTab="routerLinkActive" [active]="customerLoyaltyTab.isActive">Customer Acqustion and Loyalty</a>
+    <a mat-tab-link routerLink="./app-quotation-trends" routerLinkActive #quotationTrendsTab="routerLinkActive" [active]="quotationTrendsTab.isActive">Quotation Trends</a>
+    <a mat-tab-link routerLink="./app-sales-order-trends" routerLinkActive #salesOrderTab="routerLinkActive" [active]="salesOrderTab.isActive">Sales Order Trends</a>
+</nav>
+
+<router-outlet></router-outlet>

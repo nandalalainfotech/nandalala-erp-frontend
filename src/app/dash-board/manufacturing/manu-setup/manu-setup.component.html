@@ -1,0 +1,11 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="./app-setup" routerLinkActive #setupTab="routerLinkActive" [active]="setupTab.isActive">
+        Manufacture Settings</a>
+
+</nav>
+
+<router-outlet></router-outlet>

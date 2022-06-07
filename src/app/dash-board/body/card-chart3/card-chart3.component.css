@@ -1,0 +1,88 @@
+.card {
+    margin-top: 108px;
+    position: relative !important;
+    background-color: #fff;
+    border-radius: 19px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1),
+    0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
+    0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12),
+    0 0.125rem 0.1875rem rgba(90 97 105 / 10%);
+    text-align: center; 
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden; 
+    width: 100%;
+    
+}
+
+apx-chart {
+    transition: width ease;
+    width: 100%;
+}
+
+/* .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.col-xl-4 {
+    flex: 0 0 32.33333%;
+    max-width: 110.33333%;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+} */
+
+/* #chart {
+    max-width: 650px;
+    margin: 35px auto;
+  } */
+  /* .widget-content {
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+}
+
+.widget-heading{
+margin-top: 23px;
+}
+
+.widget-content .widget-content-wrapper {
+    display: flex;
+    flex: 101;
+    position: relative;
+    align-items: center;
+}
+
+.mr-3, .mx-3 {
+    margin-right: 1rem !important;
+}
+
+.ml-0, .mx-0 {
+    margin-left: 0 !important;
+}
+.widget-content .widget-numbers {
+    font-weight: bold;
+    font-size: 1.8rem;
+    display: block;
+}
+.widget-content .widget-content-left .widget-heading {
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+.widget-content .widget-content-left .widget-subheading {
+    opacity: .5;
+}
+.text-success {
+    color: #26d329;
+    float: left;
+} */

@@ -1,0 +1,78 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Make ProductStock Entry</legend>
+    <form [formGroup]="prodStockForm" (ngSubmit)="onOrderClick($event,prodStockForm)">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" path="prstockId" />
+                    <label path="title" for="series" cssClass="required">Title</label>
+                    <input class="form-control" path="title" name="title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                        <div *ngIf="f.title.errors.required">Title is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 ">
+                <div class="form-group">
+                    <label path="status" for="series" cssClass="required">Order Status</label>
+                    <input class="form-control" type="hidden" path="status" />
+                    <select class="form-control" name="ProdOrderStatus" id="ProdOrderStatus" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                        <option value="" hidden> - Select Order Status - </option>
+                        <option value="null" > - Select Order Status - </option>
+                        <option *ngFor="let system of systemproperties" [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                        <div *ngIf="f.status.errors.required">Order Status is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3">
+                <div class="form-group">
+                    <label path="purpose" for="purpose" cssClass="required">Purpose</label>
+                    <input class="form-control" path="purpose" name="purpose" formControlName="purpose" [ngClass]="{ 'is-invalid': submitted && f.purpose.errors }" />
+                    <div *ngIf="submitted && f.purpose.errors" class="invalid-feedback">
+                        <div *ngIf="f.purpose.errors.required">Purpose is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3">
+                <div class="form-group">
+                    <label path="stockEntry" for="stockEntry" cssClass="required">Stock Entry</label>
+                    <input class="form-control" path="stockEntry" name="stockEntry" formControlName="stockEntry" [ngClass]="{ 'is-invalid': submitted && f.stockEntry.errors }" />
+                    <div *ngIf="submitted && f.stockEntry.errors" class="invalid-feedback">
+                        <div *ngIf="f.stockEntry.errors.required">Stock Entry is Required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                    <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Product Stock Entry</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

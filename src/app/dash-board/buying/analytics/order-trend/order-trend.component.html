@@ -1,0 +1,365 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Make New Order Trend</legend>
+    <div class="formData">
+        <form [formGroup]="trendForm" (ngSubmit)="onOrderClick($event,trendForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="dntrendId" />
+                        <label path="itemCode" for="series" cssClass="required">Item</label>
+                        <input class="form-control" type="hidden" path="itemCode" />
+                        <select class="form-control" id="itemCodelist" name="itemCode" formControlName="itemCode" [ngClass]="{ 'is-invalid': submitted && f.itemCode.errors }">
+                            <option value="" hidden> - Select the Item - </option>
+                            <option value="null"> - Select the Item - </option>
+                            <option *ngFor="let system of itmsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.itemCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemCode.errors.required">Item Name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="period" for="toProduce" cssClass="required">Period</label>
+                        <input class="form-control" type="hidden" path="period" />
+                        <select class="form-control" name="rangelist" id="rangelist" name="period" formControlName="period" [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
+                            <option value="" hidden> - Select Range - </option>
+                            <option value="null"> - Select Range - </option>
+                            <option *ngFor="let system of periodsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
+                            <div *ngIf="f.period.errors.required">Period Field is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="basedOn" for="leaveType" cssClass="required">Based on</label>
+                        <input class="form-control" type="hidden" path="basedOn" />
+                        <select class="form-control" name="treelist" id="treelist" name="basedOn" formControlName="basedOn" [ngClass]="{ 'is-invalid': submitted && f.basedOn.errors }">
+                            <option value="" hidden> - Select base - </option>
+                            <option value="null" > - Select base - </option>
+                            <option *ngFor="let system of basesystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.basedOn.errors" class="invalid-feedback">
+                            <div *ngIf="f.basedOn.errors.required">Based on Field is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="fiscalYear" for="fiscalYear" cssClass="required">Fiscal Year</label>
+                        <input class="form-control" type="hidden" path="fiscalYear" />
+                        <select class="form-control" id="yearpicker" name="fiscalYear" formControlName="fiscalYear" [ngClass]="{ 'is-invalid': submitted && f.fiscalYear.errors }">
+                            <option value="" hidden> - Select the Year - </option>
+                            <option value="null" > - Select the Year - </option>
+                            <option *ngFor="let system of fiscalsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.fiscalYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.fiscalYear.errors.required">Fiscal Year Field is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="company" for="toProduce" cssClass="required">Company</label>
+                        <input class="form-control" path="company" name="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company Name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="janQty" for="toProduce" cssClass="required">JanQty</label>
+                        <input class="form-control" path="janQty" name="janQty" formControlName="janQty" [ngClass]="{ 'is-invalid': submitted && f.janQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.janQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.janQty.errors.required">January Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="janAmt" for="toProduce" cssClass="required">JanAmt</label>
+                        <input class="form-control" path="janAmt" name="janAmt" formControlName="janAmt" [ngClass]="{ 'is-invalid': submitted && f.janAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.janAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.janAmt.errors.required">January Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="febQty" for="toProduce" cssClass="required">FebQty</label>
+                        <input class="form-control" path="febQty" name="febQty" formControlName="febQty" [ngClass]="{ 'is-invalid': submitted && f.febQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.febQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.febQty.errors.required">Feb Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="febAmt" for="toProduce" cssClass="required">FebAmt</label>
+                        <input class="form-control" path="febAmt" name="febAmt" formControlName="febAmt" [ngClass]="{ 'is-invalid': submitted && f.febAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.febAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.febAmt.errors.required">Feb Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="marQty" for="toProduce" cssClass="required">MarQty</label>
+                        <input class="form-control" path="marQty" name="marQty" formControlName="marQty" [ngClass]="{ 'is-invalid': submitted && f.marQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.marQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.marQty.errors.required">March Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="marAmt" for="toProduce" cssClass="required">MarAmt</label>
+                        <input class="form-control" path="marAmt" name="marAmt" formControlName="marAmt" [ngClass]="{ 'is-invalid': submitted && f.marAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.marAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.marAmt.errors.required">March Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="aprQty" for="toProduce" cssClass="required">AprQty</label>
+                        <input class="form-control" path="aprQty" name="aprQty" formControlName="aprQty" [ngClass]="{ 'is-invalid': submitted && f.aprQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.aprQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.aprQty.errors.required">April Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="aprAmt" for="toProduce" cssClass="required">AprAmt</label>
+                        <input class="form-control" path="aprAmt" name="aprAmt" formControlName="aprAmt" [ngClass]="{ 'is-invalid': submitted && f.aprAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.aprAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.aprAmt.errors.required">April Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="mayQty" for="toProduce" cssClass="required">MayQty</label>
+                        <input class="form-control" path="mayQty" name="mayQty" formControlName="mayQty" [ngClass]="{ 'is-invalid': submitted && f.mayQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.mayQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.mayQty.errors.required">May Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="mayAmt" for="toProduce" cssClass="required">MayAmt</label>
+                        <input class="form-control" path="mayAmt" name="mayAmt" formControlName="mayAmt" [ngClass]="{ 'is-invalid': submitted && f.mayAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.mayAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.mayAmt.errors.required">May Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="junQty" for="toProduce" cssClass="required">JunQty</label>
+                        <input class="form-control" path="junQty" name="junQty" formControlName="junQty" [ngClass]="{ 'is-invalid': submitted && f.junQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.junQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.junQty.errors.required">June Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="junAmt" for="toProduce" cssClass="required">JunAmt</label>
+                        <input class="form-control" path="junAmt" name="junAmt" formControlName="junAmt" [ngClass]="{ 'is-invalid': submitted && f.junAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.junAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.junAmt.errors.required">June Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="julQty" for="toProduce" cssClass="required">JulQty</label>
+                        <input class="form-control" path="julQty" name="julQty" formControlName="julQty" [ngClass]="{ 'is-invalid': submitted && f.julQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.julQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.julQty.errors.required">July Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="julAmt" for="toProduce" cssClass="required">JulAmt</label>
+                        <input class="form-control" path="julAmt" name="julAmt" formControlName="julAmt" [ngClass]="{ 'is-invalid': submitted && f.julAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.julAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.julAmt.errors.required">July Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="augQty" for="toProduce" cssClass="required">AugQty</label>
+                        <input class="form-control" path="augQty" name="augQty" formControlName="augQty" [ngClass]="{ 'is-invalid': submitted && f.augQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.augQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.augQty.errors.required">August Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="augAmt" for="toProduce" cssClass="required">AugAmt</label>
+                        <input class="form-control" path="augAmt" name="augAmt" formControlName="augAmt" [ngClass]="{ 'is-invalid': submitted && f.augAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.augAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.augAmt.errors.required">August Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="sepQty" for="toProduce" cssClass="required">SepQty</label>
+                        <input class="form-control" path="sepQty" name="sepQty" formControlName="sepQty" [ngClass]="{ 'is-invalid': submitted && f.sepQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.sepQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.sepQty.errors.required">September Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="sepAmt" for="toProduce" cssClass="required">SepAmt</label>
+                        <input class="form-control" path="sepAmt" name="sepAmt" formControlName="sepAmt" [ngClass]="{ 'is-invalid': submitted && f.sepAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.sepAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.sepAmt.errors.required">September Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="octQty" for="toProduce" cssClass="required">OctQty</label>
+                        <input class="form-control" path="octQty" name="octQty" formControlName="octQty" [ngClass]="{ 'is-invalid': submitted && f.octQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.octQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.octQty.errors.required">October Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="octAmt" for="toProduce" cssClass="required">OctAmt</label>
+                        <input class="form-control" path="octAmt" name="octAmt" formControlName="octAmt" [ngClass]="{ 'is-invalid': submitted && f.octAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.octAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.octAmt.errors.required">October Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="novQty" for="toProduce" cssClass="required">NovQty</label>
+                        <input class="form-control" path="novQty" name="novQty" formControlName="novQty" [ngClass]="{ 'is-invalid': submitted && f.novQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.novQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.novQty.errors.required">November Quantity is required</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="novAmt" for="toProduce" cssClass="required">NovAmt</label>
+                        <input class="form-control" path="novAmt" name="novAmt" formControlName="novAmt" [ngClass]="{ 'is-invalid': submitted && f.novAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.novAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.novAmt.errors.required">November Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="decQty" for="toProduce" cssClass="required">DecQty</label>
+                        <input class="form-control" path="decQty" name="decQty" formControlName="decQty" [ngClass]="{ 'is-invalid': submitted && f.decQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.decQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.decQty.errors.required">December Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="decAmt" for="toProduce" cssClass="required">DecAmt</label>
+                        <input class="form-control" path="decAmt" name="decAmt" formControlName="decAmt" [ngClass]="{ 'is-invalid': submitted && f.decAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.decAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.decAmt.errors.required">December Amount is required</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalQty" for="toProduce" cssClass="required">TotalQty</label>
+                        <input class="form-control" path="totalQty" name="totalQty" formControlName="totalQty" [ngClass]="{ 'is-invalid': submitted && f.totalQty.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalQty.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalQty.errors.required">Total Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="totalAmt" for="toProduce" cssClass="required">TotalAmt</label>
+                        <input class="form-control" path="totalAmt" name="totalAmt" formControlName="totalAmt" [ngClass]="{ 'is-invalid': submitted && f.totalAmt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.totalAmt.errors" class="invalid-feedback">
+                            <div *ngIf="f.totalAmt.errors.required">Total Amount is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="augQtyt" for="toProduce" cssClass="required">AugQtyt</label>
+                        <input class="form-control" path="augQtyt" name="augQtyt" formControlName="augQtyt" [ngClass]="{ 'is-invalid': submitted && f.augQtyt.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.augQtyt.errors" class="invalid-feedback">
+                            <div *ngIf="f.augQtyt.errors.required">August Quantity is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Delivery Trend List</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

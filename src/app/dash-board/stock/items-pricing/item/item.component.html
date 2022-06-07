@@ -1,0 +1,82 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Item</legend>
+    <div class="formData">
+        <form [formGroup]="itemsForm" (ngSubmit)="onOrderClick($event,itemsForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="itemId" />
+                        <label path="itemCode" for="itemCode" cssClass="required">Item Code</label>
+                        <input class="form-control" path="itemCode" name="itemcode" formControlName="itemcode"
+                            [ngClass]="{ 'is-invalid': submitted && f.itemcode.errors }" />
+                        <div *ngIf="submitted && f.itemcode.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemcode.errors.required">Item Code is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="quantity" for="quantity" cssClass="required">Quantity</label>
+                        <input class="form-control" path="quantity" name="quantity" formControlName="quantity"
+                            [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.quantity.errors.required">Quantity is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="rate" for="rate" cssClass="required">Rate</label>
+                        <input class="form-control" path="rate" name="rate" formControlName="rate"
+                            [ngClass]="{ 'is-invalid': submitted && f.rate.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
+                            <div *ngIf="f.rate.errors.required">Rate is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="amount" for="amount" cssClass="required">Amount</label>
+                        <input class="form-control" path="amount" name="amount" formControlName="amount"
+                            [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" mask="0*.00" />
+                        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                            <div *ngIf="f.amount.errors.required">Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Item Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

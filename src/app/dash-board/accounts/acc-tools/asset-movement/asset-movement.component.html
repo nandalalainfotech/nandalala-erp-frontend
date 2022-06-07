@@ -1,0 +1,84 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Asset Movement</legend>
+    <div class="formData">
+        <form [formGroup]="assetMovForm" (ngSubmit)="onOrderClick($event, assetMovForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="transactiondate" for="transactiondate" cssClass="required">Transaction
+                                    Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="transactiondate" name="transactiondate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                </p-calendar>
+                                <div *ngIf="submitted && f.transactiondate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.transactiondate.errors.required">Transaction date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 form-group">
+                    <label path="asset" for="asset" cssClass="required">Asset</label>
+                    <input class="form-control" path="asset" id="asset" type="hidden" />
+                    <select class="form-control" name="assetlist" id="assetlist" name="asset" formControlName="asset" [ngClass]="{ 'is-invalid': submitted && f.asset.errors }">
+                        <option value="" hidden> - Select Customer -</option>
+                        <option value="null"> - Select Customer -</option>
+                        <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            {{system.description}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.asset.errors" class="invalid-feedback">
+                        <div *ngIf="f.asset.errors.required">Asset is Required</div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" id="company" name="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="targetwarehouse" for="targetwarehouse" cssClass="required">Target WareHouse
+                        </label>
+                        <input class="form-control" path="targetwarehouse" id="targetwarehouse" name="targetwarehouse" formControlName="targetwarehouse" [ngClass]="{ 'is-invalid': submitted && f.targetwarehouse.errors }">
+                        <div *ngIf="submitted && f.targetwarehouse.errors" class="invalid-feedback">
+                            <div *ngIf="f.targetwarehouse.errors.required">Target WareHouse is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Asset Movement</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

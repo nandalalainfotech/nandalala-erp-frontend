@@ -1,0 +1,78 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Sales PipeLine</legend>
+    <div class="formData">
+        <form [formGroup]="salesPipeLineForm" (ngSubmit)="onOrderClick($event,salesPipeLineForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="slineId" />
+                        <label path="personName" for="series" cssClass="required">Person Name</label>
+                        <input class="form-control" path="personName" name="personName" formControlName="personName"
+                            [ngClass]="{ 'is-invalid': submitted && f.personName.errors }" />
+                        <div *ngIf="submitted && f.personName.errors" class="invalid-feedback">
+                            <div *ngIf="f.personName.errors.required">Person Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="orgName" for="series" cssClass="required">Organization Name</label>
+                        <input class="form-control" path="orgName" name="orgName" formControlName="orgName"
+                            [ngClass]="{ 'is-invalid': submitted && f.orgName.errors }" />
+                        <div *ngIf="submitted && f.orgName.errors" class="invalid-feedback">
+                            <div *ngIf="f.orgName.errors.required">Organization Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="status" for="series" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="crmsalesstlist" id="crmsalesstlist" name="status"
+                            formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select Status - </option>
+                            <option value="null"> - Select Status - </option>
+                            <option *ngFor="let system of stsystemproperties" [value]="system.description">
+                                {{system.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Sales PipeLine Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

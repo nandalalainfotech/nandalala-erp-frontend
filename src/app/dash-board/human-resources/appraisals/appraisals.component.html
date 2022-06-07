@@ -1,0 +1,10 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-appraisal" routerLinkActive #appraisalTab="routerLinkActive" [active]="appraisalTab.isActive">Appraisal</a>
+    <a mat-tab-link routerLink="./app-appraisal-template" routerLinkActive #appraisalTempTab="routerLinkActive" [active]="appraisalTempTab.isActive">Appraisal Template</a>
+</nav>
+
+<router-outlet></router-outlet>

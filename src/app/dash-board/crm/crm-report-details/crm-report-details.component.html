@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-mini-time-res" routerLinkActive #miniTimeResTab="routerLinkActive" [active]="miniTimeResTab.isActive">Minimum Time Response</a>
+    <a mat-tab-link routerLink="./app-crm-lead-details" routerLinkActive #leadDetailsTab="routerLinkActive" [active]="leadDetailsTab.isActive">Lead Details</a>
+    <a mat-tab-link routerLink="./app-inactive-customers" routerLinkActive #inactiveCustomersTab="routerLinkActive" [active]="inactiveCustomersTab.isActive">Inactive Customers</a>
+    <a mat-tab-link routerLink="./app-customers" routerLinkActive #customersTab="routerLinkActive" [active]="customersTab.isActive">Customers</a>
+</nav>
+
+<router-outlet></router-outlet>

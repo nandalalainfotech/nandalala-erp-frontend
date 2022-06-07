@@ -1,0 +1,173 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Make Leave Applications</legend>
+    <div class="formData">
+        <form [formGroup]="leAppForm" (ngSubmit)="onOrderClick($event,leAppForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="lvappId" />
+                        <label path="series" for="series" cssClass="required">Series</label>
+                        <input formControlName="series" class="form-control" path="series" [ngClass]="{ 'is-invalid': submitted && f.series.errors }" name="series" />
+                        <div *ngIf="submitted && f.series.errors" class="invalid-feedback">
+                            <div *ngIf="f.series.errors.required">Series is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="leaveType" for="leaveType" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="leaveType" />
+                        <select formControlName="leaveType" class="form-control" name="leaveappstatus" id="leaveappstatus" [ngClass]="{ 'is-invalid': submitted && f.leaveType.errors }" name="leaveType">
+                            <option value="" hidden> - Select Leave Type - </option>
+                            <option value="null" > - Select Leave Type - </option>
+                            <option *ngFor="let system of statussystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.leaveType.errors" class="invalid-feedback">
+                            <div *ngIf="f.leaveType.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="fromDate" for="fromDate" cssClass="required">From Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="fromDate" name="fromDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.fromDate.errors.required">From Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="toDate" for="toDate" cssClass="required">To Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="toDate" name="toDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.toDate.errors.required">To Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <div class="p-fluid p-grid p-formgrid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <label path="postingDate" for="postingDate" cssClass="required">Posting Date</label>
+                                <p-calendar [monthNavigator]="true" [yearNavigator]="true" formControlName="postingDate" name="postingDate" yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
+                                <div *ngIf="submitted && f.postingDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.postingDate.errors.required">Posting Date is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="empNumber" for="empNumber" cssClass="required">Employee</label>
+                        <input class="form-control" type="hidden" path="empNumber" />
+                        <select formControlName="empNumber" class="form-control" id="empNumberlist" [ngClass]="{ 'is-invalid': submitted && f.empNumber.errors }" name="empNumber">
+                            <option value="" hidden> - Select the Employee - </option>
+                            <option value="null" > - Select the Employee - </option>
+                            <option *ngFor="let system of empsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.empNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.empNumber.errors.required">Employee is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="leaveApprover" for="leaveApprover" cssClass="required">Leave Approver</label>
+                        <input class="form-control" type="hidden" path="leaveApprover" />
+                        <select formControlName="leaveApprover" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.leaveApprover.errors }" name="leaveApprover">
+                            <option value="" hidden> - Select Company - </option>
+                            <option value="null"> - Select Company - </option>
+                            <option *ngFor="let system of empsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.leaveApprover.errors" class="invalid-feedback">
+                            <div *ngIf="f.leaveApprover.errors.required">Leave Approver is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="company" />
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input formControlName="company" class="form-control" path="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" name="company" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="deptName" />
+                        <label path="deptName" for="deptName" cssClass="required">Department Name</label>
+                        <input formControlName="deptName" class="form-control" path="deptName" [ngClass]="{ 'is-invalid': submitted && f.deptName.errors }" name="deptName" />
+                        <div *ngIf="submitted && f.deptName.errors" class="invalid-feedback">
+                            <div *ngIf="f.deptName.errors.required">Department Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="reason" for="reason" cssClass="required">Reason</label>
+                        <textarea formControlName="reason" class="form-control" path="reason" name="Reason" rows="5" cols="30" [ngClass]="{ 'is-invalid': submitted && f.reason.errors }" name="reason"></textarea>
+                        <div *ngIf="submitted && f.reason.errors" class="invalid-feedback">
+                            <div *ngIf="f.reason.errors.required">Reason is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<!-- Grid Table Components -->
+<div class="scrollbar">
+    <div class="sample">
+        <fieldset class="scheduler-border">
+
+            
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    
+            <legend class="scheduler-border">Employee Attendance List</legend>
+            <div class="boxData">
+                <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+                </ag-grid-angular>
+            </div>
+        </fieldset>
+    </div>
+</div>

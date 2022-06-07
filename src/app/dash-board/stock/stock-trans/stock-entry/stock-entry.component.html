@@ -1,0 +1,106 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Stock Entry</legend>
+    <div class="formData">
+        <form [formGroup]="stkEntryForm" (ngSubmit)="onOrderClick($event,stkEntryForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="stentid" />
+                        <label path="title" for="title" cssClass="required">Title</label>
+                        <input class="form-control" type="hidden" path="title" />
+                        <select class="form-control" name="stkentrytitlelist" id="stkentrytitlelist" name="title"
+                            formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                            <option value="" hidden> - Select the Title - </option>
+                            <option value="null"> - Select the Title - </option>
+                            <option *ngFor="let system of systemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                            <div *ngIf="f.title.errors.required">Title is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="status" for="status" cssClass="required">Status</label>
+                        <input class="form-control" type="hidden" path="status" />
+                        <select class="form-control" name="stkentrystatuslist" id="stkentrystatuslist" name="status"
+                            formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option value="" hidden> - Select the Status - </option>
+                            <option value="null"> - Select the Status - </option>
+                            <option *ngFor="let system of asystemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="title" for="purpose" cssClass="required">Purpose</label>
+                        <input class="form-control" type="hidden" path="purpose" />
+                        <select class="form-control" name="stkentrypurposelist" id="stkentrypurposelist" name="purpose"
+                            formControlName="purpose" [ngClass]="{ 'is-invalid': submitted && f.purpose.errors }">
+                            <option value="" hidden> - Select the Purpose - </option>
+                            <option value="null"> - Select the Purpose - </option>
+                            <option *ngFor="let system of systemproperties " [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.purpose.errors" class="invalid-feedback">
+                            <div *ngIf="f.purpose.errors.required">Purpose is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+
+                    <div class="form-group">
+                        <label path="stName" for="stName" cssClass="required">Stock Name</label>
+                        <input class="form-control" path="stName" name="stName" formControlName="stName"
+                            [ngClass]="{ 'is-invalid': submitted && f.stName.errors }">
+                        <div *ngIf="submitted && f.stName.errors" class="invalid-feedback">
+                            <div *ngIf="f.stName.errors.required">Stock Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="menulink">
+        </form>
+    </div>
+</fieldset>
+
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;"
+                        (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Stock Entry List</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

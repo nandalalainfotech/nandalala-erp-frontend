@@ -1,0 +1,14 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-ord-itm-deliver" routerLinkActive #ordItemDeliverTab="routerLinkActive" [active]="ordItemDeliverTab.isActive">Order Item Delivered</a>
+    <a mat-tab-link routerLink="./app-pur-itm-order" routerLinkActive #purItemOrderTab="routerLinkActive" [active]="purItemOrderTab.isActive">Purchase Item Order</a>
+    <a mat-tab-link routerLink="./app-itm-shortage" routerLinkActive #itemShortageTab="routerLinkActive" [active]="itemShortageTab.isActive">Item Shortage</a>
+    <a mat-tab-link routerLink="./app-req-itm-transfer" routerLinkActive #reqItemTransferTab="routerLinkActive" [active]="reqItemTransferTab.isActive">Request Item Transfer</a>
+    <a mat-tab-link routerLink="./app-itm-price-report" routerLinkActive #itemPriceReportTab="routerLinkActive" [active]="itemPriceReportTab.isActive">Item Price Report</a>
+    <a mat-tab-link routerLink="./app-itm-wise-level" routerLinkActive #itemWiseLevelTab="routerLinkActive" [active]="itemWiseLevelTab.isActive">Item Wise Level</a>
+</nav>
+
+<router-outlet></router-outlet>

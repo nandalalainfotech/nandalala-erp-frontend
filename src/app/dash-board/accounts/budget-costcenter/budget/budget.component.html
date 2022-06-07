@@ -1,0 +1,172 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Add New Budget</legend>
+    <div class="formData">
+        <form [formGroup]="budgetForm" (ngSubmit)="onOrderClick($event,budgetForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="bgId" />
+                        <label path="budgetName" for="budgetName" cssClass="required">Budget Name</label>
+                        <input class="form-control" path="budgetName" formControlName="budgetName" [ngClass]="{ 'is-invalid': submitted && f.budgetName.errors }" name="budgetName" />
+                        <div *ngIf="submitted && f.budgetName.errors" class="invalid-feedback">
+                            <div *ngIf="f.budgetName.errors.required">Budget Name is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="docStatus" for="docStatus" cssClass="required">Document Status</label>
+                        <input class="form-control" type="hidden" path="docStatus" />
+                        <select class="form-control" id="DocstatList" formControlName="docStatus" [ngClass]="{ 'is-invalid': submitted && f.docStatus.errors }" name="docStatus">
+                            <option value="" hidden> - Select the Document status - </option>
+                            <option value="null" > - Select the Document status - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.docStatus.errors" class="invalid-feedback">
+                            <div *ngIf="f.docStatus.errors.required">Document Status is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="centerName" for="centerName" cssClass="required">Cost Center</label>
+                        <input class="form-control" type="hidden" path="centerName" />
+                        <select class="form-control" id="Centerlist" formControlName="centerName" [ngClass]="{ 'is-invalid': submitted && f.centerName.errors }" name="centerName">
+                            <option value="" hidden> - Select the Cost Center - </option>
+                            <option value="null" > - Select the Cost Center - </option>
+                            <option *ngFor="let cost of costcenter" [value]="cost.centerName">
+                                {{cost.centerName}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.centerName.errors" class="invalid-feedback">
+                            <div *ngIf="f.centerName.errors.required">Cost Center is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="actifannualbgexceed" for="actifannualbgexceed" cssClass="required">Action if
+                            Annual Budget Exceed</label>
+                        <input class="form-control" type="hidden" path="actifannualbgexceed" />
+                        <select class="form-control" id="AnnualBudgetList" formControlName="actifannualbgexceed" [ngClass]="{ 'is-invalid': submitted && f.actifannualbgexceed.errors }" name="actifannualbgexceed">
+                            <option value="" hidden> - Select the Message - </option>
+                            <option value="null" > - Select the Message - </option>
+                            <option *ngFor="let system of asystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.actifannualbgexceed.errors" class="invalid-feedback">
+                            <div *ngIf="f.actifannualbgexceed.errors.required">Action if Annual Budget Exceed is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="actifmonthbgexceed" for="actifmonthbgexceed" cssClass="required">Action if
+                            Monthly Budget Exceed</label>
+                        <input class="form-control" type="hidden" path="actifmonthbgexceed" />
+
+                        <select class="form-control" id="MonthlyBudgetList" formControlName="actifmonthbgexceed" [ngClass]="{ 'is-invalid': submitted && f.actifmonthbgexceed.errors }" name="actifmonthbgexceed">
+                            <option value="" hidden> - Select the Message - </option>
+                            <option value="null" > - Select the Message - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.actifmonthbgexceed.errors" class="invalid-feedback">
+                            <div *ngIf="f.actifmonthbgexceed.errors.required">Action if Monthly Budget Exceed is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="fiscalYear" for="fiscalYear" cssClass="required">Fiscal Year</label>
+                        <input class="form-control" type="hidden" path="fiscalYear" />
+                        <select class="form-control" id="yearpicker" formControlName="fiscalYear" [ngClass]="{ 'is-invalid': submitted && f.fiscalYear.errors }" name="fiscalYear">
+                            <option value="" hidden> - Select the Year - </option>
+                            <option value="null" > - Select the Year - </option>
+                            <option *ngFor="let system of fiscalsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.fiscalYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.fiscalYear.errors.required">Fiscal Year is Required</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" name="company" />
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="bgaccountType" for="bgaccountType" cssClass="required">Budget Account Type
+                        </label>
+                        <input class="form-control" type="hidden" path="bgaccountType" />
+                        <select class="form-control" id="BgAccountTypelist" formControlName="bgaccountType" [ngClass]="{ 'is-invalid': submitted && f.bgaccountType.errors }" name="bgaccountType">
+                            <option value="" hidden> - Select the Account Type - </option>
+                            <option value="null"> - Select the Account Type - </option>
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.bgaccountType.errors" class="invalid-feedback">
+                            <div *ngIf="f.bgaccountType.errors.required">Budget Account Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="bgAmount" for="bgAmount">Amount</label>
+                        <input class="form-control" path="bgAmount" formControlName="bgAmount" [ngClass]="{ 'is-invalid': submitted && f.bgAmount.errors }" name="bgAmount" mask="0*.00" />
+                        <div *ngIf="submitted && f.bgAmount.errors" class="invalid-feedback">
+                            <div *ngIf="f.bgAmount.errors.required">Amount is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<fieldset class="scheduler-border">
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                </button>
+                <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <legend class="scheduler-border">Budget</legend>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+    </ag-grid-angular>
+</fieldset>

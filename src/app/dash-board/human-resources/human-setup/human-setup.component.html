@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-employment-type" routerLinkActive #empTypeTab="routerLinkActive" [active]="empTypeTab.isActive">Employment Type</a>
+    <a mat-tab-link routerLink="./app-branch" routerLinkActive #branchTab="routerLinkActive" [active]="branchTab.isActive">Branch</a>
+    <a mat-tab-link routerLink="./app-designation" routerLinkActive #designationTab="routerLinkActive" [active]="designationTab.isActive">Designation</a>
+    <a mat-tab-link routerLink="./app-department" routerLinkActive #departmentTab="routerLinkActive" [active]="departmentTab.isActive">Department</a>
+</nav>
+
+<router-outlet></router-outlet>

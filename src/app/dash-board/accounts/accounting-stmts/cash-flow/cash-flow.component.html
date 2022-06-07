@@ -1,0 +1,221 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Cash Flow</legend>
+    <div class="formData">
+        <form [formGroup]="cashForm" (ngSubmit)="onOrderClick($event, cashForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" path="acfId" />
+                        <label path="company" for="company" cssClass="required">Company</label>
+                        <input class="form-control" path="company" name="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
+                        <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="startYear" for="startYear" cssClass="required">Start Year</label>
+                        <input class="form-control" type="hidden" path="startYear" />
+                        <select class="form-control" id="yearpicker" name="startYear" formControlName="startYear" [ngClass]="{ 'is-invalid': submitted && f.startYear.errors }">
+                            <option value="" hidden> - Select the Year - </option>
+                            <option value="null" > - Select the Year - </option>
+                            <option *ngFor="let system of startyearsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.startYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.startYear.errors.required">Start Year is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="endYear" for="endYear" cssClass="required">End Year</label>
+                        <input class="form-control" type="hidden" path="endYear" />
+                        <select class="form-control" id="yearpicker1" name="endYear" formControlName="endYear" [ngClass]="{ 'is-invalid': submitted && f.endYear.errors }">
+                            <option value="" hidden> - Select the Year - </option>
+                            <option value="null" > - Select the Year - </option>
+                            <option *ngFor="let system of endyearsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.endYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.endYear.errors.required">End Year is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="periodicity" for="periodicity" cssClass="required">Period</label>
+                        <input class="form-control" type="hidden" path="periodicity" />
+                        <select class="form-control" name="periodList" id="periodList" name="periodicity" formControlName="periodicity" [ngClass]="{ 'is-invalid': submitted && f.periodicity.errors }">
+                            <option value="" hidden> - Select Period - </option>
+                            <option value="null" > - Select Period - </option>
+                            <option *ngFor="let system of periodsystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.periodicity.errors" class="invalid-feedback">
+                            <div *ngIf="f.periodicity.errors.required">Period is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="account" for="account" cssClass="required">Account</label>
+                        <input class="form-control" path="account" name="account" formControlName="account" [ngClass]="{ 'is-invalid': submitted && f.account.errors }">
+                        <div *ngIf="submitted && f.account.errors" class="invalid-feedback">
+                            <div *ngIf="f.account.errors.required">Account is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="jan" for="jan" cssClass="required" value="Jan">January</label>
+                        <input class="form-control" path="jan" name="jan" formControlName="jan" [ngClass]="{ 'is-invalid': submitted && f.jan.errors }">
+                        <div *ngIf="submitted && f.jan.errors" class="invalid-feedback">
+                            <div *ngIf="f.jan.errors.required">January is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="feb" for="feb" cssClass="required" value="Feb">February</label>
+                        <input class="form-control" path="feb" name="feb" formControlName="feb" [ngClass]="{ 'is-invalid': submitted && f.feb.errors }">
+                        <div *ngIf="submitted && f.feb.errors" class="invalid-feedback">
+                            <div *ngIf="f.feb.errors.required">February is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="mar" for="mar" cssClass="required" value="Mar">March</label>
+                        <input class="form-control" path="mar" name="mar" formControlName="mar" [ngClass]="{ 'is-invalid': submitted && f.mar.errors }">
+                        <div *ngIf="submitted && f.mar.errors" class="invalid-feedback">
+                            <div *ngIf="f.mar.errors.required">March is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="apr" for="apr" cssClass="required" value="Apr">April</label>
+                        <input class="form-control" path="apr" name="apr" formControlName="apr" [ngClass]="{ 'is-invalid': submitted && f.apr.errors }">
+                        <div *ngIf="submitted && f.apr.errors" class="invalid-feedback">
+                            <div *ngIf="f.apr.errors.required">April is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="may" for="may" cssClass="required" value="May">May</label>
+                        <input class="form-control" path="may" name="may" formControlName="may" [ngClass]="{ 'is-invalid': submitted && f.may.errors }">
+                        <div *ngIf="submitted && f.may.errors" class="invalid-feedback">
+                            <div *ngIf="f.may.errors.required">May is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="jun" for="jun" cssClass="required" value="Jun">June</label>
+                        <input class="form-control" path="jun" name="jun" formControlName="jun" [ngClass]="{ 'is-invalid': submitted && f.jun.errors }">
+                        <div *ngIf="submitted && f.jun.errors" class="invalid-feedback">
+                            <div *ngIf="f.jun.errors.required">June is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="jul" for="jul" cssClass="required" value="Jul">July</label>
+                        <input class="form-control" path="jul" name="jul" formControlName="jul" [ngClass]="{ 'is-invalid': submitted && f.jul.errors }">
+                        <div *ngIf="submitted && f.jul.errors" class="invalid-feedback">
+                            <div *ngIf="f.jul.errors.required">July is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="aug" for="aug" cssClass="required" value="Aug">August</label>
+                        <input class="form-control" path="aug" name="aug" formControlName="aug" [ngClass]="{ 'is-invalid': submitted && f.aug.errors }">
+                        <div *ngIf="submitted && f.aug.errors" class="invalid-feedback">
+                            <div *ngIf="f.aug.errors.required">August is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="sep" for="sep" cssClass="required" value="Sep">September</label>
+                        <input class="form-control" path="sep" name="sep" formControlName="sep" [ngClass]="{ 'is-invalid': submitted && f.sep.errors }">
+                        <div *ngIf="submitted && f.sep.errors" class="invalid-feedback">
+                            <div *ngIf="f.sep.errors.required">September is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="oct" for="oct" cssClass="required" value="Oct">October</label>
+                        <input class="form-control" path="oct" [(ngModel)]="oct" name="oct" formControlName="oct" [ngClass]="{ 'is-invalid': submitted && f.oct.errors }">
+                        <div *ngIf="submitted && f.oct.errors" class="invalid-feedback">
+                            <div *ngIf="f.oct.errors.required">October is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="nov" for="nov" cssClass="required" value="Nov">November</label>
+                        <input class="form-control" path="nov" [(ngModel)]="nov" name="nov" formControlName="nov" [ngClass]="{ 'is-invalid': submitted && f.nov.errors }">
+                        <div *ngIf="submitted && f.nov.errors" class="invalid-feedback">
+                            <div *ngIf="f.nov.errors.required">November is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 ">
+                    <div class="form-group">
+                        <label path="dece" for="dece" cssClass="required" value="Dec">December</label>
+                        <input class="form-control" path="dece" [(ngModel)]="dece" name="dece" formControlName="dece" [ngClass]="{ 'is-invalid': submitted && f.dece.errors }">
+                        <div *ngIf="submitted && f.dece.errors" class="invalid-feedback">
+                            <div *ngIf="f.dece.errors.required">December is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Cash Flow Details</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

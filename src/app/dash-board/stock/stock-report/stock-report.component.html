@@ -1,0 +1,12 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+</div>
+
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="./app-stock-ledger" routerLinkActive #stockLedgerTab="routerLinkActive" [active]="stockLedgerTab.isActive">Stock Ledger</a>
+    <a mat-tab-link routerLink="./app-stock-balance" routerLinkActive #stockBalanceTab="routerLinkActive" [active]="stockBalanceTab.isActive">Stock Balance</a>
+    <a mat-tab-link routerLink="./app-projected-quantity" routerLinkActive #prjQuantityTab="routerLinkActive" [active]="prjQuantityTab.isActive">Projected Quantity</a>
+    <a mat-tab-link routerLink="./app-stock-ageing" routerLinkActive #stockAgeingTab="routerLinkActive" [active]="stockAgeingTab.isActive">Stock Ageing</a>
+</nav>
+
+<router-outlet></router-outlet>
